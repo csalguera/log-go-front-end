@@ -35,12 +35,12 @@ async function addPhoto(
   }
 }
 
-async function getProfile(id: string | undefined): Promise<Profile[]> {
+async function getProfile(id: string | undefined): Promise<Profile> {
   try {
     const res = await fetch(`${BASE_URL}/${id}`, {
       headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
     })
-    return await res.json() as Profile[]
+    return await res.json() as Profile
   } catch (error) {
     throw error
   }

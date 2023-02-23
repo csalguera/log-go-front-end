@@ -10,12 +10,12 @@ import { Profile } from '../../types/models'
 
 const ProfileDetails = (): JSX.Element => {
   const { id } = useParams<{ id: string }>()
-  const [profile, setProfile] = useState<Profile[]>([])
+  const [profile, setProfile] = useState<Profile | null>(null)
 
   useEffect(() => {
     const fetchProfile = async (): Promise<void> => {
       try {
-        const data: Profile[] = await profileService.getProfile(id)
+        const data: Profile = await profileService.getProfile(id)
         setProfile(data)
       } catch (error) {
         console.log(error);
@@ -27,6 +27,7 @@ const ProfileDetails = (): JSX.Element => {
   return (
     <>
       <h1>Profile Details</h1>
+      {profile?.name}
     </>
   )
 }
