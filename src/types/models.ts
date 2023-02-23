@@ -20,6 +20,7 @@ export interface Profile {
   id: number;
   createdAt: string;
   updatedAt: string;
+  lists: Array<List>;
 }
 
 export interface User {
