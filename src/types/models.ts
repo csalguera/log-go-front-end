@@ -1,6 +1,16 @@
 /* ---------===== custom props ====--------- */
 
-
+export interface List {
+  id: number;
+  movie: string;
+  book: string;
+  tvShow: string;
+  song: string;
+  videoGame: string;
+  boardGame: string;
+  indoorActivity: string;
+  outdoorActivity: string;
+}
 
 /* ---------===== auth models =====--------- */
 
