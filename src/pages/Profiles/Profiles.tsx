@@ -1,5 +1,6 @@
 // npm packages
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 // services
 import * as profileService from '../../services/profileService'
@@ -28,7 +29,9 @@ const Profiles = (): JSX.Element => {
     <>
       <h1>Hello. This is a list of all the profiles.</h1>
       {profiles.map((profile: Profile) =>
-        <p key={profile.id}>{profile.name}</p>
+        <Link key={profile.id} to={`/profiles/${profile.id}`}>
+          <p>{profile.name}</p>
+        </Link>
       )}
     </>
   )
