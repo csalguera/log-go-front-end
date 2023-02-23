@@ -30,12 +30,22 @@ const ProfileDetails = (): JSX.Element => {
     fetchProfile()
   }, [id])
   
-  function handleClick(): void {
-    if (lists) index >= lists.length - 1
-    ?
-    setIndex(0)
-    :
-    setIndex(index + 1)
+  function handleClick(evt: React.MouseEvent): void {
+    let btnContent: string | null = (evt.target as HTMLButtonElement).textContent
+
+    if (btnContent === 'Prev List') {
+      if (lists) index >= lists.length - 1
+      ?
+      setIndex(0)
+      :
+      setIndex(index + 1)
+    } else if  (btnContent === 'Next List') {
+      if (lists) index >= lists.length - 1
+      ?
+      setIndex(0)
+      :
+      setIndex(index + 1)
+    }
   }
   
   return (
@@ -43,6 +53,9 @@ const ProfileDetails = (): JSX.Element => {
       <h1>Profile Details</h1>
       <p>{profile?.name}</p>
       <img src={profile?.photo} alt="Profile Photo" />
+      <button onClick={handleClick}>
+        Prev List
+      </button>
       <button onClick={handleClick}>
         Next List
       </button>
