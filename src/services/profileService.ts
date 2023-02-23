@@ -35,7 +35,7 @@ async function addPhoto(
   }
 }
 
-async function getProfile(id: number): Promise<Profile[]> {
+async function getProfile(id: string | undefined): Promise<Profile[]> {
   try {
     const res = await fetch(`${BASE_URL}/${id}`, {
       headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
