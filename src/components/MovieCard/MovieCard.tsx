@@ -8,14 +8,17 @@ import * as movieService from '../../services/movieService'
 
 // types
 import { Movie } from '../../types/models'
+import { MovieFormData } from '../../types/forms';
 
 const MovieCard = (): JSX.Element => {
   const { id } = useParams()
   const [movies, setMovies] = useState<Movie[] | null>(null)
   const [index, setIndex] = useState(0)
-  const [form, setForm] = useState(false)
-  const [nameForm, setNameForm] = useState({ name: '' })
-  const [releaseDateForm, setReleaseDateForm] = useState({ releaseDate: '' })
+  const [formDisplay, setFormDisplay] = useState(false)
+  const [formData, setFormData] = useState<MovieFormData>({
+    name: '',
+    releaseDate: '',
+  })
 
   let movie
   if (movies) movie = movies[index]
@@ -51,30 +54,27 @@ const MovieCard = (): JSX.Element => {
   }
 
   function displayForm(): void {
-    form
+    formDisplay
     ?
-    setForm(false)
+    setFormDisplay(false)
     :
-    setForm(true)
+    setFormDisplay(true)
   }
 
   async function handleChange(evt: ChangeEvent<HTMLInputElement>) {
     if (evt.target)
-    setNameForm({
-      ...nameForm,
-      [evt.target.name]: evt.target.value
-    })
-    setReleaseDateForm({
-      ...releaseDateForm,
-      [evt.target.name]: evt.target.value
+    setFormData({
+      ...formData, [evt.target.name]: evt.target.value
     })
   }
 
   async function handleSubmit(evt: FormEvent<HTMLFormElement>): Promise<void> {
     evt.preventDefault()
-    const newMovie = await movieService.createMovie()
-    setMovies([...movies, newMovie])
+    const newMovie = await movieService.createMovie(formData)
+    if (movies) setMovies([...movies, newMovie])
   }
+  
+  const { name, releaseDate } = formData
 
   if (!movies) return <h2>Loading...</h2>
   return (
@@ -95,13 +95,12 @@ const MovieCard = (): JSX.Element => {
       :
       <>
         <h2>Favorite Movies</h2>
-        <p>Add some movies</p>
         <div>
           <button onClick={displayForm}>
             +
           </button>
           {
-            form
+            formDisplay
             ?
             <form
               autoComplete='off'
@@ -111,14 +110,14 @@ const MovieCard = (): JSX.Element => {
                 type="text"
                 name="name"
                 placeholder='Title'
-                value={nameForm.name}
+                value={name}
                 onChange={handleChange}
               />
               <input
                 type="text"
                 name="releaseDate"
                 placeholder='Release Year'
-                value={releaseDateForm.releaseDate}
+                value={releaseDate}
                 onChange={handleChange}
               />
               <button>
@@ -126,7 +125,7 @@ const MovieCard = (): JSX.Element => {
               </button>
             </form>
             :
-            'ss'
+            <p>Add some movies</p>
           }
         </div>
       </>

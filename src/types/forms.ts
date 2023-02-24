@@ -1,6 +1,9 @@
 /* ---------==== custom forms ====--------- */
 
-
+export interface MovieFormData {
+  name: string;
+  releaseDate: string;
+}
 
 /* ---------===== auth forms =====--------- */
 
