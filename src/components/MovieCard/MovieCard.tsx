@@ -22,7 +22,7 @@ const MovieCard = (): JSX.Element => {
     name: '',
     releaseDate: '',
   })
-
+  
   let movie
   if (movies) movie = movies[index]
 
@@ -74,6 +74,10 @@ const MovieCard = (): JSX.Element => {
   async function handleSubmit(evt: FormEvent<HTMLFormElement>): Promise<void> {
     evt.preventDefault()
     const newMovie = await movieService.createMovie(formData)
+    setFormData({
+      name: '',
+      releaseDate: ''
+    })
     if (movies) setMovies([...movies, newMovie])
   }
   
@@ -94,6 +98,19 @@ const MovieCard = (): JSX.Element => {
         <button onClick={handleClick}>
           Next Movie
         </button>
+        <button onClick={displayForm}>
+            +
+          </button>
+          {
+            formDisplay
+            &&
+            <MovieForm
+              name={name}
+              releaseDate={releaseDate}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+            />
+          }
       </div>
       :
       <>
