@@ -1,5 +1,5 @@
 // npm packages
-import { useEffect, useState, ChangeEvent } from 'react';
+import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { useParams } from 'react-router';
 
 // services
@@ -70,6 +70,12 @@ const MovieCard = (): JSX.Element => {
     })
   }
 
+  async function handleSubmit(evt: FormEvent<HTMLFormElement>): Promise<void> {
+    evt.preventDefault()
+    const newMovie = await movieService.createMovie()
+    setMovies([...movies, newMovie])
+  }
+
   if (!movies) return <h2>Loading...</h2>
   return (
     <>
@@ -99,6 +105,7 @@ const MovieCard = (): JSX.Element => {
             ?
             <form
               autoComplete='off'
+              onSubmit={handleSubmit}
             >
               <input
                 type="text"
@@ -114,6 +121,9 @@ const MovieCard = (): JSX.Element => {
                 value={releaseDateForm.releaseDate}
                 onChange={handleChange}
               />
+              <button>
+                Add
+              </button>
             </form>
             :
             'ss'

@@ -8,6 +8,7 @@ export interface Movie {
   updatedAt: string;
 }
 
+
 /* ---------===== auth models =====--------- */
 
 export interface Profile {
