@@ -142,6 +142,7 @@ const MovieCard = (): JSX.Element => {
       <h2>Favorite Movies</h2>
       {!formDisplay && <button onClick={handleEdit}>Edit</button>}
       {!editFormDisplay && <button onClick={displayForm}>+</button>}
+      <button>X</button>
 
       {editFormDisplay &&
         <MovieForm

@@ -39,7 +39,22 @@ const updateMovie = async (formData: EditMovieFormData): Promise<Movie> => {
   }
 }
 
+const deleteMovie = async (id: number): Promise<void> => {
+  try {
+    const res = await fetch(`${BASE_URL}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`
+      }
+    })
+    return await res.json()
+  } catch (error) {
+    throw error
+  }
+}
+
 export {
   createMovie,
   updateMovie,
+  deleteMovie,
 }
