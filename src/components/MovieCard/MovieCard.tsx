@@ -63,9 +63,10 @@ const MovieCard = (): JSX.Element => {
       </div>
       :
       <>
-        <h2>No Movies</h2>
+        <h2>Favorite Movies</h2>
+        <p>Add some movies</p>
         <button>
-          Add a movie
+          +
         </button>
       </>
     }
