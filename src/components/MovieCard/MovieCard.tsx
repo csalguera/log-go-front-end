@@ -1,5 +1,5 @@
 // npm packages
-import React, { useEffect, useState, ChangeEvent, FormEvent, MouseEventHandler } from 'react';
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { useParams } from 'react-router';
 
 // services
@@ -15,23 +15,23 @@ import { MovieFormData, EditMovieFormData } from '../../types/forms';
 
 const MovieCard = (): JSX.Element => {
   const { id } = useParams()
+  let movie: Movie | null
   const [movies, setMovies] = useState<Movie[] | null>(null)
   const [index, setIndex] = useState(0)
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
+
   const [formData, setFormData] = useState<MovieFormData>({
     name: '',
     releaseDate: '',
   })
-
-  let movie: Movie | null
-  if (movies) movie = movies[index]
-
   const [editFormData, setEditFormData] = useState<EditMovieFormData>({
     movieId: null,
     name: '',
     releaseDate: '',
   })
+
+  if (movies) movie = movies[index]
 
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {
@@ -93,7 +93,6 @@ const MovieCard = (): JSX.Element => {
   }
 
   async function handleChange(evt: ChangeEvent<HTMLInputElement>): Promise<void> {
-    if (evt.target)
     setFormData({
       ...formData, [evt.target.name]: evt.target.value
     })
@@ -156,36 +155,19 @@ const MovieCard = (): JSX.Element => {
           formData={editFormDisplay ? editFormData : formData}
           handleChange={handleEditForm}
           handleSubmit={handleUpdate}
-          edit={editFormDisplay}
         />
-      ?
-        <MovieForm
-          formData={editFormDisplay ? editFormData : formData}
-          handleChange={handleEditForm}
-          handleSubmit={handleUpdate}
-          edit={editFormDisplay}
-        />
-      :
-      formDisplay &&
+      }
+      {formDisplay &&
         <MovieForm
           formData={editFormDisplay ? editFormData : formData}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
-          edit={editFormDisplay}
         />
-      ?
-        <MovieForm
-          formData={editFormDisplay ? editFormData : formData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          edit={editFormDisplay}
-        />
-      :
+        }
         <>
           <p>Title: {movie!?.name}</p>
           <p>Released: {movie!?.releaseDate}</p>
         </>
-      }
       <button onClick={handleClick}>
         Prev Movie
       </button>
