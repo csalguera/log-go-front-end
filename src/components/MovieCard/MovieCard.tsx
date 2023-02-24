@@ -140,16 +140,9 @@ const MovieCard = (): JSX.Element => {
   return (
     <>
       <h2>Favorite Movies</h2>
-      {!formDisplay &&
-        <button onClick={handleEdit}>
-          Edit
-        </button>
-      }
-      {!editFormDisplay &&
-      <button onClick={displayForm}>
-        +
-      </button>
-      }
+      {!formDisplay && <button onClick={handleEdit}>Edit</button>}
+      {!editFormDisplay && <button onClick={displayForm}>+</button>}
+
       {editFormDisplay &&
         <MovieForm
           formData={editFormDisplay ? editFormData : formData}
@@ -157,23 +150,27 @@ const MovieCard = (): JSX.Element => {
           handleSubmit={handleUpdate}
         />
       }
+      
       {formDisplay &&
         <MovieForm
           formData={editFormDisplay ? editFormData : formData}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
         />
-        }
+      }
+
+      {!formDisplay && !editFormDisplay &&
         <>
           <p>Title: {movie!?.name}</p>
           <p>Released: {movie!?.releaseDate}</p>
+          <button onClick={handleClick}>
+            Prev Movie
+          </button>
+          <button onClick={handleClick}>
+            Next Movie
+          </button>
         </>
-      <button onClick={handleClick}>
-        Prev Movie
-      </button>
-      <button onClick={handleClick}>
-        Next Movie
-      </button>
+      }
     </>
   )
 }
