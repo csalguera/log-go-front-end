@@ -1,9 +1,10 @@
 // npm packages
-import { useEffect, useState } from 'react';
+import { useEffect, useState, ChangeEvent } from 'react';
 import { useParams } from 'react-router';
 
 // services
 import * as profileService from '../../services/profileService'
+import * as movieService from '../../services/movieService'
 
 // types
 import { Movie } from '../../types/models'
@@ -12,6 +13,10 @@ const MovieCard = (): JSX.Element => {
   const { id } = useParams()
   const [movies, setMovies] = useState<Movie[] | null>(null)
   const [index, setIndex] = useState(0)
+  const [form, setForm] = useState(false)
+  const [nameForm, setNameForm] = useState({ name: '' })
+  const [releaseDateForm, setReleaseDateForm] = useState({ releaseDate: '' })
+
   let movie
   if (movies) movie = movies[index]
 
@@ -45,6 +50,26 @@ const MovieCard = (): JSX.Element => {
     }
   }
 
+  function displayForm(): void {
+    form
+    ?
+    setForm(false)
+    :
+    setForm(true)
+  }
+
+  async function handleChange(evt: ChangeEvent<HTMLInputElement>) {
+    if (evt.target)
+    setNameForm({
+      ...nameForm,
+      [evt.target.name]: evt.target.value
+    })
+    setReleaseDateForm({
+      ...releaseDateForm,
+      [evt.target.name]: evt.target.value
+    })
+  }
+
   if (!movies) return <h2>Loading...</h2>
   return (
     <>
@@ -65,9 +90,35 @@ const MovieCard = (): JSX.Element => {
       <>
         <h2>Favorite Movies</h2>
         <p>Add some movies</p>
-        <button>
-          +
-        </button>
+        <div>
+          <button onClick={displayForm}>
+            +
+          </button>
+          {
+            form
+            ?
+            <form
+              autoComplete='off'
+            >
+              <input
+                type="text"
+                name="name"
+                placeholder='Title'
+                value={nameForm.name}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="releaseDate"
+                placeholder='Release Year'
+                value={releaseDateForm.releaseDate}
+                onChange={handleChange}
+              />
+            </form>
+            :
+            'ss'
+          }
+        </div>
       </>
     }
     </>
