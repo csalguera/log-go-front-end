@@ -7,8 +7,8 @@ export interface MovieFormData {
 
 export interface EditMovieFormData {
   movieId: number | null;
-  editName: string;
-  editReleaseDate: string;
+  name: string;
+  releaseDate: string;
 }
 
 /* ---------===== auth forms =====--------- */

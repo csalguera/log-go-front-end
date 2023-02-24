@@ -29,8 +29,8 @@ const MovieCard = (): JSX.Element => {
 
   const [editFormData, setEditFormData] = useState<EditMovieFormData>({
     movieId: null,
-    editName: '',
-    editReleaseDate: '',
+    name: '',
+    releaseDate: '',
   })
 
   useEffect(() => {
@@ -50,8 +50,8 @@ const MovieCard = (): JSX.Element => {
       try {
         setEditFormData({
           movieId: movie!?.id,
-          editName: movie!?.name,
-          editReleaseDate: movie!?.releaseDate!?.toString(),
+          name: movie!?.name,
+          releaseDate: movie!?.releaseDate!?.toString(),
         })
       } catch (error) {
         console.log(error);
@@ -100,7 +100,6 @@ const MovieCard = (): JSX.Element => {
   }
 
   async function handleEditForm(evt: ChangeEvent<HTMLInputElement>): Promise<void> {
-    if (evt.target)
     setEditFormData({
       ...editFormData, [evt.target.name]: evt.target.value
     })
@@ -134,13 +133,10 @@ const MovieCard = (): JSX.Element => {
   async function handleUpdate(evt: FormEvent<HTMLFormElement>): Promise<void> {
     evt.preventDefault()
     const updatedMovie = await movieService.updateMovie(editFormData)
-    console.log(editFormData)
-    setMovies(movies!?.map(m => m.id === movie!?.id ? updatedMovie : m))
+    console.log(editFormData);
+    setMovies(movies!?.map(m => m.id === editFormData.movieId ? updatedMovie : m))
   }
   
-  const { name, releaseDate } = formData
-  const { editName, editReleaseDate } = editFormData
-
   if (!movies) return <h2>Loading...</h2>
   return (
     <>
@@ -157,16 +153,14 @@ const MovieCard = (): JSX.Element => {
       }
       {editFormDisplay &&
         <MovieForm
-          name={editName}
-          releaseDate={editReleaseDate}
+          formData={editFormDisplay ? editFormData : formData}
           handleChange={handleEditForm}
           handleSubmit={handleUpdate}
           edit={editFormDisplay}
         />
       ?
         <MovieForm
-          name={editName}
-          releaseDate={editReleaseDate}
+          formData={editFormDisplay ? editFormData : formData}
           handleChange={handleEditForm}
           handleSubmit={handleUpdate}
           edit={editFormDisplay}
@@ -174,16 +168,14 @@ const MovieCard = (): JSX.Element => {
       :
       formDisplay &&
         <MovieForm
-          name={name}
-          releaseDate={releaseDate}
+          formData={editFormDisplay ? editFormData : formData}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           edit={editFormDisplay}
         />
       ?
         <MovieForm
-          name={name}
-          releaseDate={releaseDate}
+          formData={editFormDisplay ? editFormData : formData}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           edit={editFormDisplay}

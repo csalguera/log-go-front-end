@@ -3,8 +3,10 @@ import { ChangeEvent, FormEvent } from "react";
 /* ---------======= custom props ======--------- */
 
 export interface MovieFormProps {
-  name: string;
-  releaseDate: string;
+  formData: {
+    name: string;
+    releaseDate: string;
+  };
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
   edit: boolean;
