@@ -6,6 +6,9 @@ import { useParams } from 'react-router';
 import * as profileService from '../../services/profileService'
 import * as movieService from '../../services/movieService'
 
+// components
+import MovieForm from '../MovieForm/MovieForm';
+
 // types
 import { Movie } from '../../types/models'
 import { MovieFormData } from '../../types/forms';
@@ -61,7 +64,7 @@ const MovieCard = (): JSX.Element => {
     setFormDisplay(true)
   }
 
-  async function handleChange(evt: ChangeEvent<HTMLInputElement>) {
+  async function handleChange(evt: ChangeEvent<HTMLInputElement>): Promise<void> {
     if (evt.target)
     setFormData({
       ...formData, [evt.target.name]: evt.target.value
@@ -102,28 +105,12 @@ const MovieCard = (): JSX.Element => {
           {
             formDisplay
             ?
-            <form
-              autoComplete='off'
-              onSubmit={handleSubmit}
-            >
-              <input
-                type="text"
-                name="name"
-                placeholder='Title'
-                value={name}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="releaseDate"
-                placeholder='Release Year'
-                value={releaseDate}
-                onChange={handleChange}
-              />
-              <button>
-                Add
-              </button>
-            </form>
+            <MovieForm
+              name={name}
+              releaseDate={releaseDate}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+            />
             :
             <p>Add some movies</p>
           }
