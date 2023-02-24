@@ -129,20 +129,28 @@ const MovieCard = (): JSX.Element => {
     setEditFormDisplay(true)
   }
 
-  async function handleUpdate(evt: FormEvent<HTMLFormElement>): Promise<void> {
+  async function handleUpdate(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault()
     const updatedMovie = await movieService.updateMovie(editFormData)
     console.log(editFormData);
     setMovies(movies!?.map(m => m.id === editFormData.movieId ? updatedMovie : m))
   }
-  
+
+  async function handleDelete(): Promise<void> {
+    const deletedMovie = await movieService.deleteMovie(movie!.id)
+    setMovies(movies!?.filter(movie => movie.id !== deletedMovie))
+    setIndex(0)
+  }
+
+  console.log(movies);
+
   if (!movies) return <h2>Loading...</h2>
   return (
     <>
       <h2>Favorite Movies</h2>
       {!formDisplay && <button onClick={handleEdit}>Edit</button>}
       {!editFormDisplay && <button onClick={displayForm}>+</button>}
-      <button>X</button>
+      <button onClick={handleDelete}>X</button>
 
       {editFormDisplay &&
         <MovieForm
@@ -162,14 +170,21 @@ const MovieCard = (): JSX.Element => {
 
       {!formDisplay && !editFormDisplay &&
         <>
-          <p>Title: {movie!?.name}</p>
-          <p>Released: {movie!?.releaseDate}</p>
-          <button onClick={handleClick}>
-            Prev Movie
-          </button>
-          <button onClick={handleClick}>
-            Next Movie
-          </button>
+          {movies.length
+          ?
+            <>
+              <p>Title: {movie!?.name}</p>
+              <p>Released: {movie!?.releaseDate}</p>
+              <button onClick={handleClick}>
+                Prev Movie
+              </button>
+              <button onClick={handleClick}>
+                Next Movie
+              </button>
+            </>
+          :
+            <p>Add Some Movies!</p>
+          }
         </>
       }
     </>
