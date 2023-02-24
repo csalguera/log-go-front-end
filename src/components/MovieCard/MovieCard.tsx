@@ -84,7 +84,10 @@ const MovieCard = (): JSX.Element => {
       name: '',
       releaseDate: ''
     })
-    if (movies) setMovies([...movies, newMovie])
+    if (movies) {
+      setMovies([...movies, newMovie])
+      setIndex(movies?.length)
+    }
   }
   
   const { name, releaseDate } = formData
