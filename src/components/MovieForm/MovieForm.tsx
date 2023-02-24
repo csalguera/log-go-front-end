@@ -27,7 +27,7 @@ const MovieForm = ({ name, releaseDate, handleSubmit, handleChange }: MovieFormP
           onChange={handleChange}
         />
         <button>
-          Add
+          Submit
         </button>
       </form>
     </>
