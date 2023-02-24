@@ -1,5 +1,5 @@
 // npm packages
-import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { useParams } from 'react-router';
 
 // services
@@ -56,7 +56,13 @@ const MovieCard = (): JSX.Element => {
     }
   }
 
-  function displayForm(): void {
+  function displayForm(evt: React.MouseEvent): void {
+    (evt.target as HTMLButtonElement).textContent === '+'
+    ?
+    (evt.target as HTMLButtonElement).textContent = '-'
+    :
+    (evt.target as HTMLButtonElement).textContent = '+'
+
     formDisplay
     ?
     setFormDisplay(false)
@@ -86,54 +92,26 @@ const MovieCard = (): JSX.Element => {
   if (!movies) return <h2>Loading...</h2>
   return (
     <>
-    {movies.length
-      ?
-      <div>
-        <h2>Favorite Movies</h2>
-        <p>Title: {movie?.name}</p>
-        <p>Released: {movie?.releaseDate}</p>
-        <button onClick={handleClick}>
-          Prev Movie
-        </button>
-        <button onClick={handleClick}>
-          Next Movie
-        </button>
-        <button onClick={displayForm}>
-            +
-          </button>
-          {
-            formDisplay
-            &&
-            <MovieForm
-              name={name}
-              releaseDate={releaseDate}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-            />
-          }
-      </div>
-      :
-      <>
-        <h2>Favorite Movies</h2>
-        <div>
-          <button onClick={displayForm}>
-            +
-          </button>
-          {
-            formDisplay
-            ?
-            <MovieForm
-              name={name}
-              releaseDate={releaseDate}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-            />
-            :
-            <p>Add some movies</p>
-          }
-        </div>
-      </>
-    }
+      <h2>Favorite Movies</h2>
+      <p>Title: {movie?.name}</p>
+      <p>Released: {movie?.releaseDate}</p>
+      <button onClick={handleClick}>
+        Prev Movie
+      </button>
+      <button onClick={handleClick}>
+        Next Movie
+      </button>
+      <button onClick={displayForm}>
+        +
+      </button>
+      {formDisplay &&
+        <MovieForm
+          name={name}
+          releaseDate={releaseDate}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+      }
     </>
   )
 }
