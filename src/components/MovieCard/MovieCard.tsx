@@ -1,5 +1,5 @@
 // npm packages
-import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import React, { useEffect, useState, ChangeEvent, FormEvent, MouseEventHandler } from 'react';
 import { useParams } from 'react-router';
 
 // services
@@ -11,23 +11,30 @@ import MovieForm from '../MovieForm/MovieForm';
 
 // types
 import { Movie } from '../../types/models'
-import { MovieFormData } from '../../types/forms';
+import { MovieFormData, EditMovieFormData } from '../../types/forms';
 
 const MovieCard = (): JSX.Element => {
   const { id } = useParams()
   const [movies, setMovies] = useState<Movie[] | null>(null)
   const [index, setIndex] = useState(0)
   const [formDisplay, setFormDisplay] = useState(false)
+  const [editFormDisplay, setEditFormDisplay] = useState(false)
   const [formData, setFormData] = useState<MovieFormData>({
     name: '',
     releaseDate: '',
   })
-  
-  let movie
+
+  let movie: Movie | null
   if (movies) movie = movies[index]
 
+  const [editFormData, setEditFormData] = useState<EditMovieFormData>({
+    movieId: null,
+    editName: '',
+    editReleaseDate: '',
+  })
+
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchMovies = async (): Promise<void> => {
       try {
         const data = await profileService.getProfile(id)
         setMovies(data.movies)
@@ -38,6 +45,21 @@ const MovieCard = (): JSX.Element => {
     fetchMovies()
   }, [id])
 
+  useEffect(() => {
+    const fetchMovieData = async () => {
+      try {
+        setEditFormData({
+          movieId: movie!?.id,
+          editName: movie!?.name,
+          editReleaseDate: movie!?.releaseDate!?.toString(),
+        })
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchMovieData()
+  }, [movie!?.id])
+  
   function handleClick(evt: React.MouseEvent): void {
     let btnContent: string | null = (evt.target as HTMLButtonElement).textContent
 
@@ -77,6 +99,13 @@ const MovieCard = (): JSX.Element => {
     })
   }
 
+  async function handleEditForm(evt: ChangeEvent<HTMLInputElement>): Promise<void> {
+    if (evt.target)
+    setEditFormData({
+      ...editFormData, [evt.target.name]: evt.target.value
+    })
+  }
+
   async function handleSubmit(evt: FormEvent<HTMLFormElement>): Promise<void> {
     evt.preventDefault()
     const newMovie = await movieService.createMovie(formData)
@@ -84,28 +113,63 @@ const MovieCard = (): JSX.Element => {
       name: '',
       releaseDate: ''
     })
-    if (movies) {
-      setMovies([...movies, newMovie])
-      setIndex(movies?.length)
-    }
+    setMovies([...movies!, newMovie])
+    setIndex(movies!?.length)
+  }
+
+  function handleEdit(evt: React.MouseEvent): void {
+    (evt.target as HTMLButtonElement).textContent === 'Edit'
+    ?
+    (evt.target as HTMLButtonElement).textContent = 'Cancel'
+    :
+    (evt.target as HTMLButtonElement).textContent = 'Edit'
+
+    editFormDisplay
+    ?
+    setEditFormDisplay(false)
+    :
+    setEditFormDisplay(true)
+  }
+
+  async function handleUpdate(evt: FormEvent<HTMLFormElement>): Promise<void> {
+    evt.preventDefault()
+    const updatedMovie = await movieService.updateMovie(editFormData)
+    console.log(editFormData)
+    setMovies(movies!?.map(m => m.id === movie!?.id ? updatedMovie : m))
   }
   
   const { name, releaseDate } = formData
+  const { editName, editReleaseDate } = editFormData
 
   if (!movies) return <h2>Loading...</h2>
   return (
     <>
       <h2>Favorite Movies</h2>
-      <p>Title: {movie?.name}</p>
-      <p>Released: {movie?.releaseDate}</p>
+      {editFormDisplay
+      ?
+        <MovieForm
+          name={editName}
+          releaseDate={editReleaseDate}
+          handleChange={handleEditForm}
+          handleSubmit={handleUpdate}
+        />
+      :
+        <>
+          <p>Title: {movie!?.name}</p>
+          <p>Released: {movie!?.releaseDate}</p>
+          <button onClick={displayForm}>
+            +
+          </button>
+        </>
+      }
       <button onClick={handleClick}>
         Prev Movie
       </button>
       <button onClick={handleClick}>
         Next Movie
       </button>
-      <button onClick={displayForm}>
-        +
+      <button onClick={handleEdit}>
+        Edit
       </button>
       {formDisplay &&
         <MovieForm

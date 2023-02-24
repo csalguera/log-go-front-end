@@ -3,11 +3,14 @@ import { MovieFormProps } from "../../types/props"
 
 const MovieForm = ({ name, releaseDate, handleSubmit, handleChange }: MovieFormProps): JSX.Element => {
   
+  console.log(name);
+  
+
   return (
     <>
       <form
-      autoComplete='off'
-      onSubmit={handleSubmit}
+        autoComplete='off'
+        onSubmit={handleSubmit}
       >
         <input
           type="text"
