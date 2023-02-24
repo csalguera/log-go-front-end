@@ -145,21 +145,49 @@ const MovieCard = (): JSX.Element => {
   return (
     <>
       <h2>Favorite Movies</h2>
-      {editFormDisplay
-      ?
+      {!formDisplay &&
+        <button onClick={handleEdit}>
+          Edit
+        </button>
+      }
+      {!editFormDisplay &&
+      <button onClick={displayForm}>
+        +
+      </button>
+      }
+      {editFormDisplay &&
         <MovieForm
           name={editName}
           releaseDate={editReleaseDate}
           handleChange={handleEditForm}
           handleSubmit={handleUpdate}
         />
+      ?
+      <MovieForm
+        name={editName}
+        releaseDate={editReleaseDate}
+        handleChange={handleEditForm}
+        handleSubmit={handleUpdate}
+      />
       :
+      formDisplay &&
+        <MovieForm
+          name={name}
+          releaseDate={releaseDate}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+        ?
+        <MovieForm
+          name={name}
+          releaseDate={releaseDate}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+        :
         <>
           <p>Title: {movie!?.name}</p>
           <p>Released: {movie!?.releaseDate}</p>
-          <button onClick={displayForm}>
-            +
-          </button>
         </>
       }
       <button onClick={handleClick}>
@@ -168,17 +196,6 @@ const MovieCard = (): JSX.Element => {
       <button onClick={handleClick}>
         Next Movie
       </button>
-      <button onClick={handleEdit}>
-        Edit
-      </button>
-      {formDisplay &&
-        <MovieForm
-          name={name}
-          releaseDate={releaseDate}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
-      }
     </>
   )
 }
