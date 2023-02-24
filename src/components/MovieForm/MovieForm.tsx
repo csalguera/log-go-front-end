@@ -1,7 +1,7 @@
 // types
 import { MovieFormProps } from "../../types/props"
 
-const MovieForm = ({ formData, handleSubmit, handleChange, edit }: MovieFormProps): JSX.Element => {
+const MovieForm = ({ formData, handleSubmit, handleChange }: MovieFormProps): JSX.Element => {
   const { name, releaseDate } = formData
 
   return (
