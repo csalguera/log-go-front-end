@@ -7,6 +7,7 @@ export interface MovieFormProps {
   releaseDate: string;
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
+  edit: boolean;
 }
 
 /* ---------===== auth form props =====--------- */

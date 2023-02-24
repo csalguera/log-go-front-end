@@ -1,11 +1,8 @@
 // types
 import { MovieFormProps } from "../../types/props"
 
-const MovieForm = ({ name, releaseDate, handleSubmit, handleChange }: MovieFormProps): JSX.Element => {
+const MovieForm = ({ name, releaseDate, handleSubmit, handleChange, edit }: MovieFormProps): JSX.Element => {
   
-  console.log(name);
-  
-
   return (
     <>
       <form
@@ -14,14 +11,14 @@ const MovieForm = ({ name, releaseDate, handleSubmit, handleChange }: MovieFormP
       >
         <input
           type="text"
-          name="name"
+          name={`${edit ? 'editName' : 'name'}`}
           placeholder='Title'
           value={name}
           onChange={handleChange}
         />
         <input
           type="text"
-          name="releaseDate"
+          name={`${edit ? 'editReleaseDate' : 'releaseDate'}`}
           placeholder='Release Year'
           value={releaseDate}
           onChange={handleChange}

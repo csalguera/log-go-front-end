@@ -161,14 +161,16 @@ const MovieCard = (): JSX.Element => {
           releaseDate={editReleaseDate}
           handleChange={handleEditForm}
           handleSubmit={handleUpdate}
+          edit={editFormDisplay}
         />
       ?
-      <MovieForm
-        name={editName}
-        releaseDate={editReleaseDate}
-        handleChange={handleEditForm}
-        handleSubmit={handleUpdate}
-      />
+        <MovieForm
+          name={editName}
+          releaseDate={editReleaseDate}
+          handleChange={handleEditForm}
+          handleSubmit={handleUpdate}
+          edit={editFormDisplay}
+        />
       :
       formDisplay &&
         <MovieForm
@@ -176,15 +178,17 @@ const MovieCard = (): JSX.Element => {
           releaseDate={releaseDate}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          edit={editFormDisplay}
         />
-        ?
+      ?
         <MovieForm
           name={name}
           releaseDate={releaseDate}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          edit={editFormDisplay}
         />
-        :
+      :
         <>
           <p>Title: {movie!?.name}</p>
           <p>Released: {movie!?.releaseDate}</p>
