@@ -6,22 +6,22 @@ import { useParams } from 'react-router';
 import * as profileService from '../../services/profileService'
 
 // types
-import { Profile, List } from '../../types/models'
+import { Profile, Movie } from '../../types/models'
 
 const ProfileDetails = (): JSX.Element => {
   const { id } = useParams<{ id: string }>()
   const [profile, setProfile] = useState<Profile | null>(null)
-  const [lists, setLists] = useState<List[] | null>(null)
+  const [movies, setMovies] = useState<Movie[] | null>(null)
   const [index, setIndex] = useState(0)
-  let list
-  if (lists) list = lists[index]
+  let movie
+  if (movies) movie = movies[index]
 
   useEffect(() => {
     const fetchProfile = async (): Promise<void> => {
       try {
         const data: Profile = await profileService.getProfile(id)
         setProfile(data)
-        setLists(data.lists)
+        setMovies(data.movies)
         setIndex(0)
       } catch (error) {
         console.log(error);
@@ -34,40 +34,35 @@ const ProfileDetails = (): JSX.Element => {
     let btnContent: string | null = (evt.target as HTMLButtonElement).textContent
 
     if (btnContent === 'Prev List') {
-      if (lists) index >= lists.length - 1
+      movies && index <= 0
       ?
-      setIndex(0)
+      setIndex(movies.length - 1)
       :
-      setIndex(index + 1)
+      setIndex(index - 1)
     } else if  (btnContent === 'Next List') {
-      if (lists) index >= lists.length - 1
+      movies && index >= movies.length - 1
       ?
       setIndex(0)
       :
       setIndex(index + 1)
     }
   }
-  
+
   return (
     <>
       <h1>Profile Details</h1>
       <p>{profile?.name}</p>
       <img src={profile?.photo} alt="Profile Photo" />
-      <button onClick={handleClick}>
-        Prev List
-      </button>
-      <button onClick={handleClick}>
-        Next List
-      </button>
       <div>
-        <p>Favorite Movie: {list?.movie}</p>
-        <p>Favorite Book: {list?.book}</p>
-        <p>Favorite Tv Show: {list?.tvShow}</p>
-        <p>Favorite Song: {list?.song}</p>
-        <p>Favorite Video Game: {list?.videoGame}</p>
-        <p>Favorite Board Game: {list?.boardGame}</p>
-        <p>Favorite Indoor Activity: {list?.indoorActivity}</p>
-        <p>Favorite Outdoor Activity: {list?.outdoorActivity}</p>
+        <h2>Favorite Movies</h2>
+        <p>Title: {movie?.name}</p>
+        <p>Released: {movie?.releaseDate}</p>
+      <button onClick={handleClick}>
+        Prev Movie
+      </button>
+      <button onClick={handleClick}>
+        Next Movie
+      </button>
       </div>
     </>
   )

@@ -1,15 +1,11 @@
 /* ---------===== custom props ====--------- */
 
-export interface List {
+export interface Movie {
   id: number;
-  movie: string;
-  book: string;
-  tvShow: string;
-  song: string;
-  videoGame: string;
-  boardGame: string;
-  indoorActivity: string;
-  outdoorActivity: string;
+  name: string;
+  releaseDate: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 /* ---------===== auth models =====--------- */
@@ -20,7 +16,7 @@ export interface Profile {
   id: number;
   createdAt: string;
   updatedAt: string;
-  lists: Array<List>;
+  movies: Array<Movie>;
 }
 
 export interface User {
