@@ -10,16 +10,15 @@ import * as movieService from '../../services/movieService'
 import MovieForm from '../MovieForm/MovieForm';
 
 // types
-import { Movie, User } from '../../types/models'
+import { Movie } from '../../types/models'
 import { MovieFormData, EditMovieFormData } from '../../types/forms';
 
-interface MovieCardProps {
-  user: User | null;
-}
+// props
+import { MovieCardProps } from '../../types/props';
 
 const MovieCard = (props: MovieCardProps): JSX.Element => {
   const { id } = useParams()
-  const { user } = props
+  const { user, profile } = props
   let movie: Movie | null
   const [movies, setMovies] = useState<Movie[] | []>([])
   const [index, setIndex] = useState(0)
@@ -137,12 +136,12 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     setMovies(movies.filter(m => m.id !== movie!.id))
     setIndex(movies.length - 2)
   }
-  
+
   if (!movies) return <h2>Loading...</h2>
   return (
     <>
       <h2>Favorite Movies</h2>
-      {user?.id === movie!?.profileId
+      {user?.id === profile?.id
       ?
       <>
         {!editFormDisplay &&
@@ -164,7 +163,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       {movies.length
       ?
       <>
-        {user?.id === movie!?.profileId
+        {user?.id === profile?.id
         ?
         <>
         {!formDisplay &&
@@ -185,7 +184,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
         }
         {!formDisplay && !editFormDisplay &&
           <>
-            {user?.id === movie!?.profileId
+            {user?.id === profile?.id
             ?
             <button onClick={handleDelete}>X</button>
             :
@@ -201,7 +200,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       </>
       :
       <>
-        {user?.id === movie!?.profileId
+        {user?.id === profile?.id
         ?
         <>
           {!formDisplay && <p>Add Some Movies!</p>}
