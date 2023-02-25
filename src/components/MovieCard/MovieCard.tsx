@@ -142,21 +142,31 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   return (
     <>
       <h2>Favorite Movies</h2>
-      {!editFormDisplay &&
-        <button onClick={displayForm}>
-          {formDisplay ? '-' : '+'}
-        </button>
-      }
-      {formDisplay &&
-        <MovieForm
-          formData={editFormDisplay ? editFormData : formData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
+      {user?.id === movie!?.profileId
+      ?
+      <>
+        {!editFormDisplay &&
+          <button onClick={displayForm}>
+            {formDisplay ? '-' : '+'}
+          </button>
+        }
+        {formDisplay &&
+          <MovieForm
+            formData={editFormDisplay ? editFormData : formData}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        }
+      </>
+      :
+      ''
       }
       {movies.length
       ?
       <>
+        {user?.id === movie!?.profileId
+        ?
+        <>
         {!formDisplay &&
           <button onClick={handleEdit}>
             {editFormDisplay ? 'Cancel' : 'Edit'}
@@ -169,9 +179,18 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             handleSubmit={handleUpdate}
           />
         }
+        </>
+        :
+        ''
+        }
         {!formDisplay && !editFormDisplay &&
           <>
+            {user?.id === movie!?.profileId
+            ?
             <button onClick={handleDelete}>X</button>
+            :
+            ''
+            }
             <h3>{index + 1} of {movies.length}</h3>
             <p>Title: {movie!?.name}</p>
             <p>Released: {movie!?.releaseDate}</p>
@@ -182,7 +201,15 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       </>
       :
       <>
-        {!formDisplay && <p>Add Some Movies!</p>}
+        {user?.id === movie!?.profileId
+        ?
+        <>
+          {!formDisplay && <p>Add Some Movies!</p>}
+        </>
+        :
+        <h3>This user hasn't added movies yet!</h3>
+        }
+        
       </>
       }
     </>

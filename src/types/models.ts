@@ -3,6 +3,7 @@
 export interface Movie {
   id: number;
   name: string;
+  profileId: number;
   releaseDate: number;
   createdAt: string;
   updatedAt: string;
