@@ -39,7 +39,7 @@ const updateMovie = async (formData: EditMovieFormData): Promise<Movie> => {
   }
 }
 
-const deleteMovie = async (id: number): Promise<number> => {
+const deleteMovie = async (id: number): Promise<void> => {
   try {
     const res = await fetch(`${BASE_URL}/${id}`, {
       method: 'DELETE',

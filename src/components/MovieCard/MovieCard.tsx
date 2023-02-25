@@ -16,7 +16,7 @@ import { MovieFormData, EditMovieFormData } from '../../types/forms';
 const MovieCard = (): JSX.Element => {
   const { id } = useParams()
   let movie: Movie | null
-  const [movies, setMovies] = useState<Movie[] | null>(null)
+  const [movies, setMovies] = useState<Movie[] | []>([])
   const [index, setIndex] = useState(0)
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
@@ -137,17 +137,16 @@ const MovieCard = (): JSX.Element => {
   }
 
   async function handleDelete(): Promise<void> {
-    const deletedMovie = await movieService.deleteMovie(movie!.id)
-    setMovies(movies!?.filter(movie => movie.id !== deletedMovie))
-    setIndex(0)
+    await movieService.deleteMovie(movie!.id)
+    setMovies(movies.filter(m => m.id !== movie!.id))
+    setIndex(movies.length - 2)
   }
-
-  console.log(movies);
-
+  
   if (!movies) return <h2>Loading...</h2>
   return (
     <>
       <h2>Favorite Movies</h2>
+      <h3>{index + 1} of {movies.length}</h3>
       {!formDisplay && <button onClick={handleEdit}>Edit</button>}
       {!editFormDisplay && <button onClick={displayForm}>+</button>}
       <button onClick={handleDelete}>X</button>
