@@ -13,14 +13,14 @@ const MovieForm = ({ formData, handleSubmit, handleChange }: MovieFormProps): JS
         <input
           type="text"
           name='name'
-          placeholder='Title'
+          placeholder='Enter Title'
           value={name}
           onChange={handleChange}
         />
         <input
           type="text"
           name='releaseDate'
-          placeholder='Release Year'
+          placeholder='Enter Release Year'
           value={releaseDate}
           onChange={handleChange}
         />
