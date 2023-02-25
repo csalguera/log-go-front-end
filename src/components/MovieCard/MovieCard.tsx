@@ -78,13 +78,7 @@ const MovieCard = (): JSX.Element => {
     }
   }
 
-  function displayForm(evt: React.MouseEvent): void {
-    (evt.target as HTMLButtonElement).textContent === '+'
-    ?
-    (evt.target as HTMLButtonElement).textContent = '-'
-    :
-    (evt.target as HTMLButtonElement).textContent = '+'
-
+  function displayForm(): void {
     formDisplay
     ?
     setFormDisplay(false)
@@ -117,13 +111,7 @@ const MovieCard = (): JSX.Element => {
     setFormDisplay(false)
   }
 
-  function handleEdit(evt: React.MouseEvent): void {
-    (evt.target as HTMLButtonElement).textContent === 'Edit'
-    ?
-    (evt.target as HTMLButtonElement).textContent = 'Cancel'
-    :
-    (evt.target as HTMLButtonElement).textContent = 'Edit'
-
+  function handleEdit(): void {
     editFormDisplay
     ?
     setEditFormDisplay(false)
@@ -150,7 +138,11 @@ const MovieCard = (): JSX.Element => {
   return (
     <>
       <h2>Favorite Movies</h2>
-      {!editFormDisplay && <button onClick={displayForm}>+</button>}
+      {!editFormDisplay &&
+        <button onClick={displayForm}>
+          {formDisplay ? '-' : '+'}
+        </button>
+      }
       {formDisplay &&
         <MovieForm
           formData={editFormDisplay ? editFormData : formData}
@@ -161,7 +153,11 @@ const MovieCard = (): JSX.Element => {
       {movies.length
       ?
       <>
-        {!formDisplay && <button onClick={handleEdit}>Edit</button>}
+        {!formDisplay &&
+          <button onClick={handleEdit}>
+            {editFormDisplay ? 'Cancel' : 'Edit'}
+          </button>
+        }
         {editFormDisplay &&
           <MovieForm
             formData={editFormDisplay ? editFormData : formData}
