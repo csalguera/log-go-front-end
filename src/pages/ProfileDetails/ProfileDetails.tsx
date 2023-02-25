@@ -13,6 +13,7 @@ import { Profile } from '../../types/models'
 
 // props
 import { ProfileDetailsProps } from '../../types/props';
+import BookCard from '../../components/BookCard/BookCard';
 
 const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   const { id } = useParams<{ id: string }>()
@@ -38,6 +39,7 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
       <p>{profile?.name}</p>
       <img src={profile?.photo} alt="Profile Photo" />
       <MovieCard user={user} profile={profile} />
+      <BookCard user={user} profile={profile} />
     </>
   )
 }

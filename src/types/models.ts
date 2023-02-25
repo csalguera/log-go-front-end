@@ -9,6 +9,15 @@ export interface Movie {
   updatedAt: string;
 }
 
+export interface Book {
+  id: number;
+  name: string;
+  author: string;
+  published: number;
+  profileId: number;
+  createdAt: string;
+  updatedAt: string;
+}
 
 /* ---------===== auth models =====--------- */
 
@@ -19,6 +28,7 @@ export interface Profile {
   createdAt: string;
   updatedAt: string;
   movies: Array<Movie>;
+  books: Array<Book>;
 }
 
 export interface User {

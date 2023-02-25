@@ -6,6 +6,20 @@ import { User, Profile } from '../types/models'
 
 /* ---------======= custom props ======--------- */
 
+export interface ProfileDetailsProps {
+  user: User | null;
+}
+
+export interface MovieCardProps {
+  user: User | null;
+  profile: Profile | null;
+}
+
+export interface BookCardProps {
+  user: User | null;
+  profile: Profile | null;
+}
+
 export interface MovieFormProps {
   formData: {
     name: string;
@@ -15,13 +29,14 @@ export interface MovieFormProps {
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
 }
 
-export interface ProfileDetailsProps {
-  user: User | null;
-}
-
-export interface MovieCardProps {
-  user: User | null;
-  profile: Profile | null;
+export interface BookFormProps {
+  formData: {
+    name: string;
+    author: string;
+    published: string;
+  };
+  handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
+  handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
 }
 
 /* ---------===== auth form props =====--------- */

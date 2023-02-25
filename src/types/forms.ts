@@ -11,6 +11,19 @@ export interface EditMovieFormData {
   releaseDate: string;
 }
 
+export interface BookFormData {
+  name: string;
+  author: string;
+  published: string;
+}
+
+export interface EditBookFormData {
+  bookId: number | null;
+  name: string;
+  author: string;
+  published: string;
+}
+
 /* ---------===== auth forms =====--------- */
 
 export interface LoginFormData {
