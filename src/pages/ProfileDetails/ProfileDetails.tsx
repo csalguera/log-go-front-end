@@ -9,10 +9,15 @@ import * as profileService from '../../services/profileService'
 import MovieCard from '../../components/MovieCard/MovieCard';
 
 // types
-import { Profile } from '../../types/models'
+import { Profile, User } from '../../types/models'
 
-const ProfileDetails = (): JSX.Element => {
+interface ProfileDetailsProps {
+  user: User | null; 
+}
+
+const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   const { id } = useParams<{ id: string }>()
+  const { user } = props
   const [profile, setProfile] = useState<Profile | null>(null)
 
   useEffect(() => {
@@ -33,7 +38,7 @@ const ProfileDetails = (): JSX.Element => {
       <h1>Profile Details</h1>
       <p>{profile?.name}</p>
       <img src={profile?.photo} alt="Profile Photo" />
-      <MovieCard />
+      <MovieCard user={user} />
     </>
   )
 }

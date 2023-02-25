@@ -10,11 +10,16 @@ import * as movieService from '../../services/movieService'
 import MovieForm from '../MovieForm/MovieForm';
 
 // types
-import { Movie } from '../../types/models'
+import { Movie, User } from '../../types/models'
 import { MovieFormData, EditMovieFormData } from '../../types/forms';
 
-const MovieCard = (): JSX.Element => {
+interface MovieCardProps {
+  user: User | null;
+}
+
+const MovieCard = (props: MovieCardProps): JSX.Element => {
   const { id } = useParams()
+  const { user } = props
   let movie: Movie | null
   const [movies, setMovies] = useState<Movie[] | []>([])
   const [index, setIndex] = useState(0)
