@@ -190,8 +190,8 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             :
             ''
             }
-            <h3>{index + 1} of {movies.length}</h3>
-            <p>Title: {movie!?.name}</p>
+            <h3>{movie!?.name}</h3>
+            <h4>{index + 1} of {movies.length}</h4>
             <p>Released: {movie!?.releaseDate}</p>
             <button onClick={handleClick}>Prev Movie</button>
             <button onClick={handleClick}>Next Movie</button>
