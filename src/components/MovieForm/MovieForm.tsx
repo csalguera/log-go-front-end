@@ -16,6 +16,7 @@ const MovieForm = ({ formData, handleSubmit, handleChange }: MovieFormProps): JS
           placeholder='Enter Title'
           value={name}
           onChange={handleChange}
+          required={true}
         />
         <input
           type="text"
@@ -23,6 +24,7 @@ const MovieForm = ({ formData, handleSubmit, handleChange }: MovieFormProps): JS
           placeholder='Enter Release Year'
           value={releaseDate}
           onChange={handleChange}
+          required={true}
         />
         <button>
           Submit
