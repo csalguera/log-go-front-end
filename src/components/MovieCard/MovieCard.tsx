@@ -122,7 +122,6 @@ const MovieCard = (): JSX.Element => {
   async function handleUpdate(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault()
     const updatedMovie = await movieService.updateMovie(editFormData)
-    console.log(editFormData);
     setMovies(movies!?.map(m => m.id === editFormData.movieId ? updatedMovie : m))
     setFormDisplay(false)
     setEditFormDisplay(false)
