@@ -113,6 +113,8 @@ const MovieCard = (): JSX.Element => {
     })
     setMovies([...movies!, newMovie])
     setIndex(movies!?.length)
+    setEditFormDisplay(false)
+    setFormDisplay(false)
   }
 
   function handleEdit(evt: React.MouseEvent): void {
@@ -134,6 +136,8 @@ const MovieCard = (): JSX.Element => {
     const updatedMovie = await movieService.updateMovie(editFormData)
     console.log(editFormData);
     setMovies(movies!?.map(m => m.id === editFormData.movieId ? updatedMovie : m))
+    setFormDisplay(false)
+    setEditFormDisplay(false)
   }
 
   async function handleDelete(): Promise<void> {
@@ -178,7 +182,7 @@ const MovieCard = (): JSX.Element => {
       </>
       :
       <>
-        <p>Add Some Movies!</p>
+        {!formDisplay && <p>Add Some Movies!</p>}
       </>
       }
     </>
