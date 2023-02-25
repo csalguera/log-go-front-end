@@ -146,19 +146,7 @@ const MovieCard = (): JSX.Element => {
   return (
     <>
       <h2>Favorite Movies</h2>
-      <h3>{index + 1} of {movies.length}</h3>
-      {!formDisplay && <button onClick={handleEdit}>Edit</button>}
       {!editFormDisplay && <button onClick={displayForm}>+</button>}
-      <button onClick={handleDelete}>X</button>
-
-      {editFormDisplay &&
-        <MovieForm
-          formData={editFormDisplay ? editFormData : formData}
-          handleChange={handleEditForm}
-          handleSubmit={handleUpdate}
-        />
-      }
-      
       {formDisplay &&
         <MovieForm
           formData={editFormDisplay ? editFormData : formData}
@@ -166,25 +154,32 @@ const MovieCard = (): JSX.Element => {
           handleSubmit={handleSubmit}
         />
       }
-
-      {!formDisplay && !editFormDisplay &&
-        <>
-          {movies.length
-          ?
-            <>
-              <p>Title: {movie!?.name}</p>
-              <p>Released: {movie!?.releaseDate}</p>
-              <button onClick={handleClick}>
-                Prev Movie
-              </button>
-              <button onClick={handleClick}>
-                Next Movie
-              </button>
-            </>
-          :
-            <p>Add Some Movies!</p>
-          }
-        </>
+      {movies.length
+      ?
+      <>
+        {!formDisplay && <button onClick={handleEdit}>Edit</button>}
+        {editFormDisplay &&
+          <MovieForm
+            formData={editFormDisplay ? editFormData : formData}
+            handleChange={handleEditForm}
+            handleSubmit={handleUpdate}
+          />
+        }
+        {!formDisplay && !editFormDisplay &&
+          <>
+            <button onClick={handleDelete}>X</button>
+            <h3>{index + 1} of {movies.length}</h3>
+            <p>Title: {movie!?.name}</p>
+            <p>Released: {movie!?.releaseDate}</p>
+            <button onClick={handleClick}>Prev Movie</button>
+            <button onClick={handleClick}>Next Movie</button>
+          </>
+        }
+      </>
+      :
+      <>
+        <p>Add Some Movies!</p>
+      </>
       }
     </>
   )
