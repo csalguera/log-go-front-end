@@ -9,6 +9,7 @@ import * as bookService from '../../services/bookService'
 // components
 import BookForm from '../BookForm/BookForm';
 import BookDetails from './BookDetails/BookDetails';
+import BookCUDBtns from './BookCUDBtns/BookCUDBtns';
 
 // types
 import { Book } from '../../types/models'
@@ -156,6 +157,7 @@ const BookCard = (props: BookCardProps): JSX.Element => {
         book={book!}
         index={index}
       />
+      {/* <BookCUDBtns /> */}
     </div>
   )
 }
