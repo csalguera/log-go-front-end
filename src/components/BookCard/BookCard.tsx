@@ -8,6 +8,7 @@ import * as bookService from '../../services/bookService'
 
 // components
 import BookForm from '../BookForm/BookForm';
+import BookDetails from './BookDetails/BookDetails';
 
 // types
 import { Book } from '../../types/models'
@@ -148,77 +149,7 @@ const BookCard = (props: BookCardProps): JSX.Element => {
   return (
     <div className={styles.card}>
       <h2>Favorite Books</h2>
-      {user?.id === profile?.id
-      ?
-      <>
-        {!editFormDisplay &&
-          <button onClick={displayForm}>
-            {formDisplay ? 'Cancel' : 'Add'}
-          </button>
-        }
-        {formDisplay &&
-          <BookForm
-            formData={editFormDisplay ? editFormData : formData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />
-        }
-      </>
-      :
-      ''
-      }
-      {books.length
-      ?
-      <>
-        {user?.id === profile?.id
-        ?
-        <>
-        {!formDisplay &&
-          <button onClick={handleEdit}>
-            {editFormDisplay ? 'Cancel' : 'Edit'}
-          </button>
-        }
-        {editFormDisplay &&
-          <BookForm
-            formData={editFormDisplay ? editFormData : formData}
-            handleChange={handleEditForm}
-            handleSubmit={handleUpdate}
-          />
-        }
-        </>
-        :
-        ''
-        }
-        {!formDisplay && !editFormDisplay &&
-          <>
-            {user?.id === profile?.id
-            ?
-            <button onClick={handleDelete}>Delete</button>
-            :
-            ''
-            }
-            <h3>{book!?.name}</h3>
-            <h4>{index + 1} of {books.length}</h4>
-            <p>Author: {book!?.author}</p>
-            <p>Published: {book!?.published}</p>
-            <button onClick={handleClick}>Prev Book</button>
-            <button onClick={handleClick}>Next Book</button>
-          </>
-        }
-      </>
-      :
-      <>
-        {user?.id === profile?.id
-        ?
-        <>
-          {!formDisplay && <p>Add Some Books!</p>}
-        </>
-        :
-        <h3>This user hasn't added books yet!</h3>
-        }
-        
-      </>
-      }
+      {/* <BookDetails /> */}
     </div>
   )
 }
