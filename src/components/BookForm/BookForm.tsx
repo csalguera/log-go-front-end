@@ -29,7 +29,7 @@ const BookForm = ({ formData, handleSubmit, handleChange }: BookFormProps): JSX.
         <input
           type="text"
           name='published'
-          placeholder='Enter Release Year'
+          placeholder='Enter Publish Year'
           value={published}
           onChange={handleChange}
           required={true}
