@@ -1,4 +1,15 @@
-const BookCUDBtns = () => {
+const BookCUDBtns = (props) => {
+  const {
+    user,
+    profile,
+    books,
+    displayForm,
+    formDisplay,
+    editFormDisplay,
+    handleEdit,
+    handleDelete,
+  } = props
+
   return (
     <div>
       {!editFormDisplay && user?.id === profile?.id &&
@@ -6,7 +17,7 @@ const BookCUDBtns = () => {
           {formDisplay ? 'Cancel' : 'Add'}
         </button>
       }
-      {movies.length && user?.id === profile?.id
+      {books.length && user?.id === profile?.id
       ?
       !formDisplay &&
         <button onClick={handleEdit}>
@@ -15,7 +26,7 @@ const BookCUDBtns = () => {
       :
       ''
       }
-      {movies.length && user?.id === profile?.id
+      {books.length && user?.id === profile?.id
       ?
       !formDisplay && !editFormDisplay &&
       <button onClick={handleDelete}>

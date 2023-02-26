@@ -157,7 +157,16 @@ const BookCard = (props: BookCardProps): JSX.Element => {
         book={book!}
         index={index}
       />
-      {/* <BookCUDBtns /> */}
+      <BookCUDBtns
+        user={user}
+        profile={profile}
+        books={books}
+        displayForm={displayForm}
+        formDisplay={formDisplay}
+        editFormDisplay={editFormDisplay}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
     </div>
   )
 }
