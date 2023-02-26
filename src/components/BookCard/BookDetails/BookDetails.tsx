@@ -1,4 +1,7 @@
-const BookDetails = (props): JSX.Element => {
+// props
+import { BookDetailsProps } from "../../../types/props"
+
+const BookDetails = (props: BookDetailsProps): JSX.Element => {
   const {
     user,
     profile,

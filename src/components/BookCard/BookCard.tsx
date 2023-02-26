@@ -153,7 +153,7 @@ const BookCard = (props: BookCardProps): JSX.Element => {
         user={user}
         profile={profile}
         books={books}
-        book={book}
+        book={book!}
         index={index}
       />
     </div>
