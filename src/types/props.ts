@@ -2,7 +2,7 @@
 import { ChangeEvent, FormEvent } from "react";
 
 // types
-import { User, Profile } from '../types/models'
+import { User, Profile, Movie } from '../types/models'
 
 /* ---------======= custom props ======--------- */
 
@@ -37,6 +37,14 @@ export interface BookFormProps {
   };
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
+}
+
+export interface MovieDetailsProps {
+  user: User | null;
+  profile: Profile | null;
+  movie: Movie;
+  movies: Movie[];
+  index: number;
 }
 
 /* ---------===== auth form props =====--------- */
