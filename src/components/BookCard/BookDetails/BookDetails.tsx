@@ -1,4 +1,12 @@
-const BookDetails = (): JSX.Element => {
+const BookDetails = (props): JSX.Element => {
+  const {
+    user,
+    profile,
+    books,
+    book,
+    index,
+  } = props
+
   return (
     <>
       {books.length

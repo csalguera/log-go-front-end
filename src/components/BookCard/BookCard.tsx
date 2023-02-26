@@ -149,7 +149,13 @@ const BookCard = (props: BookCardProps): JSX.Element => {
   return (
     <div className={styles.card}>
       <h2>Favorite Books</h2>
-      {/* <BookDetails /> */}
+      <BookDetails
+        user={user}
+        profile={profile}
+        books={books}
+        book={book}
+        index={index}
+      />
     </div>
   )
 }
