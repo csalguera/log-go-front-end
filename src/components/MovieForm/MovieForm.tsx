@@ -1,3 +1,6 @@
+// stylesheets
+import styles from '../../pages/ProfileDetails/ProfileDetails.module.css'
+
 // types
 import { MovieFormProps } from "../../types/props"
 
@@ -7,6 +10,7 @@ const MovieForm = ({ formData, handleSubmit, handleChange }: MovieFormProps): JS
   return (
     <>
       <form
+        className={styles.form}
         autoComplete='off'
         onSubmit={handleSubmit}
       >

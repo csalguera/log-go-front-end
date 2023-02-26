@@ -170,10 +170,10 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       {movies.length
       ?
       !formDisplay && !editFormDisplay &&
-      <>
+      <div>
         <button onClick={handleClick}>Prev Movie</button>
         <button onClick={handleClick}>Next Movie</button>
-      </>
+      </div>
       :
       ''
       }

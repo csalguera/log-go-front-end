@@ -14,7 +14,7 @@ const MovieCUDBtns = (props: MovieCUDBtnsProps): JSX.Element => {
   } = props
 
   return (
-    <>
+    <div>
       {!editFormDisplay && user?.id === profile?.id &&
         <button onClick={displayForm}>
           {formDisplay ? 'Cancel' : 'Add'}
@@ -38,7 +38,7 @@ const MovieCUDBtns = (props: MovieCUDBtnsProps): JSX.Element => {
       :
       ''
       }
-    </>
+    </div>
   )
 }
 
