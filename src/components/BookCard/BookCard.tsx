@@ -157,6 +157,30 @@ const BookCard = (props: BookCardProps): JSX.Element => {
         book={book!}
         index={index}
       />
+      {formDisplay &&
+        <BookForm
+          formData={editFormDisplay ? editFormData : formData}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+      }
+      {editFormDisplay &&
+        <BookForm
+          formData={editFormDisplay ? editFormData : formData}
+          handleChange={handleEditForm}
+          handleSubmit={handleUpdate}
+        />
+      }
+      {books.length
+      ?
+      !formDisplay && !editFormDisplay &&
+      <div>
+        <button onClick={handleClick}>Prev Movie</button>
+        <button onClick={handleClick}>Next Movie</button>
+      </div>
+      :
+      ''
+      }
       <BookCUDBtns
         user={user}
         profile={profile}
