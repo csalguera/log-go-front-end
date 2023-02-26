@@ -2,7 +2,14 @@
 import { MovieDetailsProps } from "../../../types/props"
 
 const MovieDetails = (props: MovieDetailsProps): JSX.Element => {
-  const { user, profile, movies, movie, index } = props
+  const {
+    user,
+    profile,
+    movies,
+    movie,
+    index,
+  } = props
+  
   return (
     <>
       {movies.length
