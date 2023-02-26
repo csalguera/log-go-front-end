@@ -1,4 +1,7 @@
-const BookCUDBtns = (props) => {
+// props
+import { BookCUDBtnsProps } from "../../../types/props"
+
+const BookCUDBtns = (props: BookCUDBtnsProps) => {
   const {
     user,
     profile,

@@ -62,6 +62,16 @@ export interface BookDetailsProps {
   books: Book[];
   index: number;
 }
+export interface BookCUDBtnsProps {
+  user: User | null;
+  profile: Profile | null;
+  books: Book[];
+  displayForm: () => void;
+  formDisplay: boolean;
+  editFormDisplay: boolean;
+  handleEdit: () => void;
+  handleDelete: () => void;
+}
 
 
 /* ---------===== auth form props =====--------- */
