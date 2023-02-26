@@ -10,16 +10,11 @@ export interface ProfileDetailsProps {
   user: User | null;
 }
 
+// movies
 export interface MovieCardProps {
   user: User | null;
   profile: Profile | null;
 }
-
-export interface BookCardProps {
-  user: User | null;
-  profile: Profile | null;
-}
-
 export interface MovieFormProps {
   formData: {
     name: string;
@@ -28,7 +23,29 @@ export interface MovieFormProps {
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
 }
+export interface MovieDetailsProps {
+  user: User | null;
+  profile: Profile | null;
+  movie: Movie;
+  movies: Movie[];
+  index: number;
+}
+export interface MovieCUDBtnsProps {
+  user: User | null;
+  profile: Profile | null;
+  movies: Movie[];
+  displayForm: () => void;
+  formDisplay: boolean;
+  editFormDisplay: boolean;
+  handleEdit: () => void;
+  handleDelete: () => void;
+}
 
+// books
+export interface BookCardProps {
+  user: User | null;
+  profile: Profile | null;
+}
 export interface BookFormProps {
   formData: {
     name: string;
@@ -39,13 +56,7 @@ export interface BookFormProps {
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
 }
 
-export interface MovieDetailsProps {
-  user: User | null;
-  profile: Profile | null;
-  movie: Movie;
-  movies: Movie[];
-  index: number;
-}
+
 
 /* ---------===== auth form props =====--------- */
 

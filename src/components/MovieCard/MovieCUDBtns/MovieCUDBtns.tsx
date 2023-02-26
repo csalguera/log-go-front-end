@@ -1,4 +1,7 @@
-const MovieCUDBtns = (props): JSX.Element => {
+// props
+import { MovieCUDBtnsProps } from "../../../types/props"
+
+const MovieCUDBtns = (props: MovieCUDBtnsProps): JSX.Element => {
   const {
     user,
     profile,
