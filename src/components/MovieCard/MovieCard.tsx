@@ -9,6 +9,7 @@ import * as movieService from '../../services/movieService'
 // components
 import MovieForm from '../MovieForm/MovieForm';
 import MovieDetails from './MovieDetails/MovieDetails';
+import MovieCUDBtns from './MovieCUDBtns/MovieCUDBtns';
 
 // styles
 import styles from '../../pages/ProfileDetails/ProfileDetails.module.css'
@@ -166,7 +167,16 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
           handleSubmit={handleUpdate}
         />
       }
-
+      <MovieCUDBtns
+        user={user}
+        profile={profile}
+        movies={movies}
+        displayForm={displayForm}
+        formDisplay={formDisplay}
+        editFormDisplay={editFormDisplay}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
 
       {/* {user?.id === profile?.id
       ?

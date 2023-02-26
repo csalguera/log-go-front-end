@@ -1,4 +1,15 @@
-const MovieCUDBtns = (): JSX.Element => {
+const MovieCUDBtns = (props): JSX.Element => {
+  const {
+    user,
+    profile,
+    movies,
+    displayForm,
+    formDisplay,
+    editFormDisplay,
+    handleEdit,
+    handleDelete,
+  } = props
+
   return (
     <>
       {!editFormDisplay && user?.id === profile?.id &&
