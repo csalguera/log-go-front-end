@@ -1,3 +1,6 @@
+// stylesheets
+import styles from '../../pages/ProfileDetails/ProfileDetails.module.css'
+
 // types
 import { BookFormProps } from "../../types/props"
 
@@ -7,6 +10,7 @@ const BookForm = ({ formData, handleSubmit, handleChange }: BookFormProps): JSX.
   return (
     <>
       <form
+      className={styles.form}
         autoComplete='off'
         onSubmit={handleSubmit}
       >
