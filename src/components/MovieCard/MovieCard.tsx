@@ -152,6 +152,43 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
         movie={movie!}
         index={index}
       />
+      {formDisplay &&
+        <MovieForm
+          formData={editFormDisplay ? editFormData : formData}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+      }
+      {editFormDisplay &&
+        <MovieForm
+          formData={editFormDisplay ? editFormData : formData}
+          handleChange={handleEditForm}
+          handleSubmit={handleUpdate}
+        />
+      }
+      {!editFormDisplay && user?.id === profile?.id &&
+        <button onClick={displayForm}>
+          {formDisplay ? 'Cancel' : 'Add'}
+        </button>
+      }
+      {movies.length && user?.id === profile?.id
+      ?
+      !formDisplay &&
+        <button onClick={handleEdit}>
+          {editFormDisplay ? 'Cancel' : 'Edit'}
+        </button>
+      :
+      ''
+      }
+      {movies.length && user?.id === profile?.id
+      ?
+      !formDisplay && !editFormDisplay &&
+      <button onClick={handleDelete}>
+        Delete
+      </button>
+      :
+      ''
+      }
 
       {/* {user?.id === profile?.id
       ?
