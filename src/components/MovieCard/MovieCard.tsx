@@ -8,6 +8,7 @@ import * as movieService from '../../services/movieService'
 
 // components
 import MovieForm from '../MovieForm/MovieForm';
+import MovieDetails from './MovieDetails/MovieDetails';
 
 // styles
 import styles from '../../pages/ProfileDetails/ProfileDetails.module.css'
@@ -144,7 +145,13 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   return (
     <div className={styles.card}>
       <h2>Favorite Movies</h2>
-      
+      <MovieDetails
+        user={user}
+        profile={profile}
+        movies={movies}
+        movie={movie!}
+        index={index}
+      />
 
       {/* {user?.id === profile?.id
       ?

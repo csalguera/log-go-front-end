@@ -1,4 +1,5 @@
-const MovieDetails = (): JSX.Element => {
+const MovieDetails = (props): JSX.Element => {
+  const { user, profile, movies, movie, index } = props
   return (
     <>
       {movies.length
