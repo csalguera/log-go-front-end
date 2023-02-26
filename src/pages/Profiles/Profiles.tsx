@@ -23,7 +23,7 @@ const Profiles = (): JSX.Element => {
     fetchProfiles()
   }, [])
 
-  if(!profiles.length) return <p>No profiles yet</p>
+  if(!profiles.length) return <h1>Loading...</h1>
 
   return (
     <>
