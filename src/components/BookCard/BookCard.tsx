@@ -196,7 +196,8 @@ const BookCard = (props: BookCardProps): JSX.Element => {
             }
             <h3>{book!?.name}</h3>
             <h4>{index + 1} of {books.length}</h4>
-            <p>Released: {book!?.published}</p>
+            <p>Author: {book!?.author}</p>
+            <p>Published: {book!?.published}</p>
             <button onClick={handleClick}>Prev Book</button>
             <button onClick={handleClick}>Next Book</button>
           </>
