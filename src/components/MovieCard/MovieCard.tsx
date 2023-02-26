@@ -167,6 +167,16 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
           handleSubmit={handleUpdate}
         />
       }
+      {movies.length
+      ?
+      !formDisplay && !editFormDisplay &&
+      <>
+        <button onClick={handleClick}>Prev Movie</button>
+        <button onClick={handleClick}>Next Movie</button>
+      </>
+      :
+      ''
+      }
       <MovieCUDBtns
         user={user}
         profile={profile}
@@ -177,76 +187,6 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
         handleEdit={handleEdit}
         handleDelete={handleDelete}
       />
-
-      {/* {user?.id === profile?.id
-      ?
-      <>
-        {!editFormDisplay &&
-          <button onClick={displayForm}>
-            {formDisplay ? 'Cancel' : 'Add'}
-          </button>
-        }
-        {formDisplay &&
-          <MovieForm
-            formData={editFormDisplay ? editFormData : formData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />
-        }
-      </>
-      :
-      ''
-      }
-      {movies.length
-      ?
-      <>
-        {user?.id === profile?.id
-        ?
-        <>
-        {!formDisplay &&
-          <button onClick={handleEdit}>
-            {editFormDisplay ? 'Cancel' : 'Edit'}
-          </button>
-        }
-        {editFormDisplay &&
-          <MovieForm
-            formData={editFormDisplay ? editFormData : formData}
-            handleChange={handleEditForm}
-            handleSubmit={handleUpdate}
-          />
-        }
-        </>
-        :
-        ''
-        }
-        {!formDisplay && !editFormDisplay &&
-          <>
-            {user?.id === profile?.id
-            ?
-            <button onClick={handleDelete}>Delete</button>
-            :
-            ''
-            }
-            <h3>{movie!?.name}</h3>
-            <h4>{index + 1} of {movies.length}</h4>
-            <p>Released: {movie!?.releaseDate}</p>
-            <button onClick={handleClick}>Prev Movie</button>
-            <button onClick={handleClick}>Next Movie</button>
-          </>
-        }
-      </>
-      :
-      <>
-        {user?.id === profile?.id
-        ?
-        <>
-          {!formDisplay && <p>Add Some Movies!</p>}
-        </>
-        :
-        <h3>This user hasn't added movies yet!</h3>
-        }
-      </>
-      } */}
     </div>
   )
 }
