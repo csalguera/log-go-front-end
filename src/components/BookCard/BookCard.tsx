@@ -13,6 +13,9 @@ import BookForm from '../BookForm/BookForm';
 import { Book } from '../../types/models'
 import { BookFormData, EditBookFormData } from '../../types/forms';
 
+// styles
+import styles from '../../pages/ProfileDetails/ProfileDetails.module.css'
+
 // props
 import { BookCardProps } from '../../types/props';
 
@@ -143,14 +146,14 @@ const BookCard = (props: BookCardProps): JSX.Element => {
 
   if (!books) return <h2>Loading...</h2>
   return (
-    <>
+    <div className={styles.card}>
       <h2>Favorite Books</h2>
       {user?.id === profile?.id
       ?
       <>
         {!editFormDisplay &&
           <button onClick={displayForm}>
-            {formDisplay ? '-' : '+'}
+            {formDisplay ? 'Cancel' : 'Add'}
           </button>
         }
         {formDisplay &&
@@ -190,7 +193,7 @@ const BookCard = (props: BookCardProps): JSX.Element => {
           <>
             {user?.id === profile?.id
             ?
-            <button onClick={handleDelete}>X</button>
+            <button onClick={handleDelete}>Delete</button>
             :
             ''
             }
@@ -216,7 +219,7 @@ const BookCard = (props: BookCardProps): JSX.Element => {
         
       </>
       }
-    </>
+    </div>
   )
 }
 

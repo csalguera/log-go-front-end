@@ -7,13 +7,16 @@ import * as profileService from '../../services/profileService'
 
 // components
 import MovieCard from '../../components/MovieCard/MovieCard';
+import BookCard from '../../components/BookCard/BookCard';
+
+// stylesheets
+import styles from './ProfileDetails.module.css'
 
 // types
 import { Profile } from '../../types/models'
 
 // props
 import { ProfileDetailsProps } from '../../types/props';
-import BookCard from '../../components/BookCard/BookCard';
 
 const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   const { id } = useParams<{ id: string }>()
@@ -35,11 +38,12 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   if (!profile) return <h1>Loading...</h1>
   return (
     <>
-      <h1>Profile Details</h1>
-      <p>{profile?.name}</p>
+      <h1>{profile?.name}</h1>
       <img src={profile?.photo} alt="Profile Photo" />
-      <MovieCard user={user} profile={profile} />
-      <BookCard user={user} profile={profile} />
+      <div className={styles["card-container"]}>
+        <MovieCard user={user} profile={profile} />
+        <BookCard user={user} profile={profile} />
+      </div>
     </>
   )
 }

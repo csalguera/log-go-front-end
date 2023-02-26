@@ -9,6 +9,9 @@ import * as movieService from '../../services/movieService'
 // components
 import MovieForm from '../MovieForm/MovieForm';
 
+// styles
+import styles from '../../pages/ProfileDetails/ProfileDetails.module.css'
+
 // types
 import { Movie } from '../../types/models'
 import { MovieFormData, EditMovieFormData } from '../../types/forms';
@@ -139,14 +142,16 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
 
   if (!movies) return <h2>Loading...</h2>
   return (
-    <>
+    <div className={styles.card}>
       <h2>Favorite Movies</h2>
-      {user?.id === profile?.id
+      
+
+      {/* {user?.id === profile?.id
       ?
       <>
         {!editFormDisplay &&
           <button onClick={displayForm}>
-            {formDisplay ? '-' : '+'}
+            {formDisplay ? 'Cancel' : 'Add'}
           </button>
         }
         {formDisplay &&
@@ -186,7 +191,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
           <>
             {user?.id === profile?.id
             ?
-            <button onClick={handleDelete}>X</button>
+            <button onClick={handleDelete}>Delete</button>
             :
             ''
             }
@@ -208,10 +213,9 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
         :
         <h3>This user hasn't added movies yet!</h3>
         }
-        
       </>
-      }
-    </>
+      } */}
+    </div>
   )
 }
 

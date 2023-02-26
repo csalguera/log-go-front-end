@@ -1,0 +1,14 @@
+.card-container {
+  display: flex;
+}
+
+.card {
+  border: solid 1px black;
+  min-width: 300px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 8px;
+}
