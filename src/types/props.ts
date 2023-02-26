@@ -9,6 +9,16 @@ import { User, Profile, Movie, Book } from '../types/models'
 export interface ProfileDetailsProps {
   user: User | null;
 }
+export interface CUDBtnsProps {
+  user: User | null;
+  profile: Profile | null;
+  resource: Movie[] | Book[];
+  displayForm: () => void;
+  formDisplay: boolean;
+  editFormDisplay: boolean;
+  handleEdit: () => void;
+  handleDelete: () => void;
+}
 
 // movies
 export interface MovieCardProps {
@@ -29,16 +39,6 @@ export interface MovieDetailsProps {
   movie: Movie;
   movies: Movie[];
   index: number;
-}
-export interface MovieCUDBtnsProps {
-  user: User | null;
-  profile: Profile | null;
-  movies: Movie[];
-  displayForm: () => void;
-  formDisplay: boolean;
-  editFormDisplay: boolean;
-  handleEdit: () => void;
-  handleDelete: () => void;
 }
 
 // books
@@ -61,16 +61,6 @@ export interface BookDetailsProps {
   book: Book;
   books: Book[];
   index: number;
-}
-export interface BookCUDBtnsProps {
-  user: User | null;
-  profile: Profile | null;
-  books: Book[];
-  displayForm: () => void;
-  formDisplay: boolean;
-  editFormDisplay: boolean;
-  handleEdit: () => void;
-  handleDelete: () => void;
 }
 
 

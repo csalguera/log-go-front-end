@@ -1,4 +1,7 @@
-const CUDBtns = (props) => {
+// props
+import { CUDBtnsProps } from "../../types/props"
+
+const CUDBtns = (props: CUDBtnsProps) => {
   const {
     user,
     profile,
