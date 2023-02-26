@@ -3,23 +3,23 @@ import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { useParams } from 'react-router';
 
 // services
-import * as profileService from '../../services/profileService'
-import * as bookService from '../../services/bookService'
+import * as profileService from '../../../services/profileService'
+import * as bookService from '../../../services/bookService'
 
 // components
 import BookForm from '../BookForm/BookForm';
-import BookDetails from './BookDetails/BookDetails';
-import CUDBtns from '../CUDBtns/CUDBtns';
+import BookDetails from '../BookDetails/BookDetails';
+import CUDBtns from '../../CUDBtns/CUDBtns';
 
 // types
-import { Book } from '../../types/models'
-import { BookFormData, EditBookFormData } from '../../types/forms';
+import { Book } from '../../../types/models'
+import { BookFormData, EditBookFormData } from '../../../types/forms';
 
 // styles
-import styles from '../../pages/ProfileDetails/ProfileDetails.module.css'
+import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
 
 // props
-import { BookCardProps } from '../../types/props';
+import { BookCardProps } from '../../../types/props';
 
 const BookCard = (props: BookCardProps): JSX.Element => {
   const { id } = useParams()

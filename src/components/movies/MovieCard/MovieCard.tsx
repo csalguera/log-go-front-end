@@ -3,23 +3,23 @@ import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { useParams } from 'react-router';
 
 // services
-import * as profileService from '../../services/profileService'
-import * as movieService from '../../services/movieService'
+import * as profileService from '../../../services/profileService'
+import * as movieService from '../../../services/movieService'
 
 // components
 import MovieForm from '../MovieForm/MovieForm';
-import MovieDetails from './MovieDetails/MovieDetails';
-import CUDBtns from '../CUDBtns/CUDBtns';
+import MovieDetails from '../MovieDetails/MovieDetails';
+import CUDBtns from '../../CUDBtns/CUDBtns';
 
 // styles
-import styles from '../../pages/ProfileDetails/ProfileDetails.module.css'
+import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
 
 // types
-import { Movie } from '../../types/models'
-import { MovieFormData, EditMovieFormData } from '../../types/forms';
+import { Movie } from '../../../types/models'
+import { MovieFormData, EditMovieFormData } from '../../../types/forms';
 
 // props
-import { MovieCardProps } from '../../types/props';
+import { MovieCardProps } from '../../../types/props';
 
 const MovieCard = (props: MovieCardProps): JSX.Element => {
   const { id } = useParams()

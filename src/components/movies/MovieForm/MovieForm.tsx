@@ -1,8 +1,8 @@
 // stylesheets
-import styles from '../../pages/ProfileDetails/ProfileDetails.module.css'
+import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
 
 // types
-import { MovieFormProps } from "../../types/props"
+import { MovieFormProps } from "../../../types/props"
 
 const MovieForm = ({ formData, handleSubmit, handleChange }: MovieFormProps): JSX.Element => {
   const { name, releaseDate } = formData

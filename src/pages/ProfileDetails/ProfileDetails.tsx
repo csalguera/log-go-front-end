@@ -6,8 +6,8 @@ import { useParams } from 'react-router';
 import * as profileService from '../../services/profileService'
 
 // components
-import MovieCard from '../../components/MovieCard/MovieCard';
-import BookCard from '../../components/BookCard/BookCard';
+import MovieCard from '../../components/movies/MovieCard/MovieCard';
+import BookCard from '../../components/books/BookCard/BookCard';
 
 // stylesheets
 import styles from './ProfileDetails.module.css'

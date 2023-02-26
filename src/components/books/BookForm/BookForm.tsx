@@ -1,8 +1,8 @@
 // stylesheets
-import styles from '../../pages/ProfileDetails/ProfileDetails.module.css'
+import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
 
 // types
-import { BookFormProps } from "../../types/props"
+import { BookFormProps } from "../../../types/props"
 
 const BookForm = ({ formData, handleSubmit, handleChange }: BookFormProps): JSX.Element => {
   const { name, author, published } = formData
