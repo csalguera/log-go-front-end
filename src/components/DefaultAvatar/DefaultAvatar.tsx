@@ -4,9 +4,11 @@ import styles from './DefaultAvatar.module.css'
 const DefaultAvatar = (props) => {
   const { profile } = props
 
+  const nameArr = profile.name.split('')
+  
   return (
     <div className={styles["avatar-border"]}>
-      {profile.name}
+      <h1>{nameArr[0]}</h1>
     </div>
   )
 }
