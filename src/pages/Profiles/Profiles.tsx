@@ -2,6 +2,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
+// components
+import Avatar from '../../components/Avatar/Avatar'
+
 // services
 import * as profileService from '../../services/profileService'
 
@@ -30,6 +33,7 @@ const Profiles = (): JSX.Element => {
       <h1>Hello. This is a list of all the profiles.</h1>
       {profiles.map((profile: Profile) =>
         <Link key={profile.id} to={`/profiles/${profile.id}`}>
+          <Avatar profile={profile} />
           <p>{profile.name}</p>
         </Link>
       )}
