@@ -18,11 +18,6 @@ const CUDBtns = (props: CUDBtnsProps) => {
 
   return (
     <div className={styles["buttons-container"]}>
-      {!editFormDisplay && user?.id === profile?.id &&
-        <button onClick={displayForm}>
-          {formDisplay ? 'Cancel' : 'Add'}
-        </button>
-      }
       {resource.length && user?.id === profile?.id
       ?
       !formDisplay &&
@@ -31,6 +26,11 @@ const CUDBtns = (props: CUDBtnsProps) => {
         </button>
       :
       ''
+      }
+      {!editFormDisplay && user?.id === profile?.id &&
+        <button onClick={displayForm}>
+          {formDisplay ? 'Cancel' : 'Add'}
+        </button>
       }
       {resource.length && user?.id === profile?.id
       ?
