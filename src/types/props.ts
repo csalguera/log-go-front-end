@@ -26,7 +26,7 @@ export interface NextPrevBtnsProps {
   category: string;
 }
 
-export interface DefaultAvatarProps {
+export interface AvatarProps {
   profile: Profile | null;
 }
 

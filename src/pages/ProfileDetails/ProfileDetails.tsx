@@ -6,7 +6,7 @@ import { useParams } from 'react-router';
 import * as profileService from '../../services/profileService'
 
 // components
-import DefaultAvatar from '../../components/DefaultAvatar/DefaultAvatar';
+import Avatar from '../../components/Avatar/Avatar';
 import MovieCard from '../../components/movies/MovieCard/MovieCard';
 import BookCard from '../../components/books/BookCard/BookCard';
 
@@ -40,14 +40,7 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   return (
     <>
       <h1>{profile?.name}</h1>
-      {profile?.photo
-      ?
-        <img src={profile?.photo} alt="Profile Photo" />
-      :
-        <DefaultAvatar
-          profile={profile}
-        />
-      }
+      <Avatar profile={profile} />
       <div className={styles["card-container"]}>
         <MovieCard user={user} profile={profile} />
         <BookCard user={user} profile={profile} />
