@@ -3,8 +3,9 @@
 export interface Movie {
   id: number;
   name: string;
-  profileId: number;
+  category: string;
   releaseDate: number;
+  profileId: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -13,6 +14,7 @@ export interface Book {
   id: number;
   name: string;
   author: string;
+  category: string;
   published: number;
   profileId: number;
   createdAt: string;

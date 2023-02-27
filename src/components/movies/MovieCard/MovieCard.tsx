@@ -177,12 +177,8 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       !formDisplay && !editFormDisplay &&
       <NextPrevBtns
         handleClick={handleClick}
-        resource={movie!}
+        category={movie!.category}
       />
-      // <div>
-      //   <button onClick={handleClick}>Prev Movie</button>
-      //   <button onClick={handleClick}>Next Movie</button>
-      // </div>
       :
       ''
       }

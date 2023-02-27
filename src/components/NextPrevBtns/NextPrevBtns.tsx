@@ -1,13 +1,16 @@
 const NextPrevBtns = (props) => {
-  const { handleClick, resource } = props
+  const { handleClick, category } = props
+
+  console.log(category);
+  
 
   return (
     <div>
       <button onClick={handleClick}>
-        Prev {resource.category}
+        Prev {category}
       </button>
       <button onClick={handleClick}>
-        Next {resource.category}
+        Next {category}
       </button>
     </div>
   )
