@@ -15,7 +15,7 @@ const MovieDetails = (props: MovieDetailsProps): JSX.Element => {
       {movies.length
       ?
       <>
-        <h4>{index + 1} of {movies.length}</h4>
+        <h4>({index + 1} of {movies.length})</h4>
         <h3>{movie!?.name}</h3>
         <h4>Directed by: {movie!?.director}</h4>
         <h4>Released: {movie!?.releaseDate}</h4>
