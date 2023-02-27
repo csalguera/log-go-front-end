@@ -1,9 +1,23 @@
 .avatar-border {
-  border: solid 1px red;
-  height: 200px;
-  width: 200px;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: black;
+}
+
+.nested-border {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+}
+
+.nested-border h1 {
+  color: white;
 }

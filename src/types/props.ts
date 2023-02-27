@@ -27,7 +27,7 @@ export interface NextPrevBtnsProps {
 }
 
 export interface DefaultAvatarProps {
-  profile: Profile;
+  profile: Profile | null;
 }
 
 // movies

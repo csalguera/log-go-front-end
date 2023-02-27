@@ -7,11 +7,13 @@ import { DefaultAvatarProps } from '../../types/props'
 const DefaultAvatar = (props: DefaultAvatarProps) => {
   const { profile } = props
 
-  const nameArr = profile.name.split('')
+  const nameArr = profile!.name.split('')
   
   return (
     <div className={styles["avatar-border"]}>
-      <h1>{nameArr[0]}</h1>
+      <div className={styles["nested-border"]}>
+        <h1>{nameArr[0]}</h1>
+      </div>
     </div>
   )
 }
