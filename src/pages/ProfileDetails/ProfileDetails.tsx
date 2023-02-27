@@ -23,9 +23,9 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   const { user } = props
   const { id } = useParams<{ id: string }>()
   const [profile, setProfile] = useState<Profile | null>(null)
-  const size1 = "85px"
-  const size2 = "75px"
-  const size3 = ""
+  const size1 = "125px"
+  const size2 = "110px"
+  const size3 = "48px"
 
   useEffect(() => {
     const fetchProfile = async (): Promise<void> => {
