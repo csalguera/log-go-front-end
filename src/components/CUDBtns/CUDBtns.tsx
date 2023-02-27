@@ -21,21 +21,30 @@ const CUDBtns = (props: CUDBtnsProps) => {
       {resource.length && user?.id === profile?.id
       ?
       !formDisplay &&
-        <button onClick={handleEdit}>
+        <button
+          onClick={handleEdit}
+          className={styles["edit-btn"]}
+        >
           {editFormDisplay ? 'Cancel' : 'Edit'}
         </button>
       :
       ''
       }
       {!editFormDisplay && user?.id === profile?.id &&
-        <button onClick={displayForm}>
+        <button
+          onClick={displayForm}
+          className={styles["add-btn"]}
+        >
           {formDisplay ? 'Cancel' : 'Add'}
         </button>
       }
       {resource.length && user?.id === profile?.id
       ?
       !formDisplay && !editFormDisplay &&
-      <button onClick={handleDelete}>
+      <button
+        onClick={handleDelete}
+        className={styles["delete-btn"]}
+      >
         Delete
       </button>
       :

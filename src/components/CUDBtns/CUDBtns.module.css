@@ -12,3 +12,34 @@
   justify-content: center;
   align-items: center;
 }
+
+.add-btn,
+.delete-btn,
+.edit-btn {
+  font-weight: bold;
+  background-color: black;
+}
+
+.add-btn {
+  color: rgba(0, 255, 0, 0.7);
+}
+
+.add-btn:hover {
+  color: rgba(0, 255, 0, 1);
+}
+
+.delete-btn {
+  color: rgba(255, 0, 0, 0.7);
+}
+
+.delete-btn:hover {
+  color: rgba(255, 0, 0, 1);
+}
+
+.edit-btn {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.edit-btn:hover {
+  color: rgba(255, 255, 255, 1);
+}
