@@ -10,6 +10,7 @@ import * as movieService from '../../../services/movieService'
 import MovieForm from '../MovieForm/MovieForm';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import CUDBtns from '../../CUDBtns/CUDBtns';
+import NextPrevBtns from '../../NextPrevBtns/NextPrevBtns';
 
 // styles
 import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
@@ -174,10 +175,14 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       {movies.length
       ?
       !formDisplay && !editFormDisplay &&
-      <div>
-        <button onClick={handleClick}>Prev Movie</button>
-        <button onClick={handleClick}>Next Movie</button>
-      </div>
+      <NextPrevBtns
+        handleClick={handleClick}
+        resource={movie!}
+      />
+      // <div>
+      //   <button onClick={handleClick}>Prev Movie</button>
+      //   <button onClick={handleClick}>Next Movie</button>
+      // </div>
       :
       ''
       }
