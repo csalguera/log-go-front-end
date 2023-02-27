@@ -20,9 +20,12 @@ import { Profile } from '../../types/models'
 import { ProfileDetailsProps } from '../../types/props';
 
 const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
-  const { id } = useParams<{ id: string }>()
   const { user } = props
+  const { id } = useParams<{ id: string }>()
   const [profile, setProfile] = useState<Profile | null>(null)
+  const size1 = "85px"
+  const size2 = "75px"
+  const size3 = ""
 
   useEffect(() => {
     const fetchProfile = async (): Promise<void> => {
