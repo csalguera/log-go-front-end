@@ -5,7 +5,7 @@ import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
 import { MovieFormProps } from "../../../types/props"
 
 const MovieForm = ({ formData, handleSubmit, handleChange }: MovieFormProps): JSX.Element => {
-  const { name, releaseDate } = formData
+  const { name, director, releaseDate } = formData
 
   return (
     <>
@@ -21,6 +21,14 @@ const MovieForm = ({ formData, handleSubmit, handleChange }: MovieFormProps): JS
             name='name'
             placeholder='Enter Title'
             value={name}
+            onChange={handleChange}
+            required={true}
+          />
+          <input
+            type="text"
+            name='director'
+            placeholder='Enter Director'
+            value={director}
             onChange={handleChange}
             required={true}
           />

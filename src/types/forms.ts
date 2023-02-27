@@ -2,12 +2,14 @@
 
 export interface MovieFormData {
   name: string;
+  director: string;
   releaseDate: string;
 }
 
 export interface EditMovieFormData {
   movieId: number | null;
   name: string;
+  director: string;
   releaseDate: string;
 }
 

@@ -33,11 +33,13 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
 
   const [formData, setFormData] = useState<MovieFormData>({
     name: '',
+    director: '',
     releaseDate: '',
   })
   const [editFormData, setEditFormData] = useState<EditMovieFormData>({
     movieId: null,
     name: '',
+    director: '',
     releaseDate: '',
   })
 
@@ -61,6 +63,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
         setEditFormData({
           movieId: movie!?.id,
           name: movie!?.name,
+          director: movie!?.director,
           releaseDate: movie!?.releaseDate!?.toString(),
         })
       } catch (error) {
@@ -113,6 +116,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     const newMovie = await movieService.createMovie(formData)
     setFormData({
       name: '',
+      director: '',
       releaseDate: ''
     })
     setMovies([...movies!, newMovie])

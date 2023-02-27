@@ -34,6 +34,7 @@ export interface MovieCardProps {
 export interface MovieFormProps {
   formData: {
     name: string;
+    director: string;
     releaseDate: string;
   };
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
