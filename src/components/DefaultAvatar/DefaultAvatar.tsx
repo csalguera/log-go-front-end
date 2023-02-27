@@ -1,10 +1,12 @@
 // styles
 import styles from './DefaultAvatar.module.css'
 
-const DefaultAvatar = () => {
+const DefaultAvatar = (props) => {
+  const { profile } = props
+
   return (
     <div className={styles["avatar-border"]}>
-      <h1>test</h1>
+      {profile.name}
     </div>
   )
 }

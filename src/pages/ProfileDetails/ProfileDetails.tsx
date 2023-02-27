@@ -40,11 +40,13 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   return (
     <>
       <h1>{profile?.name}</h1>
-      {profile.photo
+      {profile?.photo
       ?
         <img src={profile?.photo} alt="Profile Photo" />
       :
-        <DefaultAvatar />
+        <DefaultAvatar
+          profile={profile}
+        />
       }
       <div className={styles["card-container"]}>
         <MovieCard user={user} profile={profile} />
