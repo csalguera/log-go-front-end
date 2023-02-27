@@ -1,5 +1,5 @@
 // npm packages
-import { ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent, FormEvent } from "react";
 
 // types
 import { User, Profile, Movie, Book } from '../types/models'
@@ -9,6 +9,7 @@ import { User, Profile, Movie, Book } from '../types/models'
 export interface ProfileDetailsProps {
   user: User | null;
 }
+
 export interface CUDBtnsProps {
   user: User | null;
   profile: Profile | null;
@@ -18,6 +19,11 @@ export interface CUDBtnsProps {
   editFormDisplay: boolean;
   handleEdit: () => void;
   handleDelete: () => void;
+}
+
+export interface NextPrevBtnsProps {
+  handleClick: (evt: React.MouseEvent) => void;
+  category: string;
 }
 
 // movies

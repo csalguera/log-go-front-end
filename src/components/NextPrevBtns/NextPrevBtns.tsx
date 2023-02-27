@@ -1,8 +1,8 @@
-const NextPrevBtns = (props) => {
-  const { handleClick, category } = props
+// props
+import { NextPrevBtnsProps } from "../../types/props";
 
-  console.log(category);
-  
+const NextPrevBtns = (props: NextPrevBtnsProps) => {
+  const { handleClick, category } = props
 
   return (
     <div>
