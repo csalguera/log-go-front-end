@@ -1,4 +1,4 @@
-// stylesheets
+// styles
 import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
 
 // types
