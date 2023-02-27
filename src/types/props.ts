@@ -26,6 +26,10 @@ export interface NextPrevBtnsProps {
   category: string;
 }
 
+export interface DefaultAvatarProps {
+  profile: Profile;
+}
+
 // movies
 export interface MovieCardProps {
   user: User | null;

@@ -1,7 +1,10 @@
 // styles
 import styles from './DefaultAvatar.module.css'
 
-const DefaultAvatar = (props) => {
+// props
+import { DefaultAvatarProps } from '../../types/props'
+
+const DefaultAvatar = (props: DefaultAvatarProps) => {
   const { profile } = props
 
   const nameArr = profile.name.split('')
