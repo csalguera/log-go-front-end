@@ -1,6 +1,9 @@
+// styles
+import styles from './DefaultAvatar.module.css'
+
 const DefaultAvatar = () => {
   return (
-    <div>
+    <div className={styles["avatar-border"]}>
       <h1>test</h1>
     </div>
   )
