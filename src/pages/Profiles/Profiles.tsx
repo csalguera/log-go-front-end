@@ -44,7 +44,12 @@ const Profiles = (): JSX.Element => {
             to={`/profiles/${profile.id}`}
             className={styles["profile-link"]}
           >
-            <Avatar profile={profile}/>
+            <Avatar
+              profile={profile}
+              size1={size1}
+              size2={size2}
+              size3={size3}
+            />
             <p>{profile.name}</p>
           </Link>
         )}

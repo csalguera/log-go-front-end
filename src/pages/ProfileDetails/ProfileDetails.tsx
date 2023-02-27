@@ -43,7 +43,12 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   return (
     <>
       <h1>{profile?.name}</h1>
-      <Avatar profile={profile} />
+      <Avatar
+        profile={profile}
+        size1={size1}
+        size2={size2}
+        size3={size3}
+      />
       <div className={styles["card-container"]}>
         <MovieCard user={user} profile={profile} />
         <BookCard user={user} profile={profile} />

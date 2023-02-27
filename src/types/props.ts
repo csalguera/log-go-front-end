@@ -28,6 +28,9 @@ export interface NextPrevBtnsProps {
 
 export interface AvatarProps {
   profile: Profile | null;
+  size1: string;
+  size2: string;
+  size3: string;
 }
 
 // movies

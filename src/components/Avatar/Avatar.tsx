@@ -5,11 +5,12 @@ import styles from './Avatar.module.css'
 import { AvatarProps } from '../../types/props'
 
 const Avatar = (props: AvatarProps) => {
-  const { profile } = props
-
-  const size1 = "200px"
-  const size2 = "175px"
-  const size3 = "80px"
+  const {
+    profile,
+    size1,
+    size2,
+    size3,
+  } = props
 
   const nameArr = profile!.name.split('')
   
