@@ -8,6 +8,9 @@ import Avatar from '../../components/Avatar/Avatar'
 // services
 import * as profileService from '../../services/profileService'
 
+// styles
+import styles from './Profiles.module.css'
+
 // types
 import { Profile } from '../../types/models'
 
@@ -31,12 +34,18 @@ const Profiles = (): JSX.Element => {
   return (
     <>
       <h1>Hello. This is a list of all the profiles.</h1>
-      {profiles.map((profile: Profile) =>
-        <Link key={profile.id} to={`/profiles/${profile.id}`}>
-          <Avatar profile={profile} />
-          <p>{profile.name}</p>
-        </Link>
-      )}
+      <div className={styles["profiles-container"]}>
+        {profiles.map((profile: Profile) =>
+          <Link
+            key={profile.id}
+            to={`/profiles/${profile.id}`}
+            className={styles["profile-link"]}
+          >
+            <Avatar profile={profile}/>
+            <p>{profile.name}</p>
+          </Link>
+        )}
+      </div>
     </>
   )
 }
