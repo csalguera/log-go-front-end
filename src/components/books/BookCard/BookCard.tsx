@@ -149,34 +149,38 @@ const BookCard = (props: BookCardProps): JSX.Element => {
   if (!books) return <h2>Loading...</h2>
   return (
     <div className={styles.card}>
-      <h2>Favorite Books</h2>
-      <BookDetails
-        user={user}
-        profile={profile}
-        books={books}
-        book={book!}
-        index={index}
-      />
-      {formDisplay &&
-        <BookForm
-          formData={editFormDisplay ? editFormData : formData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
+      <div className={styles["details-container"]}>
+        <h2>Favorite Books</h2>
+        {!formDisplay && !editFormDisplay &&
+        <BookDetails
+          user={user}
+          profile={profile}
+          books={books}
+          book={book!}
+          index={index}
         />
-      }
-      {editFormDisplay &&
-        <BookForm
-          formData={editFormDisplay ? editFormData : formData}
-          handleChange={handleEditForm}
-          handleSubmit={handleUpdate}
-        />
-      }
+        }
+        {formDisplay &&
+          <BookForm
+            formData={editFormDisplay ? editFormData : formData}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        }
+        {editFormDisplay &&
+          <BookForm
+            formData={editFormDisplay ? editFormData : formData}
+            handleChange={handleEditForm}
+            handleSubmit={handleUpdate}
+          />
+        }
+      </div>
       {books.length
       ?
       !formDisplay && !editFormDisplay &&
       <div>
-        <button onClick={handleClick}>Prev Movie</button>
-        <button onClick={handleClick}>Next Movie</button>
+        <button onClick={handleClick}>Prev Book</button>
+        <button onClick={handleClick}>Next Book</button>
       </div>
       :
       ''

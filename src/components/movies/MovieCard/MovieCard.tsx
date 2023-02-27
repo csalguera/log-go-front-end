@@ -145,28 +145,32 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   if (!movies) return <h2>Loading...</h2>
   return (
     <div className={styles.card}>
-      <h2>Favorite Movies</h2>
-      <MovieDetails
-        user={user}
-        profile={profile}
-        movies={movies}
-        movie={movie!}
-        index={index}
-      />
-      {formDisplay &&
-        <MovieForm
-          formData={editFormDisplay ? editFormData : formData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
+      <div className={styles["details-container"]}>
+        <h2>Favorite Movies</h2>
+        {!formDisplay && !editFormDisplay &&
+        <MovieDetails
+          user={user}
+          profile={profile}
+          movies={movies}
+          movie={movie!}
+          index={index}
         />
-      }
-      {editFormDisplay &&
-        <MovieForm
-          formData={editFormDisplay ? editFormData : formData}
-          handleChange={handleEditForm}
-          handleSubmit={handleUpdate}
-        />
-      }
+        }
+        {formDisplay &&
+          <MovieForm
+            formData={editFormDisplay ? editFormData : formData}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        }
+        {editFormDisplay &&
+          <MovieForm
+            formData={editFormDisplay ? editFormData : formData}
+            handleChange={handleEditForm}
+            handleSubmit={handleUpdate}
+          />
+        }
+      </div>
       {movies.length
       ?
       !formDisplay && !editFormDisplay &&

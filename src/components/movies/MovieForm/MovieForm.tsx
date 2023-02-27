@@ -9,6 +9,7 @@ const MovieForm = ({ formData, handleSubmit, handleChange }: MovieFormProps): JS
 
   return (
     <>
+      <h4>Enter Movie Details:</h4>
       <form
         className={styles.form}
         autoComplete='off'
