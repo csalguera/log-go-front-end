@@ -4,6 +4,7 @@
 
 .card {
   border: solid 1px black;
+  border-radius: 30px;
   min-width: 300px;
   min-height: 400px;
   display: flex;
@@ -21,4 +22,6 @@
 
 .details-container {
   text-align: center;
+  width: 100%;
+  min-height: 250px;
 }
