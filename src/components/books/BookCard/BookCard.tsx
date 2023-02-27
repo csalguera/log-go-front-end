@@ -10,6 +10,7 @@ import * as bookService from '../../../services/bookService'
 import BookForm from '../BookForm/BookForm';
 import BookDetails from '../BookDetails/BookDetails';
 import CUDBtns from '../../CUDBtns/CUDBtns';
+import NextPrevBtns from '../../NextPrevBtns/NextPrevBtns';
 
 // types
 import { Book } from '../../../types/models'
@@ -178,10 +179,10 @@ const BookCard = (props: BookCardProps): JSX.Element => {
       {books.length
       ?
       !formDisplay && !editFormDisplay &&
-      <div>
-        <button onClick={handleClick}>Prev Book</button>
-        <button onClick={handleClick}>Next Book</button>
-      </div>
+      <NextPrevBtns
+        handleClick={handleClick}
+        category={book!.category}
+      />
       :
       ''
       }
