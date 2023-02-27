@@ -15,30 +15,32 @@ const BookForm = ({ formData, handleSubmit, handleChange }: BookFormProps): JSX.
         autoComplete='off'
         onSubmit={handleSubmit}
       >
-        <input
-          type="text"
-          name='name'
-          placeholder='Enter Title'
-          value={name}
-          onChange={handleChange}
-          required={true}
-        />
-        <input
-          type="text"
-          name='author'
-          placeholder='Enter Author'
-          value={author}
-          onChange={handleChange}
-          required={true}
-        />
-        <input
-          type="text"
-          name='published'
-          placeholder='Enter Publish Year'
-          value={published}
-          onChange={handleChange}
-          required={true}
-        />
+        <div className={styles["inputs-container"]}>
+          <input
+            type="text"
+            name='name'
+            placeholder='Enter Title'
+            value={name}
+            onChange={handleChange}
+            required={true}
+          />
+          <input
+            type="text"
+            name='author'
+            placeholder='Enter Author'
+            value={author}
+            onChange={handleChange}
+            required={true}
+          />
+          <input
+            type="text"
+            name='published'
+            placeholder='Enter Publish Year'
+            value={published}
+            onChange={handleChange}
+            required={true}
+          />
+        </div>
         <button>
           Submit
         </button>

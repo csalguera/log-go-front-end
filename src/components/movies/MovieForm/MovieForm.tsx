@@ -15,22 +15,24 @@ const MovieForm = ({ formData, handleSubmit, handleChange }: MovieFormProps): JS
         autoComplete='off'
         onSubmit={handleSubmit}
       >
-        <input
-          type="text"
-          name='name'
-          placeholder='Enter Title'
-          value={name}
-          onChange={handleChange}
-          required={true}
-        />
-        <input
-          type="text"
-          name='releaseDate'
-          placeholder='Enter Release Year'
-          value={releaseDate}
-          onChange={handleChange}
-          required={true}
-        />
+        <div className={styles["inputs-container"]}>
+          <input
+            type="text"
+            name='name'
+            placeholder='Enter Title'
+            value={name}
+            onChange={handleChange}
+            required={true}
+          />
+          <input
+            type="text"
+            name='releaseDate'
+            placeholder='Enter Release Year'
+            value={releaseDate}
+            onChange={handleChange}
+            required={true}
+          />
+        </div>
         <button>
           Submit
         </button>
