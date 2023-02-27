@@ -33,7 +33,7 @@ const Profiles = (): JSX.Element => {
 
   return (
     <>
-      <h1>Hello. This is a list of all the profiles.</h1>
+      <h1>Profiles</h1>
       <div className={styles["profiles-container"]}>
         {profiles.map((profile: Profile) =>
           <Link
