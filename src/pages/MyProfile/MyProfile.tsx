@@ -4,10 +4,17 @@ import { useEffect, useState } from 'react'
 // services
 import * as profileService from '../../services/profileService'
 
+// components
+import MovieCard from '../../components/movies/MovieCard/MovieCard'
+import BookCard from '../../components/books/BookCard/BookCard'
+
 // types
 import { Profile } from '../../types/models'
 
-const MyProfile = (): JSX.Element => {
+// props
+
+const MyProfile = (props): JSX.Element => {
+  const { user } = props
   const [myProfile, setMyProfile] = useState<Profile | null>(null)
   
   useEffect(() => {
@@ -22,10 +29,12 @@ const MyProfile = (): JSX.Element => {
     fetchMyProfile()
   }, [])
 
+  console.log(myProfile);
+  
+
   if (!myProfile) return <h1>Loading...</h1>
   return (
     <>
-      <p>{myProfile.name}</p>
     </>
   )
 }

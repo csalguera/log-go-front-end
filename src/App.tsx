@@ -7,6 +7,7 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
+import MyProfile from './pages/MyProfile/MyProfile'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
 
@@ -65,6 +66,14 @@ function App(): JSX.Element {
           element={
             <ProtectedRoute user={user}>
               <ProfileDetails user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/profiles/my-profile'
+          element={
+            <ProtectedRoute user={user}>
+              <MyProfile user={user} />
             </ProtectedRoute>
           }
         />
