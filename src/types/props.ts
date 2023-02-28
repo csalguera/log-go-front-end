@@ -1,5 +1,5 @@
 // npm packages
-import React, { ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react";
 
 // types
 import { User, Profile, Movie, Book } from '../types/models'
@@ -37,6 +37,8 @@ export interface AvatarProps {
 export interface MovieCardProps {
   user: User | null;
   profile: Profile | null;
+  movies: Movie[];
+  setMovies: Dispatch<SetStateAction<Movie[] | []>>;
 }
 export interface MovieFormProps {
   formData: {

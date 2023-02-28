@@ -24,9 +24,9 @@ import { MovieCardProps } from '../../../types/props';
 
 const MovieCard = (props: MovieCardProps): JSX.Element => {
   const { id } = useParams()
-  const { user, profile } = props
+  const { user, profile, movies, setMovies } = props
   let movie: Movie | null
-  const [movies, setMovies] = useState<Movie[] | []>([])
+  // const [movies, setMovies] = useState<Movie[] | []>([])
   const [index, setIndex] = useState(0)
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
@@ -45,20 +45,20 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
 
   if (movies) movie = movies[index]
 
-  useEffect(() => {
-    const fetchMovies = async (): Promise<void> => {
-      try {
-        const data = await profileService.getProfile(id)
-        setMovies(data.movies)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    fetchMovies()
-  }, [id])
+  // useEffect(() => {
+  //   const fetchMovies = async (): Promise<void> => {
+  //     try {
+  //       const data = await profileService.getProfile(id)
+  //       setMovies(data.movies)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   fetchMovies()
+  // }, [id])
 
   useEffect(() => {
-    const fetchMovieData = async () => {
+    const editMovieData = async () => {
       try {
         setEditFormData({
           movieId: movie!?.id,
@@ -70,7 +70,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
         console.log(error);
       }
     }
-    fetchMovieData()
+    editMovieData()
   }, [movie!?.id])
   
   function handleClick(evt: React.MouseEvent): void {
