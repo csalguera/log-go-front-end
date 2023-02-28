@@ -10,7 +10,7 @@ import MovieCard from '../../components/movies/MovieCard/MovieCard'
 import BookCard from '../../components/books/BookCard/BookCard'
 
 // types
-import { Profile, Movie } from '../../types/models'
+import { Profile, Movie, Book } from '../../types/models'
 
 // styles
 import styles from '../ProfileDetails/ProfileDetails.module.css'
@@ -22,6 +22,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
   const { user } = props
   const [myProfile, setMyProfile] = useState<Profile | null>(null)
   const [movies, setMovies] = useState<Movie[] | []>([])
+  const [books, setBooks] = useState<Book[] | []>([])
   
   useEffect(() => {
     const fetchMyProfile = async (): Promise<void> => {
@@ -38,7 +39,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {
       try {
-        const data = await profileService.getProfile(myProfile!?.id.toString())
+        const data = await profileService.getMyProfile()
         setMovies(data.movies)
       } catch (error) {
         console.log(error)
@@ -46,6 +47,18 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
     }
     fetchMovies()
   }, [])
+
+  useEffect(() => {
+    const fetchBooks = async (): Promise<void> => {
+      try {
+        const data = await profileService.getMyProfile()
+        setBooks(data.books)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchBooks()
+  }, [myProfile!?.id.toString()])
   
   if (!myProfile) return <h1>Loading...</h1>
   return (
@@ -60,7 +73,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
         <h2>{myProfile?.name}</h2>
         <div className={styles["card-container"]}>
           <MovieCard user={user} profile={myProfile} movies={movies} setMovies={setMovies} />
-          {/* <BookCard user={user} profile={myProfile} /> */}
+          <BookCard user={user} profile={myProfile} books={books} setBooks={setBooks} />
         </div>
       </div>
     </main>
