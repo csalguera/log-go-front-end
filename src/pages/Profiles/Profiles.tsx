@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 // components
 import Avatar from '../../components/Avatar/Avatar'
+import Loading from '../../components/Loading/Loading'
 
 // services
 import * as profileService from '../../services/profileService'
@@ -36,8 +37,7 @@ const Profiles = (props: ProfilesProps): JSX.Element => {
     fetchProfiles()
   }, [])
 
-  if(!profiles.length) return <h1>Loading...</h1>
-
+  if(!profiles.length) return <Loading />
   return (
     <main className='page-component-container'>
       <h1>Profiles</h1>
