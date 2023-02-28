@@ -46,8 +46,20 @@ async function getProfile(id: string | undefined): Promise<Profile> {
   }
 }
 
+async function getMyProfile(): Promise<Profile> {
+  try {
+    const res = await fetch(`${BASE_URL}/my-profile`, {
+      headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
+    })
+    return await res.json() as Profile
+  } catch (error) {
+    throw error
+  }
+}
+
 export {
   getAllProfiles,
   addPhoto,
   getProfile,
+  getMyProfile,
 }
