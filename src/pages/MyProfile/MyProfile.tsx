@@ -12,8 +12,9 @@ import BookCard from '../../components/books/BookCard/BookCard'
 import { Profile } from '../../types/models'
 
 // props
+import { ProfileDetailsProps } from '../../types/props'
 
-const MyProfile = (props): JSX.Element => {
+const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
   const { user } = props
   const [myProfile, setMyProfile] = useState<Profile | null>(null)
   
@@ -28,13 +29,11 @@ const MyProfile = (props): JSX.Element => {
     }
     fetchMyProfile()
   }, [])
-
-  console.log(myProfile);
   
-
   if (!myProfile) return <h1>Loading...</h1>
   return (
     <>
+      {myProfile.name}
     </>
   )
 }
