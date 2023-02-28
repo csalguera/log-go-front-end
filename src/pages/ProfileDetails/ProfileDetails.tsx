@@ -23,9 +23,6 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   const { user } = props
   const { id } = useParams<{ id: string }>()
   const [profile, setProfile] = useState<Profile | null>(null)
-  const size1 = "118px"
-  const size2 = "110px"
-  const size3 = "48px"
 
   useEffect(() => {
     const fetchProfile = async (): Promise<void> => {
@@ -45,9 +42,9 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
       <div className={styles["profile-container"]}>
         <Avatar
           profile={profile}
-          size1={size1}
-          size2={size2}
-          size3={size3}
+          size1='118px'
+          size2='110px'
+          size3='48px'
         />
         <h2>{profile?.name}</h2>
         <div className={styles["card-container"]}>
