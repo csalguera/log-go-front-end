@@ -1,7 +1,7 @@
 .navbar {
   height: 6vh;
   width: 100%;
-  border: solid 1px black;
+  border-bottom: solid 1px black;
   padding: 8px 0;
   display: flex;
   align-items: center;
@@ -21,4 +21,18 @@ li {
   margin-left: 8px;
   margin-right: 8px;
   list-style-type: none;
+}
+
+.navbar li > * {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar li > *:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.active {
+  font-weight: bold;
 }
