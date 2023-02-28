@@ -1,9 +1,7 @@
 // npm packages
 import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
-import { useParams } from 'react-router';
 
 // services
-import * as profileService from '../../../services/profileService'
 import * as bookService from '../../../services/bookService'
 
 // components
@@ -23,10 +21,8 @@ import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
 import { BookCardProps } from '../../../types/props';
 
 const BookCard = (props: BookCardProps): JSX.Element => {
-  const { id } = useParams()
   const { user, profile, books, setBooks } = props
   let book: Book | null
-  // const [books, setBooks] = useState<Book[] | []>([])
   const [index, setIndex] = useState(0)
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
@@ -44,18 +40,6 @@ const BookCard = (props: BookCardProps): JSX.Element => {
   })
 
   if (books) book = books[index]
-
-  // useEffect(() => {
-  //   const fetchBooks = async (): Promise<void> => {
-  //     try {
-  //       const data = await profileService.getProfile(id)
-  //       setBooks(data.books)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   fetchBooks()
-  // }, [id])
 
   useEffect(() => {
     const editBookData = async () => {

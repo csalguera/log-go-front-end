@@ -1,6 +1,5 @@
 // npm packages
 import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
-import { useParams } from 'react-router';
 
 // services
 import * as movieService from '../../../services/movieService'
@@ -22,7 +21,6 @@ import { MovieFormData, EditMovieFormData } from '../../../types/forms';
 import { MovieCardProps } from '../../../types/props';
 
 const MovieCard = (props: MovieCardProps): JSX.Element => {
-  const { id } = useParams()
   const { user, profile, movies, setMovies } = props
   let movie: Movie | null
   const [index, setIndex] = useState(0)
