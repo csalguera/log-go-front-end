@@ -1,6 +1,9 @@
 // npm modules
 import { NavLink } from 'react-router-dom'
 
+// styles
+import styles from './NavBar.module.css'
+
 // types
 import { User } from '../../types/models'
 
@@ -13,7 +16,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
   const { user, handleLogout } = props
   
   return (
-    <nav>
+    <nav className={styles.navbar}>
       {user ?
         <ul>
           <li>Welcome, {user.name}</li>
