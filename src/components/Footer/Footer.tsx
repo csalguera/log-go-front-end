@@ -16,7 +16,7 @@ const Footer = (): JSX.Element => {
       </Link>
       <p>|</p>
       <Link
-        to=''
+        to='https://github.com/csalguera/log-go-front-end/blob/main/attributions.md'
         target='_blank'
         className={styles["link-tags"]}
       >
