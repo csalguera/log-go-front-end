@@ -74,8 +74,18 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
         />
         <h2>{profile?.name}</h2>
         <div className={styles["card-container"]}>
-          <MovieCard user={user} profile={profile} movies={movies} setMovies={setMovies} />
-          <BookCard user={user} profile={profile} books={books} setBooks={setBooks} />
+          <MovieCard
+            user={user}
+            profile={profile}
+            movies={movies}
+            setMovies={setMovies}
+          />
+          <BookCard
+            user={user}
+            profile={profile}
+            books={books}
+            setBooks={setBooks}
+          />
         </div>
       </div>
     </main>
