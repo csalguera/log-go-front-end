@@ -14,7 +14,15 @@ const Landing = (props: LandingProps): JSX.Element => {
   return (
     <main className='page-component-container'>
       <main className={styles.container}>
-        <h1>hello, {user ? user.name : 'friend'}</h1>
+        <h1>{user ? `Welcome, ${user.name}` : 'Please Log In or Sign Up to access this site'}</h1>
+        {user
+        ?
+          <>
+            <h2>This is the Landing Page</h2>
+          </>
+        :
+        ''
+        }
       </main>
     </main>
   )
