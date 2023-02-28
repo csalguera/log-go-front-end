@@ -45,6 +45,10 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
           size3='48px'
         />
         <h2>{myProfile?.name}</h2>
+        <div className={styles["card-container"]}>
+          <MovieCard user={user} profile={myProfile} />
+          <BookCard user={user} profile={myProfile} />
+        </div>
       </div>
     </main>
   )
