@@ -14,7 +14,11 @@ import styles from './Profiles.module.css'
 // types
 import { Profile } from '../../types/models'
 
-const Profiles = (): JSX.Element => {
+// props
+import { ProfilesProps } from '../../types/props'
+
+const Profiles = (props: ProfilesProps): JSX.Element => {
+  const { user } = props
   const [profiles, setProfiles] = useState<Profile[]>([])
   const size1 = "187px"
   const size2 = "175px"
@@ -38,7 +42,7 @@ const Profiles = (): JSX.Element => {
     <main className='page-component-container'>
       <h1>Profiles</h1>
       <div className={styles["profiles-container"]}>
-        {profiles.map((profile: Profile) =>
+        {profiles.filter((profile: Profile) => profile.id !== user!?.id).map((profile: Profile) =>
           <Link
             key={profile.id}
             to={`/profiles/${profile.id}`}

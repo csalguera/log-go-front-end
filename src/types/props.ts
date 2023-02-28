@@ -6,6 +6,10 @@ import { User, Profile, Movie, Book } from '../types/models'
 
 /* ---------======= custom props ======--------- */
 
+export interface ProfilesProps {
+  user: User | null;
+}
+
 export interface ProfileDetailsProps {
   user: User | null;
 }
