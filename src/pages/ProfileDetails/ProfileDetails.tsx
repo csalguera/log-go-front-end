@@ -23,7 +23,7 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   const { user } = props
   const { id } = useParams<{ id: string }>()
   const [profile, setProfile] = useState<Profile | null>(null)
-  const size1 = "125px"
+  const size1 = "118px"
   const size2 = "110px"
   const size3 = "48px"
 
@@ -41,19 +41,19 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
 
   if (!profile) return <h1>Loading...</h1>
   return (
-    <>
-      <h1>{profile?.name}</h1>
+    <div className={styles["profile-container"]}>
       <Avatar
         profile={profile}
         size1={size1}
         size2={size2}
         size3={size3}
       />
+      <h2>{profile?.name}</h2>
       <div className={styles["card-container"]}>
         <MovieCard user={user} profile={profile} />
         <BookCard user={user} profile={profile} />
       </div>
-    </>
+    </div>
   )
 }
 

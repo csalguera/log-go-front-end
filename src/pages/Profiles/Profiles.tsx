@@ -16,7 +16,7 @@ import { Profile } from '../../types/models'
 
 const Profiles = (): JSX.Element => {
   const [profiles, setProfiles] = useState<Profile[]>([])
-  const size1 = "200px"
+  const size1 = "187px"
   const size2 = "175px"
   const size3 = "80px"
 

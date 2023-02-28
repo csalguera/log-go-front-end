@@ -18,7 +18,15 @@ const Avatar = (props: AvatarProps) => {
     <>
       {profile?.photo
       ?
-        <img src={profile?.photo} alt="Profile Photo" />
+        <div className={styles["avatar-border"]} style={{width: size1, height: size1}}>
+          <img
+            src={profile?.photo}
+            alt="Profile Photo"
+            width={size2}
+            height={size2}
+            className={styles["profile-photo"]}
+          />
+        </div>
       :
         <div className={styles["avatar-border"]} style={{width: size1, height: size1}}>
           <div className={styles["nested-border"]} style={{width: size2, height: size2}}>

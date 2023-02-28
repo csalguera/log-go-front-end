@@ -59,3 +59,18 @@
   width: 100%;
   min-height: 250px;
 }
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-container > * {
+  margin: 16px;
+}
+
+.profile-container h2 {
+  margin-top: 0;
+}
