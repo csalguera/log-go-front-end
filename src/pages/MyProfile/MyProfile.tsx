@@ -10,7 +10,7 @@ import MovieCard from '../../components/movies/MovieCard/MovieCard'
 import BookCard from '../../components/books/BookCard/BookCard'
 
 // types
-import { Profile } from '../../types/models'
+import { Profile, Movie } from '../../types/models'
 
 // styles
 import styles from '../ProfileDetails/ProfileDetails.module.css'
@@ -21,6 +21,7 @@ import { ProfileDetailsProps } from '../../types/props'
 const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
   const { user } = props
   const [myProfile, setMyProfile] = useState<Profile | null>(null)
+  const [movies, setMovies] = useState<Movie[] | []>([])
   
   useEffect(() => {
     const fetchMyProfile = async (): Promise<void> => {
@@ -32,6 +33,18 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchMyProfile()
+  }, [])
+
+  useEffect(() => {
+    const fetchMovies = async (): Promise<void> => {
+      try {
+        const data = await profileService.getProfile(myProfile!?.id.toString())
+        setMovies(data.movies)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchMovies()
   }, [])
   
   if (!myProfile) return <h1>Loading...</h1>
@@ -46,7 +59,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
         />
         <h2>{myProfile?.name}</h2>
         <div className={styles["card-container"]}>
-          <MovieCard user={user} profile={myProfile} />
+          <MovieCard user={user} profile={myProfile} movies={movies} setMovies={setMovies} />
           <BookCard user={user} profile={myProfile} />
         </div>
       </div>
