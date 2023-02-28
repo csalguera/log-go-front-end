@@ -6,6 +6,7 @@ import * as profileService from '../../services/profileService'
 
 // components
 import Avatar from '../../components/Avatar/Avatar'
+import Loading from '../../components/Loading/Loading'
 import MovieCard from '../../components/movies/MovieCard/MovieCard'
 import BookCard from '../../components/books/BookCard/BookCard'
 
@@ -60,7 +61,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
     fetchBooks()
   }, [myProfile!?.id.toString()])
   
-  if (!myProfile) return <h1>Loading...</h1>
+  if (!myProfile) return <Loading />
   return (
     <main className='page-component-container'>
       <div className={styles["profile-container"]}>
