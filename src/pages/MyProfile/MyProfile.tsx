@@ -12,6 +12,9 @@ import BookCard from '../../components/books/BookCard/BookCard'
 // types
 import { Profile } from '../../types/models'
 
+// styles
+import styles from '../ProfileDetails/ProfileDetails.module.css'
+
 // props
 import { ProfileDetailsProps } from '../../types/props'
 
@@ -34,12 +37,15 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
   if (!myProfile) return <h1>Loading...</h1>
   return (
     <main className='page-component-container'>
-      <Avatar
-      profile={myProfile}
-        size1='118px'
-        size2='110px'
-        size3='48px'
-      />
+      <div className={styles["profile-container"]}>
+        <Avatar
+          profile={myProfile}
+          size1='118px'
+          size2='110px'
+          size3='48px'
+        />
+        <h2>{myProfile?.name}</h2>
+      </div>
     </main>
   )
 }
