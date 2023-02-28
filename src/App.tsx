@@ -13,6 +13,7 @@ import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
 // components
 import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import Footer from './components/Footer/Footer'
 
 // services
 import * as authService from './services/authService'
@@ -76,6 +77,7 @@ function App(): JSX.Element {
           }
         />
       </Routes>
+      <Footer />
     </>
   )
 }

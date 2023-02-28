@@ -15,3 +15,13 @@
 .profile-link > * {
   margin: 8px 24px;
 }
+
+.profile-link p {
+  color: black;
+  font-size: 20px;
+}
+
+.profile-link p:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}

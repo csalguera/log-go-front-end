@@ -1,5 +1,8 @@
-
-
 h1 {
   text-align: center;
+}
+
+.page-component-container {
+  min-height: 83vh;
+  border: solid 1px transparent;
 }

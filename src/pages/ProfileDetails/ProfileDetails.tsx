@@ -41,19 +41,21 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
 
   if (!profile) return <h1>Loading...</h1>
   return (
-    <div className={styles["profile-container"]}>
-      <Avatar
-        profile={profile}
-        size1={size1}
-        size2={size2}
-        size3={size3}
-      />
-      <h2>{profile?.name}</h2>
-      <div className={styles["card-container"]}>
-        <MovieCard user={user} profile={profile} />
-        <BookCard user={user} profile={profile} />
+    <main className='page-component-container'>
+      <div className={styles["profile-container"]}>
+        <Avatar
+          profile={profile}
+          size1={size1}
+          size2={size2}
+          size3={size3}
+        />
+        <h2>{profile?.name}</h2>
+        <div className={styles["card-container"]}>
+          <MovieCard user={user} profile={profile} />
+          <BookCard user={user} profile={profile} />
+        </div>
       </div>
-    </div>
+    </main>
   )
 }
 

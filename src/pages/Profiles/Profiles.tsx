@@ -35,7 +35,7 @@ const Profiles = (): JSX.Element => {
   if(!profiles.length) return <h1>Loading...</h1>
 
   return (
-    <>
+    <main className='page-component-container'>
       <h1>Profiles</h1>
       <div className={styles["profiles-container"]}>
         {profiles.map((profile: Profile) =>
@@ -54,7 +54,7 @@ const Profiles = (): JSX.Element => {
           </Link>
         )}
       </div>
-    </>
+    </main>
   )
 }
 

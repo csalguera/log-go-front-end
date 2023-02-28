@@ -1,0 +1,24 @@
+.footer-container {
+  bottom: 0;
+  width: 100%;
+  height: 6vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-container > * {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.link-tags {
+  text-decoration: none;
+  color: black;
+}
+
+.link-tags:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
