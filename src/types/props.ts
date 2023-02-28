@@ -61,6 +61,8 @@ export interface MovieDetailsProps {
 export interface BookCardProps {
   user: User | null;
   profile: Profile | null;
+  books: Book[];
+  setBooks: Dispatch<SetStateAction<Book[] | []>>;
 }
 export interface BookFormProps {
   formData: {

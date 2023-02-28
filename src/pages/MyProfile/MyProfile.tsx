@@ -60,7 +60,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
         <h2>{myProfile?.name}</h2>
         <div className={styles["card-container"]}>
           <MovieCard user={user} profile={myProfile} movies={movies} setMovies={setMovies} />
-          <BookCard user={user} profile={myProfile} />
+          {/* <BookCard user={user} profile={myProfile} /> */}
         </div>
       </div>
     </main>

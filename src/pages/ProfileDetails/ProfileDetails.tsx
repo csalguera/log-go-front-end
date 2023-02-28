@@ -14,7 +14,7 @@ import BookCard from '../../components/books/BookCard/BookCard';
 import styles from './ProfileDetails.module.css'
 
 // types
-import { Profile, Movie } from '../../types/models'
+import { Profile, Movie, Book } from '../../types/models'
 
 // props
 import { ProfileDetailsProps } from '../../types/props';
@@ -24,6 +24,7 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   const { id } = useParams<{ id: string }>()
   const [profile, setProfile] = useState<Profile | null>(null)
   const [movies, setMovies] = useState<Movie[] | []>([])
+  const [books, setBooks] = useState<Book[] | []>([])
 
   useEffect(() => {
     const fetchProfile = async (): Promise<void> => {
@@ -49,6 +50,18 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
     fetchMovies()
   }, [id])
 
+  useEffect(() => {
+    const fetchBooks = async (): Promise<void> => {
+      try {
+        const data = await profileService.getProfile(id)
+        setBooks(data.books)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchBooks()
+  }, [id])
+
   if (!profile) return <h1>Loading...</h1>
   return (
     <main className='page-component-container'>
@@ -62,7 +75,7 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
         <h2>{profile?.name}</h2>
         <div className={styles["card-container"]}>
           <MovieCard user={user} profile={profile} movies={movies} setMovies={setMovies} />
-          <BookCard user={user} profile={profile} />
+          <BookCard user={user} profile={profile} books={books} setBooks={setBooks} />
         </div>
       </div>
     </main>

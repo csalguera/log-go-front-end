@@ -24,9 +24,9 @@ import { BookCardProps } from '../../../types/props';
 
 const BookCard = (props: BookCardProps): JSX.Element => {
   const { id } = useParams()
-  const { user, profile } = props
+  const { user, profile, books, setBooks } = props
   let book: Book | null
-  const [books, setBooks] = useState<Book[] | []>([])
+  // const [books, setBooks] = useState<Book[] | []>([])
   const [index, setIndex] = useState(0)
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
@@ -45,20 +45,20 @@ const BookCard = (props: BookCardProps): JSX.Element => {
 
   if (books) book = books[index]
 
-  useEffect(() => {
-    const fetchBooks = async (): Promise<void> => {
-      try {
-        const data = await profileService.getProfile(id)
-        setBooks(data.books)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    fetchBooks()
-  }, [id])
+  // useEffect(() => {
+  //   const fetchBooks = async (): Promise<void> => {
+  //     try {
+  //       const data = await profileService.getProfile(id)
+  //       setBooks(data.books)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   fetchBooks()
+  // }, [id])
 
   useEffect(() => {
-    const fetchBookData = async () => {
+    const editBookData = async () => {
       try {
         setEditFormData({
           bookId: book!?.id,
@@ -70,7 +70,7 @@ const BookCard = (props: BookCardProps): JSX.Element => {
         console.log(error);
       }
     }
-    fetchBookData()
+    editBookData()
   }, [book!?.id])
   
   function handleClick(evt: React.MouseEvent): void {
