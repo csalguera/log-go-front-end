@@ -1,5 +1,17 @@
 # log-go
 
+### Profiles page
+
+<img src="https://i.imgur.com/COlfF4v.png" width="800px">
+
+### My Profile page (New/Create)
+
+<img src="https://i.imgur.com/5jQAOqg.png" width="800px">
+
+### My Profile page (Index)
+
+<img src="https://i.imgur.com/Hpn8Fi6.png" width="800px">
+
 - _log-go_ is an app where users can create collections of their favorite movies or books
 - Users can update or delete their own created resources
 - Users must be authorized to delete or edit content
