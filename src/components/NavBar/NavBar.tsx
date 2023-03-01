@@ -15,49 +15,64 @@ interface NavBarProps {
 const NavBar = (props: NavBarProps): JSX.Element => {
   const { user, handleLogout } = props
   const location = useLocation()
-  console.log(location.pathname);
-  
   
   return (
     <nav className={styles.navbar}>
       {user ?
         <ul>
-          <li>Welcome, {user.name}</li>
-          <li className={location.pathname === '/' ? styles.active : ''}>
-            <NavLink to='/'>
-              Home
+          <li>
+            <NavLink
+              to='/'
+              className={`${location.pathname === '/' ? styles.active : ''} ${styles.logo}`}
+            >
+              log-go
             </NavLink>
           </li>
-          <li className={location.pathname === '/profiles' ? styles.active : ''}>
-            <NavLink to="/profiles">
+          <li>
+            <NavLink
+              to="/profiles" 
+              className={location.pathname === '/profiles' ? styles.active : ''}
+            >
               Profiles
             </NavLink>
           </li>
-          <li className={location.pathname === '/profiles/my-profile' ? styles.active : ''}>
-            <NavLink to='/profiles/my-profile'>
+          <li>
+            <NavLink
+              to='/profiles/my-profile' 
+              className={location.pathname === '/profiles/my-profile' ? styles.active : ''}
+            >
               My Profile
             </NavLink>
           </li>
-          <li className={location.pathname === '/change-password' ? styles.active : ''}>
-            <NavLink to="/change-password">
+          <li>
+            <NavLink
+              to="/change-password"
+              className={location.pathname === '/change-password' ? styles.active : ''}
+            >
             Change Password
             </NavLink>
           </li>
           <li>
             <NavLink to="" onClick={handleLogout}>
-              LOG OUT
+              Log Out
             </NavLink>
           </li>
         </ul>
       :
         <ul>
-          <li className={location.pathname === '/login' ? styles.active : ''}>
-            <NavLink to="/login">
+          <li>
+            <NavLink
+              to="/login"
+              className={location.pathname === '/login' ? styles.active : ''}
+            >
               Log In
             </NavLink>
           </li>
-          <li className={location.pathname === '/signup' ? styles.active : ''}>
-            <NavLink to="/signup">
+          <li>
+            <NavLink
+              to="/signup"
+              className={location.pathname === '/signup' ? styles.active : ''}
+            >
               Sign Up
             </NavLink>
           </li>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
 .navbar {
   height: 6vh;
   width: 100%;
@@ -13,6 +15,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items: center;
 }
 
 .navbar
@@ -26,13 +29,23 @@ li {
 .navbar li > * {
   text-decoration: none;
   color: black;
+  padding: 8px 16px;
+  border-radius: 100px;
 }
 
 .navbar li > *:hover {
-  text-decoration: underline;
+  color: white;
   font-weight: bold;
+  background-color: black;
 }
 
-.active {
+.navbar .active {
+  color: white;
   font-weight: bold;
+  background-color: black;
+}
+
+.logo {
+  font-size: 24px;
+  font-family: 'Dancing Script', cursive;
 }
