@@ -18,6 +18,7 @@
 .edit-btn {
   font-weight: bold;
   background-color: black;
+  user-select: none;
 }
 
 .add-btn:hover,
