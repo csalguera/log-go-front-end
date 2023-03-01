@@ -119,6 +119,7 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
           id="photo-upload"
           name="photo"
           onChange={handleChangePhoto}
+          style={{width: "11rem"}}
         />
       </div>
       <div className={styles.inputContainer}>

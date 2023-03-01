@@ -71,7 +71,7 @@ const LoginForm = (props: AuthFormProps): JSX.Element => {
           onChange={handleChange}
         />
       </div>
-      <div>
+      <div className={styles.inputContainer}>
         <button disabled={isFormInvalid()} className={styles.button}>
           Log In
         </button>
