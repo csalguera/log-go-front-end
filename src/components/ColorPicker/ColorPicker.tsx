@@ -6,10 +6,12 @@ const ColorPicker = (): JSX.Element => {
   const [color, setColor] = useState('#000000')
   
   return (
-    <ChromePicker
-      color={color}
-      onChange={(newColor: ColorResult) => setColor(newColor.hex)}
-    />
+    <>
+      <ChromePicker
+        color={color}
+        onChange={(newColor: ColorResult) => setColor(newColor.hex)}
+      />
+    </>
   )
 }
 

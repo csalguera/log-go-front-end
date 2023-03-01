@@ -57,11 +57,7 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
   }
 
   function displayColorPicker() {
-    colorPickerView
-    ?
-    setColorPickerView(false)
-    :
-    setColorPickerView(true)
+    setColorPickerView(!colorPickerView)
   }
 
   const { name, email, password, passwordConf } = formData
@@ -134,7 +130,9 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
           style={{width: "11rem"}}
         />
       </div>
-      <div className={styles.inputContainer}>
+
+      {/* Stretch Goal */}
+      {/* <div className={styles.inputContainer}>
         <label htmlFor="color-picker" className={styles.label}>
           Favorite Color
         </label>
@@ -147,7 +145,8 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
       </div>
       <div className={styles.inputContainer}>
         {colorPickerView && <ColorPicker />}
-      </div>
+      </div> */}
+
       <div className={styles.inputContainer}>
         <button 
           disabled={isFormInvalid() || isSubmitted} 
