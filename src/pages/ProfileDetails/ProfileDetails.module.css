@@ -57,8 +57,9 @@
 
 .details-container {
   text-align: center;
-  width: 100%;
+  width: 80%;
   min-height: 250px;
+  word-wrap: break-word;
 }
 
 .profile-container {
