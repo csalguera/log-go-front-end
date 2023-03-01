@@ -20,6 +20,12 @@
   background-color: black;
 }
 
+.add-btn:hover,
+.delete-btn:hover,
+.edit-btn:hover {
+  cursor: pointer;
+}
+
 .add-btn {
   color: rgba(0, 255, 0, 0.7);
 }

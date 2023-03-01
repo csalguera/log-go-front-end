@@ -9,3 +9,7 @@
   border-radius: 100px;
   padding: 4px;
 }
+
+.buttons-container button:hover {
+  cursor: pointer;
+}
