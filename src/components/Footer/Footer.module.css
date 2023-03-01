@@ -9,6 +9,10 @@
   background-color: rgba(255, 255, 255, 0.7);
 }
 
+.footer-container * {
+  user-select: none;
+}
+
 .footer-container > * {
   margin-left: 8px;
   margin-right: 8px;
