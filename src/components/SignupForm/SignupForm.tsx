@@ -5,6 +5,9 @@ import { Link, useNavigate } from 'react-router-dom'
 // services
 import * as authService from '../../services/authService'
 
+// components
+import ColorPicker from '../ColorPicker/ColorPicker'
+
 // stylesheets
 import styles from './SignupForm.module.css'
 
@@ -27,6 +30,7 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
   const [photoData, setPhotoData] = useState<PhotoFormData>({
     photo: null
   })
+  const [colorPickerView, setColorPickerView] = useState(false)
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     updateMessage('')
@@ -50,6 +54,14 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
       handleErrMsg(err, updateMessage)
       setIsSubmitted(false)
     }
+  }
+
+  function displayColorPicker() {
+    colorPickerView
+    ?
+    setColorPickerView(false)
+    :
+    setColorPickerView(true)
   }
 
   const { name, email, password, passwordConf } = formData
@@ -121,6 +133,20 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
           onChange={handleChangePhoto}
           style={{width: "11rem"}}
         />
+      </div>
+      <div className={styles.inputContainer}>
+        <label htmlFor="color-picker" className={styles.label}>
+          Favorite Color
+        </label>
+        <button
+          id='color-picker'
+          onClick={displayColorPicker}
+        >
+          {colorPickerView ? 'Cancel' : 'Pick a Color'}
+        </button>
+      </div>
+      <div className={styles.inputContainer}>
+        {colorPickerView && <ColorPicker />}
       </div>
       <div className={styles.inputContainer}>
         <button 
