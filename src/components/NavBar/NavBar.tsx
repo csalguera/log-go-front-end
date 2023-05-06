@@ -53,7 +53,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
     setAnchorElUser(null);
   };
 
-  const pascalize = (str) => {
+  const pascalize = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1)
   }
 
@@ -196,7 +196,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            log-go
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
