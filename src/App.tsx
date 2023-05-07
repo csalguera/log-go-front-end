@@ -34,6 +34,7 @@ function App(): JSX.Element {
   
   const [user, setUser] = useState<User | null>(authService.getUser())
   const [myProfile, setMyProfile] = useState<Profile | null>(null)
+  const [displayAlert, setDisplayAlert] = useState(false)
 
   const handleLogout = (): void => {
     authService.logout()
@@ -45,17 +46,23 @@ function App(): JSX.Element {
     setUser(authService.getUser())
   }
 
-  useEffect(() => {
-    const fetchMyProfile = async (): Promise<void> => {
-      try {
-        const data: Profile = await profileService.getMyProfile()
-        setMyProfile(data)
-      } catch (error) {
-        console.log(error);
+  const handleClose = () => {
+    setDisplayAlert(false)
+  }
+
+  if (user) {
+    useEffect(() => {
+      const fetchMyProfile = async (): Promise<void> => {
+        try {
+          const data: Profile = await profileService.getMyProfile()
+          setMyProfile(data)
+        } catch (error) {
+          console.log(error);
+        }
       }
-    }
-    fetchMyProfile()
-  }, [])
+      fetchMyProfile()
+    }, [])
+  }
 
   return (
     <>
@@ -64,11 +71,25 @@ function App(): JSX.Element {
         <Route path="/" element={<Landing user={user} />} />
         <Route
           path="/signup"
-          element={<Signup handleAuthEvt={handleAuthEvt} />}
+          element={
+            <Signup
+              handleAuthEvt={handleAuthEvt}
+              displayAlert={displayAlert}
+              setDisplayAlert={setDisplayAlert}
+              handleClose={handleClose}
+            />
+          }
         />
         <Route
           path="/login"
-          element={<Login handleAuthEvt={handleAuthEvt} />}
+          element={
+            <Login
+              handleAuthEvt={handleAuthEvt}
+              displayAlert={displayAlert}
+              setDisplayAlert={setDisplayAlert}
+              handleClose={handleClose}
+            />
+          }
         />
         <Route
           path="/profiles"

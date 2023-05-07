@@ -1,5 +1,5 @@
 // npm modules
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 // components
 import LoginForm from '../../components/LoginForm/LoginForm'
@@ -10,6 +10,9 @@ import styles from './Login.module.css'
 // types
 interface LoginPageProps {
   handleAuthEvt: () => void;
+  displayAlert: boolean;
+  setDisplayAlert: Dispatch<SetStateAction<boolean>>;
+  handleClose: () => void;
 } 
 
 const LoginPage = (props: LoginPageProps): JSX.Element => {

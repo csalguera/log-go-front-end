@@ -1,5 +1,5 @@
 // npm packages
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 // components
 import SignupForm from '../../components/SignupForm/SignupForm'
@@ -13,17 +13,17 @@ import Alert from '@mui/material/Alert';
 // types
 interface SignupProps {
   handleAuthEvt: () => void;
+  displayAlert: boolean;
+  setDisplayAlert: Dispatch<SetStateAction<boolean>>;
+  handleClose: ()=> void;
 }
 
 const Signup = (props: SignupProps): JSX.Element => {
+  const { displayAlert, handleClose } = props
+
   const [message, setMessage] = useState('')
-  const [displayAlert, setDisplayAlert] = useState(false)
 
   const updateMessage = (msg: string): void => setMessage(msg)
-
-  const handleClose = () => {
-    setDisplayAlert(false)
-  }
 
   return (
     <main className='page-component-container'>
@@ -38,7 +38,6 @@ const Signup = (props: SignupProps): JSX.Element => {
       <SignupForm
         {...props}
         updateMessage={updateMessage}
-        setDisplayAlert={setDisplayAlert}
       />
       <Zoom in={displayAlert}>
         <Stack
