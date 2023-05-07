@@ -191,7 +191,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       onClick={handleCloseUserMenu}
                     >
                       <Link
-                        href={setting}
+                        href={setting === 'profile' ? '/profiles/my-profile' : setting}
                         underline='none'
                       >
                         <Typography
@@ -224,24 +224,23 @@ const NavBar = (props: NavBarProps): JSX.Element => {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                <Typography
-                  variant="h5"
-                  noWrap
-                  component="a"
-                  href="/"
-                  sx={{
-                    mr: 2,
-                    display: { xs: 'flex', md: 'none' },
-                    flexGrow: 1,
-                    fontFamily: 'monospace',
-                    fontWeight: 700,
-                    letterSpacing: '.3rem',
-                    color: 'inherit',
-                    textDecoration: 'none',
-                  }}
-                >
-                  log-go
+              <Typography
+                variant="h5"
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: 'flex', md: 'none' },
+                  flexGrow: 1,
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
+                log-go
               </Typography>
 
               <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
