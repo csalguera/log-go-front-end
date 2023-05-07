@@ -22,7 +22,6 @@ import { User, Profile } from '../../types/models'
 
 interface NavBarProps {
   user: User | null;
-  myProfile: Profile | null;
   handleLogout: () => void;
 }
 
@@ -30,7 +29,7 @@ const pages = ['profiles']
 const settings = ['profile'];
 
 const NavBar = (props: NavBarProps): JSX.Element => {
-  const { user, myProfile, handleLogout } = props
+  const { user, handleLogout } = props
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);

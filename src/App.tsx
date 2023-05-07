@@ -64,7 +64,7 @@ function App(): JSX.Element {
 
   return (
     <>
-      <NavBar user={user} myProfile={myProfile} handleLogout={handleLogout} />
+      <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Landing user={user} />} />
         <Route
@@ -92,31 +92,31 @@ function App(): JSX.Element {
         <Route
           path="/profiles"
           element={
-            <ProtectedRoute user={user} myProfile={myProfile}>
-              <Profiles user={user} myProfile={myProfile} />
+            <ProtectedRoute user={user}>
+              <Profiles user={user} />
             </ProtectedRoute>
           }
         />
         <Route
           path='/profiles/:id'
           element={
-            <ProtectedRoute user={user} myProfile={myProfile} >
-              <ProfileDetails user={user} myProfile={myProfile} />
+            <ProtectedRoute user={user}>
+              <ProfileDetails user={user} />
             </ProtectedRoute>
           }
         />
         <Route
           path='/profiles/my-profile'
           element={
-            <ProtectedRoute user={user} myProfile={myProfile} >
-              <MyProfile user={user} myProfile={myProfile} />
+            <ProtectedRoute user={user}>
+              <MyProfile user={user} />
             </ProtectedRoute>
           }
         />
         <Route
           path="/change-password"
           element={
-            <ProtectedRoute user={user} myProfile={myProfile} >
+            <ProtectedRoute user={user}>
               <ChangePassword handleAuthEvt={handleAuthEvt} />
             </ProtectedRoute>
           }

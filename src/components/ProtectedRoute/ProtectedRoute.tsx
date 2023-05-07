@@ -7,12 +7,11 @@ import { User, Profile } from '../../types/models'
 
 interface ProtectedRouteProps {
   user: User | null;
-  myProfile: Profile | null;
   children: ReactNode;
 }
 
 const ProtectedRoute = (props: ProtectedRouteProps): JSX.Element => {
-  const { user, myProfile, children } = props
+  const { user, children } = props
 
   if (!user) return <Navigate to="/login" />
   return <> { children } </>
