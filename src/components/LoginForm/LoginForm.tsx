@@ -20,7 +20,7 @@ import { LoginFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
 const LoginForm = (props: AuthFormProps): JSX.Element => {
-  const {updateMessage, handleAuthEvt} = props
+  const {updateMessage, handleAuthEvt, setDisplayAlert} = props
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState<LoginFormData>({
@@ -42,6 +42,10 @@ const LoginForm = (props: AuthFormProps): JSX.Element => {
     } catch (err) {
       console.log(err)
       handleErrMsg(err, updateMessage)
+      setDisplayAlert(true)
+      setTimeout(() => {
+        setDisplayAlert(false)
+      }, 3000);
     }
   }
 

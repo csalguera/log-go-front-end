@@ -11,7 +11,7 @@ import Zoom from '@mui/material/Zoom';
 import Alert from '@mui/material/Alert';
 
 // stylesheets
-// import styles from './Login.module.css'
+import styles from './Login.module.css'
 
 // types
 interface LoginPageProps {

@@ -59,6 +59,9 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
       handleErrMsg(err, updateMessage)
       setIsSubmitted(false)
       setDisplayAlert(true)
+      setTimeout(() => {
+        setDisplayAlert(false)
+      }, 3000);
     }
   }
 
