@@ -18,7 +18,12 @@ import { SignupFormData, PhotoFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
 const SignupForm = (props: AuthFormProps): JSX.Element => {
-  const {updateMessage, handleAuthEvt} = props
+  const {
+    updateMessage,
+    handleAuthEvt,
+    setDisplayAlert,
+  } = props
+
   const navigate = useNavigate()
 
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -53,6 +58,7 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
       console.log(err)
       handleErrMsg(err, updateMessage)
       setIsSubmitted(false)
+      setDisplayAlert(true)
     }
   }
 
