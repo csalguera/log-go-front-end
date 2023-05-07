@@ -25,8 +25,8 @@ interface NavBarProps {
   handleLogout: () => void;
 }
 
-const pages = [ 'profiles', 'movies', 'books']
-const settings = ['profile', 'account', 'dashboard'];
+const pages = ['profiles']
+const settings = ['profile'];
 
 const NavBar = (props: NavBarProps): JSX.Element => {
   const { user, handleLogout } = props
