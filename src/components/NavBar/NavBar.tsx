@@ -166,7 +166,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
                       alt={user.name}
-                      src={myProfile?.photo ?? user.name}
+                      src={user.profile!?.photo}
                     />
                   </IconButton>
                 </Tooltip>
