@@ -10,7 +10,6 @@ import Profiles from './pages/Profiles/Profiles'
 import MyProfile from './pages/MyProfile/MyProfile'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
-import ColorPicker from './components/ColorPicker/ColorPicker'
 
 // components
 import NavBar from './components/NavBar/NavBar'

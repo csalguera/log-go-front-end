@@ -5,9 +5,6 @@ import { Link, useNavigate } from 'react-router-dom'
 // services
 import * as authService from '../../services/authService'
 
-// components
-import ColorPicker from '../ColorPicker/ColorPicker'
-
 // stylesheets
 import styles from './SignupForm.module.css'
 
@@ -130,23 +127,6 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
           style={{width: "11rem"}}
         />
       </div>
-
-      {/* Stretch Goal */}
-      {/* <div className={styles.inputContainer}>
-        <label htmlFor="color-picker" className={styles.label}>
-          Favorite Color
-        </label>
-        <button
-          id='color-picker'
-          onClick={displayColorPicker}
-        >
-          {colorPickerView ? 'Cancel' : 'Pick a Color'}
-        </button>
-      </div>
-      <div className={styles.inputContainer}>
-        {colorPickerView && <ColorPicker />}
-      </div> */}
-
       <div className={styles.inputContainer}>
         <button 
           disabled={isFormInvalid() || isSubmitted} 
