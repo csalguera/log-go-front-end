@@ -18,10 +18,11 @@ import AdbIcon from '@mui/icons-material/Adb';
 import Link from '@mui/material/Link';
 
 // types
-import { User } from '../../types/models'
+import { User, Profile } from '../../types/models'
 
 interface NavBarProps {
   user: User | null;
+  myProfile: Profile | null;
   handleLogout: () => void;
 }
 
@@ -29,7 +30,7 @@ const pages = ['profiles']
 const settings = ['profile'];
 
 const NavBar = (props: NavBarProps): JSX.Element => {
-  const { user, handleLogout } = props
+  const { user, myProfile, handleLogout } = props
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -53,7 +54,6 @@ const NavBar = (props: NavBarProps): JSX.Element => {
     return str.charAt(0).toUpperCase() + str.slice(1)
   }
 
-  
   return (
     <>
       {user
@@ -79,7 +79,6 @@ const NavBar = (props: NavBarProps): JSX.Element => {
               >
                 log-go
               </Typography>
-
               <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
                   size="large"
@@ -162,11 +161,13 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   </Link>
                 ))}
               </Box>
-
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt={user.name} src="/static/images/avatar/2.jpg" />
+                    <Avatar
+                      alt={user.name}
+                      src={myProfile?.photo ?? user.name}
+                    />
                   </IconButton>
                 </Tooltip>
                 <Menu

@@ -8,10 +8,12 @@ import { User, Profile, Movie, Book } from '../types/models'
 
 export interface ProfilesProps {
   user: User | null;
+  myProfile: Profile | null;
 }
 
 export interface ProfileDetailsProps {
   user: User | null;
+  myProfile: Profile | null;
 }
 
 export interface CUDBtnsProps {

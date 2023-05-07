@@ -21,7 +21,7 @@ import { Profile, Movie, Book } from '../../types/models'
 import { ProfileDetailsProps } from '../../types/props';
 
 const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
-  const { user } = props
+  const { user, myProfile } = props
   const { id } = useParams<{ id: string }>()
   const [profile, setProfile] = useState<Profile | null>(null)
   const [movies, setMovies] = useState<Movie[] | []>([])
