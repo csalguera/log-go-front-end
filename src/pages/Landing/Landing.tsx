@@ -1,5 +1,5 @@
-// stylesheets
-import styles from './Landing.module.css'
+// mui components
+import Typography from '@mui/material/Typography';
 
 // types
 import { User } from '../../types/models'
@@ -13,18 +13,20 @@ const Landing = (props: LandingProps): JSX.Element => {
 
   return (
     <main className='page-component-container'>
-      <main className={styles.container}>
-        <h1>{user ? `Welcome, ${user.name}` : 'Please Log In or Sign Up to access this site'}</h1>
-        {user
-        ?
-          <>
-            <h2>This is the Landing Page</h2>
-            <h3>Currently Under Construction</h3>
-          </>
-        :
-        ''
-        }
-      </main>
+      {user
+      ?
+        <Typography
+          variant='h3'
+        >
+          Currently Under Construction
+        </Typography>
+      :
+        <Typography
+          variant='h3'
+        >
+          Please Log in or Sign up
+        </Typography>
+      }
     </main>
   )
 }

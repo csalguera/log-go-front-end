@@ -15,7 +15,10 @@ import ColorPicker from './components/ColorPicker/ColorPicker'
 // components
 import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import Footer from './components/Footer/Footer'
+// import Footer from './components/Footer/Footer'
+
+// fonts
+import '@fontsource/roboto'
 
 // services
 import * as authService from './services/authService'
@@ -87,7 +90,7 @@ function App(): JSX.Element {
           }
         />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
