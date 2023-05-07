@@ -20,9 +20,20 @@ import styles from '../ProfileDetails/ProfileDetails.module.css'
 import { ProfileDetailsProps } from '../../types/props'
 
 const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
-  const { user, myProfile } = props
+  const { user } = props
+  const [myProfile, setMyProfile] = useState<Profile | null>(null)
   const [movies, setMovies] = useState<Movie[] | []>([])
   const [books, setBooks] = useState<Book[] | []>([])
+
+  const fetchMyProfile = async (): Promise<void> => {
+    try {
+      const data: Profile = await profileService.getMyProfile()
+      setMyProfile(data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  fetchMyProfile()
 
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {

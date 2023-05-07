@@ -1,5 +1,5 @@
 // npm modules 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // page components
@@ -21,19 +21,17 @@ import '@fontsource/roboto'
 
 // services
 import * as authService from './services/authService'
-import * as profileService from './services/profileService'
 
 // stylesheets
 import './App.css'
 
 // types
-import { User, Profile } from './types/models'
+import { User } from './types/models'
 
 function App(): JSX.Element {
   const navigate = useNavigate()
   
   const [user, setUser] = useState<User | null>(authService.getUser())
-  const [myProfile, setMyProfile] = useState<Profile | null>(null)
   const [displayAlert, setDisplayAlert] = useState(false)
 
   const handleLogout = (): void => {
@@ -49,18 +47,6 @@ function App(): JSX.Element {
   const handleClose = () => {
     setDisplayAlert(false)
   }
-
-  useEffect(() => {
-    const fetchMyProfile = async (): Promise<void> => {
-      try {
-        const data: Profile = await profileService.getMyProfile()
-        setMyProfile(data)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    if (user) fetchMyProfile()
-  }, [user])
 
   return (
     <>
