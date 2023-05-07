@@ -75,7 +75,6 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-
       }}
     >
       <TextField

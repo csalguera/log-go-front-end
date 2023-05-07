@@ -50,19 +50,17 @@ function App(): JSX.Element {
     setDisplayAlert(false)
   }
 
-  if (user) {
-    useEffect(() => {
-      const fetchMyProfile = async (): Promise<void> => {
-        try {
-          const data: Profile = await profileService.getMyProfile()
-          setMyProfile(data)
-        } catch (error) {
-          console.log(error);
-        }
+  useEffect(() => {
+    const fetchMyProfile = async (): Promise<void> => {
+      try {
+        const data: Profile = await profileService.getMyProfile()
+        setMyProfile(data)
+      } catch (error) {
+        console.log(error);
       }
-      fetchMyProfile()
-    }, [])
-  }
+    }
+    if (user) fetchMyProfile()
+  }, [user])
 
   return (
     <>
