@@ -11,7 +11,7 @@ import MovieCard from '../../components/movies/MovieCard/MovieCard'
 import BookCard from '../../components/books/BookCard/BookCard'
 
 // types
-import { Movie, Book } from '../../types/models'
+import { Profile, Movie, Book } from '../../types/models'
 
 // styles
 import styles from '../ProfileDetails/ProfileDetails.module.css'
