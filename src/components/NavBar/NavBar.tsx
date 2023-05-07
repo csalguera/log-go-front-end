@@ -115,7 +115,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       onClick={handleCloseNavMenu}
                     >
                       <Link
-                        href={page}
+                        href={`/${page}`}
                         underline='none'
                       >
                         <Typography
@@ -151,7 +151,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                 {pages.map((page) => (
                   <Link
                     key={page}
-                    href={page}
+                    href={`/${page}`}
                   >
                     <Button
                       onClick={handleCloseNavMenu}
