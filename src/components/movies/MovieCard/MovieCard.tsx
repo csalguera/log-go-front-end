@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 
 import { styled } from '@mui/material/styles';
@@ -114,6 +115,25 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     setFormDisplay(!formDisplay)
   }
 
+  function handleCancel(): void {
+    handleAdd()
+    setFormData({
+      name: '',
+      director: '',
+      releaseDate: '',
+    })
+    setEditFormData({
+      movieId: null,
+      name: '',
+      director: '',
+      releaseDate: '',
+    })
+  }
+
+  function handleEdit(): void {
+    setEditFormDisplay(!editFormDisplay)
+  }
+
   async function handleChange(evt: ChangeEvent<HTMLInputElement>): Promise<void> {
     setFormData({
       ...formData, [evt.target.name]: evt.target.value
@@ -140,14 +160,6 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     setFormDisplay(false)
   }
 
-  function handleEdit(): void {
-    editFormDisplay
-    ?
-    setEditFormDisplay(false)
-    :
-    setEditFormDisplay(true)
-  }
-
   async function handleUpdate(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault()
     const updatedMovie = await movieService.updateMovie(editFormData)
@@ -163,6 +175,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   }
 
   if (!movies) return <h2>Loading...</h2>
+
   return (
     <Card sx={{ maxWidth: 450, minheight: 350 }}>
       <CardMedia
@@ -196,6 +209,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             showFirstButton
             showLastButton
             onChange={(evt, value) => setIndex(value - 1)}
+            disabled={formDisplay ? true : false}
           />
         </Stack>
         <Box
@@ -212,7 +226,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             aria-expanded={formDisplay}
             aria-label="show more"
             color='primary'
-            // disabled={formDisplay ? true : false}
+            disabled={formDisplay ? true : false}
             sx={{
               ml: 0,
             }}
@@ -222,12 +236,14 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
           <Button
             size="small"
             onClick={handleEdit}
-          >
+            disabled={formDisplay ? true : false}
+            >
             <EditIcon />
           </Button>
           <Button
             size="small"
             onClick={handleDelete}
+            disabled={formDisplay ? true : false}
           >
             <DeleteIcon />
           </Button>
@@ -235,14 +251,69 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       </CardActions>
       <Collapse in={formDisplay} timeout="auto" unmountOnExit>
         <CardContent
-          sx={{
-            display: 'flex',
-            flexDirection: 'column'
-          }}
         >
-          <TextField />
-          <TextField />
-          <TextField />
+          <form
+            autoComplete='off'
+            onSubmit={handleSubmit}
+            style={{
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            <TextField
+              name='name'
+              value={formData.name}
+              label='Title'
+              variant='outlined'
+              onChange={handleChange}
+              focused
+              required
+              sx={{
+                mb: 2,
+              }}
+              />
+            <TextField
+              name='director'
+              value={formData.director}
+              label='Director'
+              variant='outlined'
+              onChange={handleChange}
+              focused
+              required
+              sx={{
+                mb: 2,
+              }}
+              />
+            <TextField
+              name='releaseDate'
+              value={formData.releaseDate}
+              label='Released'
+              variant='outlined'
+              onChange={handleChange}
+              focused
+              required
+              sx={{
+                mb: 2,
+              }}
+              />
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+              }}
+              >
+              <Button
+                type='submit'
+              >
+                Save
+              </Button>
+              <Button
+                onClick={handleCancel}
+              >
+                Cancel
+              </Button>
+            </Box>
+          </form>
         </CardContent>
       </Collapse>
     </Card>
