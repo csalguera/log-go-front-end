@@ -22,6 +22,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
+import { styled } from '@mui/material/styles';
+import Collapse from '@mui/material/Collapse';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
 // styles
 // import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
@@ -32,7 +38,22 @@ import { MovieFormData, EditMovieFormData } from '../../../types/forms';
 
 // props
 import { MovieCardProps } from '../../../types/props';
-import { Box, PaginationItem } from '@mui/material';
+
+interface ExpandMoreProps extends IconButtonProps {
+  expand: boolean;
+}
+
+const ExpandMore = styled((props: ExpandMoreProps) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
+
 
 const MovieCard = (props: MovieCardProps): JSX.Element => {
   const { user, profile, movies, setMovies } = props
@@ -89,12 +110,8 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     }
   }
 
-  function displayForm(): void {
-    formDisplay
-    ?
-    setFormDisplay(false)
-    :
-    setFormDisplay(true)
+  function handleAdd(): void {
+    setFormDisplay(!formDisplay)
   }
 
   async function handleChange(evt: ChangeEvent<HTMLInputElement>): Promise<void> {
@@ -147,7 +164,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
 
   if (!movies) return <h2>Loading...</h2>
   return (
-    <Card sx={{ maxWidth: 450, height: 350 }}>
+    <Card sx={{ maxWidth: 450, minheight: 350 }}>
       <CardMedia
         component="img"
         alt="green iguana"
@@ -189,11 +206,19 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             mt: 2,
           }}
         >
-          <Button size="small"
-            onClick={displayForm}
+          <ExpandMore
+            expand={formDisplay}
+            onClick={handleAdd}
+            aria-expanded={formDisplay}
+            aria-label="show more"
+            color='primary'
+            // disabled={formDisplay ? true : false}
+            sx={{
+              ml: 0,
+            }}
           >
             <AddIcon />
-          </Button>
+          </ExpandMore>
           <Button
             size="small"
             onClick={handleEdit}
@@ -208,6 +233,18 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
           </Button>
         </Box>
       </CardActions>
+      <Collapse in={formDisplay} timeout="auto" unmountOnExit>
+        <CardContent
+          sx={{
+            display: 'flex',
+            flexDirection: 'column'
+          }}
+        >
+          <TextField />
+          <TextField />
+          <TextField />
+        </CardContent>
+      </Collapse>
     </Card>
     // <div className={styles.card}>
     //   <div className={styles["details-container"]}>
