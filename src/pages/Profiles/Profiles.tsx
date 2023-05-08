@@ -1,13 +1,16 @@
 // npm packages
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 // components
-import Avatar from '../../components/Avatar/Avatar'
+// import Avatar from '../../components/Avatar/Avatar'
 import Loading from '../../components/Loading/Loading'
 
 // mui components
 import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import Link from '@mui/material/Link'
+import Avatar from '@mui/material/Avatar'
 
 // services
 import * as profileService from '../../services/profileService'
@@ -52,6 +55,41 @@ const Profiles = (props: ProfilesProps): JSX.Element => {
       >
         Profiles
       </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+        }}
+      >
+        {profiles.filter(profile => profile.id !== user!?.id).map(profile => 
+          <Box
+            key={profile.name}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              px: 5,
+            }}
+          >
+            <Avatar
+              alt={profile.name}
+              src={profile.photo ?? profile.name}
+              sx={{
+                mb: 1,
+                height: 150,
+                width: 150,
+                fontSize: '75px'
+              }}
+            />
+            <Link
+              key={profile.id}
+              href={`/profiles/${profile.id}`}
+              underline='hover'
+            >
+              {profile.name}
+            </Link>
+          </Box>
+        )}
+      </Box>
       {/* <h1>Profiles</h1>
       <div className={styles["profiles-container"]}>
         {profiles.filter((profile: Profile) => profile.id !== user!?.id).map((profile: Profile) =>
