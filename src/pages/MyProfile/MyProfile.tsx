@@ -28,15 +28,17 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
   const [movies, setMovies] = useState<Movie[] | []>([])
   const [books, setBooks] = useState<Book[] | []>([])
 
-  const fetchMyProfile = async (): Promise<void> => {
-    try {
-      const data: Profile = await profileService.getMyProfile()
-      setMyProfile(data)
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    const fetchMyProfile = async (): Promise<void> => {
+      try {
+        const data: Profile = await profileService.getMyProfile()
+        setMyProfile(data)
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
-  fetchMyProfile()
+    fetchMyProfile()
+  }, [])
 
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {
@@ -60,7 +62,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchBooks()
-  }, [myProfile!?.id.toString()])
+  }, [])
 
   if (!myProfile) return <Loading />
 

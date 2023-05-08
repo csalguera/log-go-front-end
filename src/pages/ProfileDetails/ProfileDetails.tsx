@@ -40,7 +40,7 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchProfile()
-  }, [id])
+  }, [])
 
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {
@@ -52,7 +52,7 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchMovies()
-  }, [id])
+  }, [])
 
   useEffect(() => {
     const fetchBooks = async (): Promise<void> => {
@@ -64,7 +64,7 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchBooks()
-  }, [id])
+  }, [])
 
   if (!profile) return <Loading />
 
