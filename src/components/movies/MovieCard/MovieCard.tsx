@@ -116,14 +116,9 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   }
 
   function handleCancel(): void {
-    handleAdd()
+    formDisplay ? handleAdd() : handleEdit()
+
     setFormData({
-      name: '',
-      director: '',
-      releaseDate: '',
-    })
-    setEditFormData({
-      movieId: null,
       name: '',
       director: '',
       releaseDate: '',
@@ -209,7 +204,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             showFirstButton
             showLastButton
             onChange={(evt, value) => setIndex(value - 1)}
-            disabled={formDisplay ? true : false}
+            disabled={formDisplay || editFormDisplay ? true : false}
           />
         </Stack>
         <Box
@@ -226,89 +221,47 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             aria-expanded={formDisplay}
             aria-label="show more"
             color='primary'
-            disabled={formDisplay ? true : false}
+            disabled={formDisplay || editFormDisplay ? true : false}
             sx={{
               ml: 0,
             }}
           >
             <AddIcon />
           </ExpandMore>
-          <Button
-            size="small"
+          <ExpandMore
+            expand={editFormDisplay}
             onClick={handleEdit}
-            disabled={formDisplay ? true : false}
-            >
+            aria-expanded={editFormDisplay}
+            aria-label="show more"
+            color='primary'
+            disabled={formDisplay || editFormDisplay ? true : false}
+            sx={{
+              ml: 0,
+            }}
+          >
             <EditIcon />
-          </Button>
+          </ExpandMore>
           <Button
             size="small"
             onClick={handleDelete}
-            disabled={formDisplay ? true : false}
+            disabled={formDisplay || editFormDisplay ? true : false}
           >
             <DeleteIcon />
           </Button>
         </Box>
       </CardActions>
-      <Collapse in={formDisplay} timeout="auto" unmountOnExit>
+      <Collapse in={formDisplay || editFormDisplay} timeout="auto" unmountOnExit>
         <CardContent
         >
           <MovieForm
-            formData={formData}
-            handleSubmit={handleSubmit}
-            handleChange={handleChange}
+            formData={formDisplay ? formData : editFormData}
+            handleSubmit={formDisplay ? handleSubmit : handleUpdate}
+            handleChange={formDisplay ? handleChange : handleEditForm}
             handleCancel={handleCancel}
           />
         </CardContent>
       </Collapse>
     </Card>
-    // <div className={styles.card}>
-    //   <div className={styles["details-container"]}>
-    //     <h2>Favorite Movies</h2>
-    //     {!formDisplay && !editFormDisplay &&
-    //     <MovieDetails
-    //       user={user}
-    //       profile={profile}
-    //       movies={movies}
-    //       movie={movie!}
-    //       index={index}
-    //     />
-    //     }
-    //     {formDisplay &&
-    //       <MovieForm
-    //         formData={editFormDisplay ? editFormData : formData}
-    //         handleChange={handleChange}
-    //         handleSubmit={handleSubmit}
-    //       />
-    //     }
-    //     {editFormDisplay &&
-    //       <MovieForm
-    //         formData={editFormDisplay ? editFormData : formData}
-    //         handleChange={handleEditForm}
-    //         handleSubmit={handleUpdate}
-    //       />
-    //     }
-    //   </div>
-    //   {movies.length
-    //   ?
-    //   !formDisplay && !editFormDisplay &&
-    //   <NextPrevBtns
-    //     handleClick={handleClick}
-    //     category={movie!.category}
-    //   />
-    //   :
-    //   ''
-    //   }
-    //   <CUDBtns
-    //     user={user}
-    //     profile={profile}
-    //     resource={movies}
-    //     displayForm={displayForm}
-    //     formDisplay={formDisplay}
-    //     editFormDisplay={editFormDisplay}
-    //     handleEdit={handleEdit}
-    //     handleDelete={handleDelete}
-    //   />
-    // </div>
   )
 }
 
