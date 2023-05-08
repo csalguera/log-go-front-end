@@ -71,7 +71,9 @@ const Profiles = (props: ProfilesProps): JSX.Element => {
                 mb: 1,
                 height: 150,
                 width: 150,
-                fontSize: '75px'
+                fontSize: 75,
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             />
             <Link

@@ -5,10 +5,13 @@ import { useEffect, useState } from 'react'
 import * as profileService from '../../services/profileService'
 
 // components
-import Avatar from '../../components/Avatar/Avatar'
 import Loading from '../../components/Loading/Loading'
 import MovieCard from '../../components/movies/MovieCard/MovieCard'
 import BookCard from '../../components/books/BookCard/BookCard'
+
+// mui components
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
 
 // types
 import { Profile, Movie, Book } from '../../types/models'
@@ -63,14 +66,27 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
 
   return (
     <main className='page-component-container'>
-      <div className={styles["profile-container"]}>
-        <Avatar
-          profile={myProfile}
-          size1='118px'
-          size2='110px'
-          size3='48px'
-        />
-        <h2>{myProfile?.name}</h2>
+      <Avatar
+        alt={myProfile.name}
+        src={myProfile.photo ?? myProfile.name}
+        sx={{
+          width: 100,
+          height: 100,
+          fontSize: 50,
+          justifyContent: 'center',
+          alignItems: 'center',
+          mt: 2,
+        }}
+      />
+      <Typography
+        sx={{
+          fontSize: '24px',
+          fontWeight: 'bold',
+          my: 2,
+        }}
+      >
+        {myProfile.name}
+      </Typography>
         <div className={styles["card-container"]}>
           <MovieCard
             user={user}
@@ -85,7 +101,6 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
             setBooks={setBooks}
           />
         </div>
-      </div>
     </main>
   )
 }
