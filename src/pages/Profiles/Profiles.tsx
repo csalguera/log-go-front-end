@@ -50,6 +50,7 @@ const Profiles = (props: ProfilesProps): JSX.Element => {
       <Box
         sx={{
           display: 'flex',
+          flexWrap: 'wrap',
         }}
       >
         {profiles.filter(profile => profile.id !== user!?.id).map(profile => 
@@ -60,6 +61,7 @@ const Profiles = (props: ProfilesProps): JSX.Element => {
               flexDirection: 'column',
               alignItems: 'center',
               px: 5,
+              mb: 5,
             }}
           >
             <Avatar
