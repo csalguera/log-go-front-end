@@ -45,6 +45,7 @@ export interface MovieFormProps {
   };
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
+  handleCancel: () => void;
 }
 export interface MovieDetailsProps {
   user: User | null;

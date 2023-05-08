@@ -252,68 +252,12 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       <Collapse in={formDisplay} timeout="auto" unmountOnExit>
         <CardContent
         >
-          <form
-            autoComplete='off'
-            onSubmit={handleSubmit}
-            style={{
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-          >
-            <TextField
-              name='name'
-              value={formData.name}
-              label='Title'
-              variant='outlined'
-              onChange={handleChange}
-              focused
-              required
-              sx={{
-                mb: 2,
-              }}
-              />
-            <TextField
-              name='director'
-              value={formData.director}
-              label='Director'
-              variant='outlined'
-              onChange={handleChange}
-              focused
-              required
-              sx={{
-                mb: 2,
-              }}
-              />
-            <TextField
-              name='releaseDate'
-              value={formData.releaseDate}
-              label='Released'
-              variant='outlined'
-              onChange={handleChange}
-              focused
-              required
-              sx={{
-                mb: 2,
-              }}
-              />
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-              >
-              <Button
-                type='submit'
-              >
-                Save
-              </Button>
-              <Button
-                onClick={handleCancel}
-              >
-                Cancel
-              </Button>
-            </Box>
-          </form>
+          <MovieForm
+            formData={formData}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            handleCancel={handleCancel}
+          />
         </CardContent>
       </Collapse>
     </Card>
