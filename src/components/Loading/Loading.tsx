@@ -1,20 +1,19 @@
 // mui components
-import Backdrop from "@mui/material/Backdrop"
+import Box from "@mui/material/Box"
 import CircularProgress from "@mui/material/CircularProgress"
 
-// props
-import { LoadingProps } from "../../types/props"
-
-const Loading = (props: LoadingProps): JSX.Element => {
-  const { loading } = props
-
+const Loading = (): JSX.Element => {
   return (
-    <Backdrop
-      sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      open={loading}
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%'
+      }}
     >
       <CircularProgress color="inherit" />
-    </Backdrop>
+    </Box>
   )
 }
 

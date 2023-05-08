@@ -16,14 +16,14 @@ import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 // import Footer from './components/Footer/Footer'
 
-// fonts
-import '@fontsource/roboto'
-
 // services
 import * as authService from './services/authService'
 
 // stylesheets
 import './App.css'
+
+// fonts
+import '@fontsource/roboto'
 
 // types
 import { User } from './types/models'

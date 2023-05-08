@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom'
 import Avatar from '../../components/Avatar/Avatar'
 import Loading from '../../components/Loading/Loading'
 
+// mui components
+import Typography from '@mui/material/Typography'
+
 // services
 import * as profileService from '../../services/profileService'
 
@@ -44,11 +47,20 @@ const Profiles = (props: ProfilesProps): JSX.Element => {
       setLoading(false)
     }
   }, [profiles])
+
+  if (!profiles.length) return <Loading loading={loading} />
   
   return (
     <main className='page-component-container'>
-      <Loading loading={loading} />
-      <h1>Profiles</h1>
+      <Typography
+        variant='h3'
+        sx={{
+          mb: 4,
+        }}
+      >
+        Profiles
+      </Typography>
+      {/* <h1>Profiles</h1>
       <div className={styles["profiles-container"]}>
         {profiles.filter((profile: Profile) => profile.id !== user!?.id).map((profile: Profile) =>
           <Link
@@ -65,7 +77,7 @@ const Profiles = (props: ProfilesProps): JSX.Element => {
             <p>{profile.name}</p>
           </Link>
         )}
-      </div>
+      </div> */}
     </main>
   )
 }
