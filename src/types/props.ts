@@ -8,14 +8,10 @@ import { User, Profile, Movie, Book } from '../types/models'
 
 export interface ProfilesProps {
   user: User | null;
-  loading: boolean;
-  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface ProfileDetailsProps {
   user: User | null;
-  loading: boolean;
-  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface CUDBtnsProps {

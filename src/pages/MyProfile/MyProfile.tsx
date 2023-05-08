@@ -20,7 +20,7 @@ import styles from '../ProfileDetails/ProfileDetails.module.css'
 import { ProfileDetailsProps } from '../../types/props'
 
 const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
-  const { user, loading, setLoading } = props
+  const { user } = props
   const [myProfile, setMyProfile] = useState<Profile | null>(null)
   const [movies, setMovies] = useState<Movie[] | []>([])
   const [books, setBooks] = useState<Book[] | []>([])
@@ -59,16 +59,8 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
     fetchBooks()
   }, [myProfile!?.id.toString()])
 
-  useEffect(() => {
-    if (!myProfile) {
-      setLoading(true)
-    } else {
-      setLoading(false)
-    }
-  }, [myProfile])
-  
-  if (!myProfile) return <Loading loading={loading} />
-  
+  if (!myProfile) return <Loading />
+
   return (
     <main className='page-component-container'>
       <div className={styles["profile-container"]}>

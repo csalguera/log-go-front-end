@@ -22,7 +22,7 @@ import { Profile } from '../../types/models'
 import { ProfilesProps } from '../../types/props'
 
 const Profiles = (props: ProfilesProps): JSX.Element => {
-  const { user, loading, setLoading } = props
+  const { user } = props
   const [profiles, setProfiles] = useState<Profile[]>([])
   const size1 = "187px"
   const size2 = "175px"
@@ -40,16 +40,8 @@ const Profiles = (props: ProfilesProps): JSX.Element => {
     fetchProfiles()
   }, [])
 
-  useEffect(() => {
-    if (!profiles.length) {
-      setLoading(true)
-    } else {
-      setLoading(false)
-    }
-  }, [profiles])
+  if (!profiles.length) return <Loading />
 
-  if (!profiles.length) return <Loading loading={loading} />
-  
   return (
     <main className='page-component-container'>
       <Typography

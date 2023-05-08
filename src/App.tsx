@@ -33,7 +33,6 @@ function App(): JSX.Element {
   
   const [user, setUser] = useState<User | null>(authService.getUser())
   const [displayAlert, setDisplayAlert] = useState(false)
-  const [loading, setLoading] = useState(false);
 
   const handleLogout = (): void => {
     authService.logout()
@@ -80,7 +79,7 @@ function App(): JSX.Element {
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
-              <Profiles user={user} loading={loading} setLoading={setLoading} />
+              <Profiles user={user} />
             </ProtectedRoute>
           }
         />
@@ -88,7 +87,7 @@ function App(): JSX.Element {
           path='/profiles/:id'
           element={
             <ProtectedRoute user={user}>
-              <ProfileDetails user={user} loading={loading} setLoading={setLoading} />
+              <ProfileDetails user={user} />
             </ProtectedRoute>
           }
         />
@@ -96,7 +95,7 @@ function App(): JSX.Element {
           path='/profiles/my-profile'
           element={
             <ProtectedRoute user={user}>
-              <MyProfile user={user} loading={loading} setLoading={setLoading} />
+              <MyProfile user={user} />
             </ProtectedRoute>
           }
         />
