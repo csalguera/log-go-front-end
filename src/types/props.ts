@@ -6,12 +6,20 @@ import { User, Profile, Movie, Book } from '../types/models'
 
 /* ---------======= custom props ======--------- */
 
+export interface LoadingProps {
+  loading: boolean;
+}
+
 export interface ProfilesProps {
   user: User | null;
+  loading: boolean;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface ProfileDetailsProps {
   user: User | null;
+  loading: boolean;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface CUDBtnsProps {

@@ -21,7 +21,7 @@ import { Profile, Movie, Book } from '../../types/models'
 import { ProfileDetailsProps } from '../../types/props';
 
 const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
-  const { user, myProfile } = props
+  const { user, loading, setLoading } = props
   const { id } = useParams<{ id: string }>()
   const [profile, setProfile] = useState<Profile | null>(null)
   const [movies, setMovies] = useState<Movie[] | []>([])
@@ -63,7 +63,16 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
     fetchBooks()
   }, [id])
 
-  if (!profile) return <Loading />
+  useEffect(() => {
+    if (!profile) {
+      setLoading(true)
+    } else {
+      setLoading(false)
+    }
+  }, [profile])
+
+  if (!profile) return <Loading loading={loading} />
+
   return (
     <main className='page-component-container'>
       <div className={styles["profile-container"]}>
