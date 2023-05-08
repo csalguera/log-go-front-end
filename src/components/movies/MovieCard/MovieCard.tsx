@@ -6,9 +6,6 @@ import * as movieService from '../../../services/movieService'
 
 // components
 import MovieForm from '../MovieForm/MovieForm';
-import MovieDetails from '../MovieDetails/MovieDetails';
-import CUDBtns from '../../CUDBtns/CUDBtns';
-import NextPrevBtns from '../../NextPrevBtns/NextPrevBtns';
 
 // mui components
 import Card from '@mui/material/Card';
@@ -23,15 +20,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-
 import { styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-
-// styles
-// import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
 
 // types
 import { Movie } from '../../../types/models'
@@ -92,24 +83,6 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     }
     editMovieData()
   }, [movie!?.id])
-  
-  function handleClick(evt: React.MouseEvent): void {
-    let btnContent: string | null = (evt.target as HTMLButtonElement).textContent
-
-    if (btnContent === 'Prev Movie') {
-      movies && index <= 0
-      ?
-      setIndex(movies.length - 1)
-      :
-      setIndex(index - 1)
-    } else if  (btnContent === 'Next Movie') {
-      movies && index >= movies.length - 1
-      ?
-      setIndex(0)
-      :
-      setIndex(index + 1)
-    }
-  }
 
   function handleAdd(): void {
     setFormDisplay(!formDisplay)
@@ -117,7 +90,6 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
 
   function handleCancel(): void {
     formDisplay ? handleAdd() : handleEdit()
-
     setFormData({
       name: '',
       director: '',
