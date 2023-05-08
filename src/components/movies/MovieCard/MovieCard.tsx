@@ -17,6 +17,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 // styles
 // import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
@@ -27,6 +32,7 @@ import { MovieFormData, EditMovieFormData } from '../../../types/forms';
 
 // props
 import { MovieCardProps } from '../../../types/props';
+import { Box, PaginationItem } from '@mui/material';
 
 const MovieCard = (props: MovieCardProps): JSX.Element => {
   const { user, profile, movies, setMovies } = props
@@ -141,7 +147,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
 
   if (!movies) return <h2>Loading...</h2>
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 450, height: 350 }}>
       <CardMedia
         component="img"
         alt="green iguana"
@@ -150,15 +156,57 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Sample
+          {movie!?.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat, fuga incidunt laboriosam officiis ipsa ducimus eius assumenda exercitationem nostrum cumque dolore non explicabo amet blanditiis ipsam qui asperiores tenetur consequatur.
+          Directed by: {movie!?.director}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Released: {movie!?.releaseDate}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <CardActions
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <Stack spacing={2}>
+          <Pagination
+            count={movies.length}
+            siblingCount={0}
+            color="primary"
+            showFirstButton
+            showLastButton
+            onChange={(evt, value) => setIndex(value - 1)}
+          />
+        </Stack>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            mt: 2,
+          }}
+        >
+          <Button size="small"
+            onClick={displayForm}
+          >
+            <AddIcon />
+          </Button>
+          <Button
+            size="small"
+            onClick={handleEdit}
+          >
+            <EditIcon />
+          </Button>
+          <Button
+            size="small"
+            onClick={handleDelete}
+          >
+            <DeleteIcon />
+          </Button>
+        </Box>
       </CardActions>
     </Card>
     // <div className={styles.card}>
