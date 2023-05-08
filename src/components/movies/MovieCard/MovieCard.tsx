@@ -10,8 +10,16 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 import CUDBtns from '../../CUDBtns/CUDBtns';
 import NextPrevBtns from '../../NextPrevBtns/NextPrevBtns';
 
+// mui components
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 // styles
-import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
+// import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
 
 // types
 import { Movie } from '../../../types/models'
@@ -133,54 +141,74 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
 
   if (!movies) return <h2>Loading...</h2>
   return (
-    <div className={styles.card}>
-      <div className={styles["details-container"]}>
-        <h2>Favorite Movies</h2>
-        {!formDisplay && !editFormDisplay &&
-        <MovieDetails
-          user={user}
-          profile={profile}
-          movies={movies}
-          movie={movie!}
-          index={index}
-        />
-        }
-        {formDisplay &&
-          <MovieForm
-            formData={editFormDisplay ? editFormData : formData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />
-        }
-        {editFormDisplay &&
-          <MovieForm
-            formData={editFormDisplay ? editFormData : formData}
-            handleChange={handleEditForm}
-            handleSubmit={handleUpdate}
-          />
-        }
-      </div>
-      {movies.length
-      ?
-      !formDisplay && !editFormDisplay &&
-      <NextPrevBtns
-        handleClick={handleClick}
-        category={movie!.category}
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="140"
+        image="https://img.freepik.com/free-photo/solid-concrete-wall-textured-backdrop_53876-129493.jpg?w=360"
       />
-      :
-      ''
-      }
-      <CUDBtns
-        user={user}
-        profile={profile}
-        resource={movies}
-        displayForm={displayForm}
-        formDisplay={formDisplay}
-        editFormDisplay={editFormDisplay}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
-    </div>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Sample
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat, fuga incidunt laboriosam officiis ipsa ducimus eius assumenda exercitationem nostrum cumque dolore non explicabo amet blanditiis ipsam qui asperiores tenetur consequatur.
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
+    // <div className={styles.card}>
+    //   <div className={styles["details-container"]}>
+    //     <h2>Favorite Movies</h2>
+    //     {!formDisplay && !editFormDisplay &&
+    //     <MovieDetails
+    //       user={user}
+    //       profile={profile}
+    //       movies={movies}
+    //       movie={movie!}
+    //       index={index}
+    //     />
+    //     }
+    //     {formDisplay &&
+    //       <MovieForm
+    //         formData={editFormDisplay ? editFormData : formData}
+    //         handleChange={handleChange}
+    //         handleSubmit={handleSubmit}
+    //       />
+    //     }
+    //     {editFormDisplay &&
+    //       <MovieForm
+    //         formData={editFormDisplay ? editFormData : formData}
+    //         handleChange={handleEditForm}
+    //         handleSubmit={handleUpdate}
+    //       />
+    //     }
+    //   </div>
+    //   {movies.length
+    //   ?
+    //   !formDisplay && !editFormDisplay &&
+    //   <NextPrevBtns
+    //     handleClick={handleClick}
+    //     category={movie!.category}
+    //   />
+    //   :
+    //   ''
+    //   }
+    //   <CUDBtns
+    //     user={user}
+    //     profile={profile}
+    //     resource={movies}
+    //     displayForm={displayForm}
+    //     formDisplay={formDisplay}
+    //     editFormDisplay={editFormDisplay}
+    //     handleEdit={handleEdit}
+    //     handleDelete={handleDelete}
+    //   />
+    // </div>
   )
 }
 
