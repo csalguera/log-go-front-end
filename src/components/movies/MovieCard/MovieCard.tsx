@@ -88,8 +88,8 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     setFormDisplay(!formDisplay)
   }
 
-  function handleCancel(): void {
-    formDisplay ? handleAdd() : handleEdit()
+  function handleCancelAdd(): void {
+    handleAdd()
     setFormData({
       name: '',
       director: '',
@@ -144,10 +144,15 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   if (!movies) return <h2>Loading...</h2>
 
   return (
-    <Card sx={{ maxWidth: 450, minheight: 350 }}>
+    <Card sx={{
+      maxWidth: 450,
+      maxHeight: formDisplay || editFormDisplay ? '630px' : '360px',
+      transition: 'max-height 0.25s'
+      }}
+    >
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt=""
         height="140"
         image="https://img.freepik.com/free-photo/solid-concrete-wall-textured-backdrop_53876-129493.jpg?w=360"
       />
@@ -175,6 +180,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             color="primary"
             showFirstButton
             showLastButton
+            page={index + 1}
             onChange={(evt, value) => setIndex(value - 1)}
             disabled={formDisplay || editFormDisplay ? true : false}
           />
@@ -206,7 +212,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             aria-expanded={editFormDisplay}
             aria-label="show more"
             color='primary'
-            disabled={formDisplay || editFormDisplay ? true : false}
+            disabled={formDisplay || editFormDisplay || !movies.length ? true : false}
             sx={{
               ml: 0,
             }}
@@ -216,20 +222,24 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
           <Button
             size="small"
             onClick={handleDelete}
-            disabled={formDisplay || editFormDisplay ? true : false}
+            disabled={formDisplay || editFormDisplay || !movies.length ? true : false}
           >
             <DeleteIcon />
           </Button>
         </Box>
       </CardActions>
-      <Collapse in={formDisplay || editFormDisplay} timeout="auto" unmountOnExit>
+      <Collapse
+        in={formDisplay || editFormDisplay}
+        timeout="auto"
+        unmountOnExit
+      >
         <CardContent
         >
           <MovieForm
             formData={formDisplay ? formData : editFormData}
             handleSubmit={formDisplay ? handleSubmit : handleUpdate}
             handleChange={formDisplay ? handleChange : handleEditForm}
-            handleCancel={handleCancel}
+            handleCancel={formDisplay ? handleCancelAdd : handleEdit}
           />
         </CardContent>
       </Collapse>
