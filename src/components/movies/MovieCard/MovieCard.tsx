@@ -158,13 +158,13 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {movie!?.name}
+          {movies.length ? `${movie!?.name}` : `${profile?.name}'s Movies`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Directed by: {movie!?.director}
+          {movies.length ? `Directed by: ${movie!?.director}` : `${profile?.name} has not added any movies.`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Released: {movie!?.releaseDate}
+          {movies.length ? `Released: ${movie!?.releaseDate}` : 'Check again later.'}
         </Typography>
       </CardContent>
       <CardActions
