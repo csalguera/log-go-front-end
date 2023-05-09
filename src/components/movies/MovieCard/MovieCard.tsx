@@ -145,7 +145,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
 
   return (
     <Card sx={{
-      maxWidth: 450,
+      width: 400,
       maxHeight: formDisplay || editFormDisplay ? '630px' : '360px',
       transition: 'max-height 0.25s'
       }}
@@ -199,7 +199,17 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             aria-expanded={formDisplay}
             aria-label="show more"
             color='primary'
-            disabled={formDisplay || editFormDisplay ? true : false}
+            disabled={
+              formDisplay
+              ||
+              editFormDisplay
+              ||
+              user?.id !== profile?.id
+              ?
+              true
+              :
+              false
+            }
             sx={{
               ml: 0,
             }}
@@ -212,7 +222,18 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             aria-expanded={editFormDisplay}
             aria-label="show more"
             color='primary'
-            disabled={formDisplay || editFormDisplay || !movies.length ? true : false}
+            disabled={
+              formDisplay
+              ||
+              editFormDisplay
+              ||
+              !movies.length
+              || user?.id !== profile?.id
+              ?
+              true
+              :
+              false
+            }
             sx={{
               ml: 0,
             }}
@@ -222,7 +243,18 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
           <Button
             size="small"
             onClick={handleDelete}
-            disabled={formDisplay || editFormDisplay || !movies.length ? true : false}
+            disabled={
+              formDisplay
+              ||
+              editFormDisplay
+              ||
+              !movies.length
+              || user?.id !== profile?.id
+              ?
+              true
+              :
+              false
+            }
           >
             <DeleteIcon />
           </Button>
