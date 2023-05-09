@@ -6,6 +6,7 @@ export interface Movie {
   director: string;
   category: string;
   releaseDate: number;
+  photo: string;
   profileId: number;
   createdAt: string;
   updatedAt: string;

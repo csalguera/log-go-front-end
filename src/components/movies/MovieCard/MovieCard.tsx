@@ -26,7 +26,7 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
 // types
 import { Movie } from '../../../types/models'
-import { MovieFormData, EditMovieFormData } from '../../../types/forms';
+import { MovieFormData, EditMovieFormData, PhotoFormData } from '../../../types/forms';
 
 // props
 import { MovieCardProps } from '../../../types/props';
@@ -65,6 +65,13 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     director: '',
     releaseDate: '',
   })
+  const [photoData, setPhotoData] = useState<PhotoFormData>({
+    photo: null
+  })
+
+  const handleChangePhoto = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    if (evt.target.files) setPhotoData({ photo: evt.target.files.item(0) })
+  }
 
   if (movies) movie = movies[index]
 
@@ -115,7 +122,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
 
   async function handleSubmit(evt: FormEvent<HTMLFormElement>): Promise<void> {
     evt.preventDefault()
-    const newMovie = await movieService.createMovie(formData)
+    const newMovie = await movieService.createMovie(formData, photoData)
     setFormData({
       name: '',
       director: '',
@@ -146,7 +153,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   return (
     <Card sx={{
       width: 400,
-      maxHeight: formDisplay || editFormDisplay ? '630px' : '360px',
+      maxHeight: formDisplay || editFormDisplay ? '700px' : '360px',
       transition: 'max-height 0.25s'
       }}
     >
@@ -272,6 +279,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             handleSubmit={formDisplay ? handleSubmit : handleUpdate}
             handleChange={formDisplay ? handleChange : handleEditForm}
             handleCancel={formDisplay ? handleCancelAdd : handleEdit}
+            handleChangePhoto={handleChangePhoto}
           />
         </CardContent>
       </Collapse>

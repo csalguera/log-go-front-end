@@ -46,6 +46,7 @@ export interface MovieFormProps {
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
   handleCancel: () => void;
+  handleChangePhoto: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export interface MovieDetailsProps {
   user: User | null;
