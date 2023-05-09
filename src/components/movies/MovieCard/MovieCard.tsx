@@ -161,7 +161,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
         component="img"
         alt=""
         height="140"
-        image="https://img.freepik.com/free-photo/solid-concrete-wall-textured-backdrop_53876-129493.jpg?w=360"
+        image={movie!?.photo ?? "https://img.freepik.com/free-photo/solid-concrete-wall-textured-backdrop_53876-129493.jpg?w=360"}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
