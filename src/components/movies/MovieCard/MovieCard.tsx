@@ -48,9 +48,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 
 const MovieCard = (props: MovieCardProps): JSX.Element => {
-  const { user, profile, index, setIndex, movie, movies, setMovies } = props
-  // let movie: Movie | null
-  // const [index, setIndex] = useState(0)
+  const { user, profile, movieIdx, setMovieIdx, movie, movies, setMovies } = props
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
 
@@ -72,8 +70,6 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   const handleChangePhoto = (evt: React.ChangeEvent<HTMLInputElement>) => {
     if (evt.target.files) setPhotoData({ photo: evt.target.files.item(0) })
   }
-
-  // if (movies) movie = movies[index]
 
   useEffect(() => {
     const editMovieData = () => {
@@ -129,7 +125,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       releaseDate: ''
     })
     setMovies([...movies!, newMovie])
-    setIndex(movies!?.length)
+    setMovieIdx(movies.length)
     setEditFormDisplay(false)
     setFormDisplay(false)
   }
@@ -145,7 +141,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   async function handleDelete(): Promise<void> {
     await movieService.deleteMovie(movie!.id)
     setMovies(movies.filter(m => m.id !== movie!.id))
-    setIndex(movies.length - 2)
+    setMovieIdx(movies.length - 2)
   }
 
   if (!movies) return <h2>Loading...</h2>
@@ -170,13 +166,13 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {movies.length ? `${movie!?.name}` : `${profile?.name}'s Movies`}
+          {movie ? `${movie!?.name}` : `${profile?.name}'s Movies`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {movies.length ? `Directed by: ${movie!?.director}` : `${profile?.name} has not added any movies.`}
+          {movie ? `Directed by: ${movie!?.director}` : `${profile?.name} has not added any movies.`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {movies.length ? `Released: ${movie!?.releaseDate}` : 'Check again later.'}
+          {movie ? `Released: ${movie!?.releaseDate}` : 'Check again later.'}
         </Typography>
       </CardContent>
       <CardActions
@@ -192,8 +188,8 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
             color="primary"
             showFirstButton
             showLastButton
-            page={index + 1}
-            onChange={(evt, value) => setIndex(value - 1)}
+            page={movieIdx + 1}
+            onChange={(evt, value) => setMovieIdx(value - 1)}
             disabled={formDisplay || editFormDisplay ? true : false}
           />
         </Stack>
