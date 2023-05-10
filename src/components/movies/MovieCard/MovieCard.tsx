@@ -48,9 +48,9 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 
 const MovieCard = (props: MovieCardProps): JSX.Element => {
-  const { user, profile, movies, setMovies } = props
-  let movie: Movie | null
-  const [index, setIndex] = useState(0)
+  const { user, profile, index, setIndex, movie, movies, setMovies } = props
+  // let movie: Movie | null
+  // const [index, setIndex] = useState(0)
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
 
@@ -73,7 +73,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     if (evt.target.files) setPhotoData({ photo: evt.target.files.item(0) })
   }
 
-  if (movies) movie = movies[index]
+  // if (movies) movie = movies[index]
 
   useEffect(() => {
     const editMovieData = () => {

@@ -34,6 +34,9 @@ export interface NextPrevBtnsProps {
 export interface MovieCardProps {
   user: User | null;
   profile: Profile | null;
+  index: number;
+  setIndex: Dispatch<SetStateAction<number>>;
+  movie: Movie | null;
   movies: Movie[];
   setMovies: Dispatch<SetStateAction<Movie[] | []>>;
 }

@@ -25,7 +25,9 @@ import { ProfileDetailsProps } from '../../types/props'
 const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
   const { user } = props
   const [myProfile, setMyProfile] = useState<Profile | null>(null)
+  const [index, setIndex] = useState(0)
   const [movies, setMovies] = useState<Movie[] | []>([])
+  const [movie, setMovie] = useState<Movie | null>(null)
   const [books, setBooks] = useState<Book[] | []>([])
 
   useEffect(() => {
@@ -51,6 +53,18 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
     }
     fetchMovies()
   }, [])
+
+  useEffect(() => {
+    const fetchMovie = async (): Promise<void> => {
+      try {
+        const data = await profileService.getMyProfile()
+        setMovie(data.movies[index])
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchMovie()
+  }, [index])
 
   useEffect(() => {
     const fetchBooks = async (): Promise<void> => {
@@ -93,7 +107,10 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
           <MovieCard
             user={user}
             profile={myProfile}
+            index={index}
+            setIndex={setIndex}
             movies={movies}
+            movie={movie}
             setMovies={setMovies}
           />
           <BookCard
