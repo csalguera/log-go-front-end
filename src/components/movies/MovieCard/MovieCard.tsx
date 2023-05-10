@@ -76,7 +76,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   if (movies) movie = movies[index]
 
   useEffect(() => {
-    const editMovieData = async () => {
+    const editMovieData = () => {
       try {
         setEditFormData({
           movieId: movie!?.id,
@@ -136,7 +136,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
 
   async function handleUpdate(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault()
-    const updatedMovie = await movieService.updateMovie(editFormData)
+    const updatedMovie = await movieService.updateMovie(editFormData, photoData)
     setMovies(movies!?.map(m => m.id === editFormData.movieId ? updatedMovie : m))
     setFormDisplay(false)
     setEditFormDisplay(false)
@@ -153,15 +153,20 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   return (
     <Card sx={{
       width: 400,
-      maxHeight: formDisplay || editFormDisplay ? '700px' : '360px',
+      maxHeight: formDisplay || editFormDisplay ? '930px' : '600px',
       transition: 'max-height 0.25s'
       }}
     >
       <CardMedia
         component="img"
         alt=""
-        height="140"
-        image={movie!?.photo ?? "https://img.freepik.com/free-photo/solid-concrete-wall-textured-backdrop_53876-129493.jpg?w=360"}
+        height="300"
+        image={movie!?.photo ? movie.photo : "https://img.freepik.com/free-photo/solid-concrete-wall-textured-backdrop_53876-129493.jpg?w=360"}
+        sx={{
+          objectFit: 'contain',
+          py: 5,
+          background: 'rgba(0,0,0,0.9)'
+        }}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

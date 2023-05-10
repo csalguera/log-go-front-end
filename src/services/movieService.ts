@@ -29,7 +29,7 @@ const createMovie = async (formData: MovieFormData, photoFormData: PhotoFormData
   }
 }
 
-const updateMovie = async (formData: EditMovieFormData): Promise<Movie> => {
+const updateMovie = async (formData: EditMovieFormData, photoFormData: PhotoFormData): Promise<Movie> => {
   try {
     const res = await fetch(`${BASE_URL}/${formData.movieId}`, {
       method: 'PUT',
@@ -39,7 +39,13 @@ const updateMovie = async (formData: EditMovieFormData): Promise<Movie> => {
         },
         body: JSON.stringify(formData)
     })
-    return await res.json() as Movie
+    const editedMovie = await res.json() as Movie
+    if (photoFormData.photo) {
+      const photoData = new FormData()
+      photoData.append('photo', photoFormData.photo)
+      await addPhoto(photoData, editedMovie.id)
+    }
+    return editedMovie
   } catch (error) {
     throw error
   }
