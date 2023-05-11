@@ -3,6 +3,7 @@ import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react";
 
 // types
 import { User, Profile, Movie, Book } from '../types/models'
+import { MovieFormData } from "./forms";
 
 /* ---------======= custom props ======--------- */
 
@@ -41,11 +42,7 @@ export interface MovieCardProps {
   setMovies: Dispatch<SetStateAction<Movie[] | []>>;
 }
 export interface MovieFormProps {
-  formData: {
-    name: string;
-    director: string;
-    releaseDate: string;
-  };
+  formData: MovieFormData;
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
   handleCancel: () => void;

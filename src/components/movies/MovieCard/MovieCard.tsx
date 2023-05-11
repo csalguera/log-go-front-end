@@ -126,16 +126,12 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     })
     setMovies([...movies!, newMovie])
     setMovieIdx(movies.length)
-    setEditFormDisplay(false)
-    setFormDisplay(false)
   }
 
   async function handleUpdate(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault()
     const updatedMovie = await movieService.updateMovie(editFormData, photoData)
     setMovies(movies!?.map(m => m.id === editFormData.movieId ? updatedMovie : m))
-    setFormDisplay(false)
-    setEditFormDisplay(false)
   }
 
   async function handleDelete(): Promise<void> {
