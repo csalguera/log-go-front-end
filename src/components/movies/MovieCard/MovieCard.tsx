@@ -107,10 +107,20 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       director: '',
       releaseDate: '',
     })
+    setPhotoData({
+      photo: null,
+    })
   }
 
   function handleEdit(): void {
     setEditFormDisplay(!editFormDisplay)
+  }
+
+  function handleSaveEdit():void {
+    handleEdit()
+    setPhotoData({
+      photo: null,
+    })
   }
 
   async function handleChange(evt: ChangeEvent<HTMLInputElement>): Promise<void> {
@@ -140,7 +150,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     setMovies(movies.map(m => m.id === editFormData.movieId ? updatedMovie : m))
     setMovieIdx(movies.length - 1)
     setMovie(updatedMovie)
-    handleEdit()
+    handleSaveEdit()
   }
 
   async function handleDelete(): Promise<void> {
