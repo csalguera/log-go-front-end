@@ -64,7 +64,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchMovie()
-  }, [movieIdx])
+  }, [movieIdx, movies])
 
   useEffect(() => {
     const fetchBooks = async (): Promise<void> => {

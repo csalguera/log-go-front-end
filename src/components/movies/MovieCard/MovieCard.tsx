@@ -119,7 +119,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     })
   }
 
-  async function handleEditForm(evt: ChangeEvent<HTMLInputElement>): Promise<void> {
+  async function handleChangeEdit(evt: ChangeEvent<HTMLInputElement>): Promise<void> {
     setEditFormData({
       ...editFormData, [evt.target.name]: evt.target.value
     })
@@ -137,7 +137,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   async function handleUpdate(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault()
     const updatedMovie = await movieService.updateMovie(editFormData, photoData)
-    setMovies(movies!?.map(m => m.id === editFormData.movieId ? updatedMovie : m))
+    setMovies(movies.map(m => m.id === editFormData.movieId ? updatedMovie : m))
     setMovieIdx(movies.length - 1)
     setMovie(updatedMovie)
     handleEdit()
@@ -284,7 +284,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
           <MovieForm
             formData={editFormDisplay ? editFormData : formData}
             handleSubmit={formDisplay ? handleSubmit : handleUpdate}
-            handleChange={formDisplay ? handleChange : handleEditForm}
+            handleChange={formDisplay ? handleChange : handleChangeEdit}
             handleCancel={formDisplay ? handleCancelAdd : handleEdit}
             handleChangePhoto={handleChangePhoto}
           />
