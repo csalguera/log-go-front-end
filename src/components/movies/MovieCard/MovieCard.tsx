@@ -146,8 +146,8 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   async function handleDelete(): Promise<void> {
     await movieService.deleteMovie(movie!.id)
     setMovies(movies.filter(m => m.id !== movie!.id))
-    setMovie(null)
-    setMovieIdx(-1)
+    setMovie(movies[movieIdx])
+    setMovieIdx(movies.length - 2)
   }
 
   if (!movies) return <h2>Loading...</h2>
