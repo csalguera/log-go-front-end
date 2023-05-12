@@ -130,6 +130,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     const newMovie = await movieService.createMovie(formData, photoData)
     setMovies([...movies!, newMovie])
     setMovieIdx(movies.length)
+    setMovie(newMovie)
     handleCancelAdd()
   }
 
@@ -145,7 +146,8 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   async function handleDelete(): Promise<void> {
     await movieService.deleteMovie(movie!.id)
     setMovies(movies.filter(m => m.id !== movie!.id))
-    setMovieIdx(movies.length - 2)
+    setMovie(null)
+    setMovieIdx(-1)
   }
 
   if (!movies) return <h2>Loading...</h2>
