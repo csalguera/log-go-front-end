@@ -38,6 +38,7 @@ export interface MovieCardProps {
   movieIdx: number;
   setMovieIdx: Dispatch<SetStateAction<number>>;
   movie: Movie | null;
+  setMovie: Dispatch<SetStateAction<Movie | null>>;
   movies: Movie[];
   setMovies: Dispatch<SetStateAction<Movie[] | []>>;
 }

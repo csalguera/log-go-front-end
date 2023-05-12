@@ -48,7 +48,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 
 const MovieCard = (props: MovieCardProps): JSX.Element => {
-  const { user, profile, movieIdx, setMovieIdx, movie, movies, setMovies } = props
+  const { user, profile, movieIdx, setMovieIdx, movie, setMovie, movies, setMovies } = props
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
 
@@ -85,7 +85,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       }
     }
     editMovieData()
-  }, [movie!?.id])
+  }, [movie])
 
   function handleAdd(): void {
     setFormDisplay(!formDisplay)
@@ -119,19 +119,17 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   async function handleSubmit(evt: FormEvent<HTMLFormElement>): Promise<void> {
     evt.preventDefault()
     const newMovie = await movieService.createMovie(formData, photoData)
-    setFormData({
-      name: '',
-      director: '',
-      releaseDate: ''
-    })
     setMovies([...movies!, newMovie])
     setMovieIdx(movies.length)
+    handleCancelAdd()
   }
 
   async function handleUpdate(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault()
     const updatedMovie = await movieService.updateMovie(editFormData, photoData)
     setMovies(movies!?.map(m => m.id === editFormData.movieId ? updatedMovie : m))
+    setMovie(updatedMovie)
+    handleEdit()
   }
 
   async function handleDelete(): Promise<void> {
@@ -162,13 +160,13 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {movie ? `${movie!?.name}` : `${profile?.name}'s Movies`}
+          {movie ? `${movie.name}` : `${profile?.name}'s Movies`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {movie ? `Directed by: ${movie!?.director}` : `${profile?.name} has not added any movies.`}
+          {movie ? `Directed by: ${movie.director}` : `${profile?.name} has not added any movies.`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {movie ? `Released: ${movie!?.releaseDate}` : 'Check again later.'}
+          {movie ? `Released: ${movie.releaseDate}` : 'Check again later.'}
         </Typography>
       </CardContent>
       <CardActions
@@ -272,7 +270,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
         <CardContent
         >
           <MovieForm
-            formData={formDisplay ? formData : editFormData}
+            formData={editFormDisplay ? editFormData : formData}
             handleSubmit={formDisplay ? handleSubmit : handleUpdate}
             handleChange={formDisplay ? handleChange : handleEditForm}
             handleCancel={formDisplay ? handleCancelAdd : handleEdit}

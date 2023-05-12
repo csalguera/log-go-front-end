@@ -52,7 +52,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchMovies()
-  }, [])
+  }, [movies])
 
   useEffect(() => {
     const fetchMovie = async (): Promise<void> => {
@@ -111,6 +111,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
             setMovieIdx={setMovieIdx}
             movies={movies}
             movie={movie}
+            setMovie={setMovie}
             setMovies={setMovies}
           />
           <BookCard
