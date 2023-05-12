@@ -42,6 +42,7 @@ export interface MovieCardProps {
   movies: Movie[];
   setMovies: Dispatch<SetStateAction<Movie[] | []>>;
 }
+
 export interface MovieFormProps {
   formData: MovieFormData;
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
@@ -49,6 +50,7 @@ export interface MovieFormProps {
   handleCancel: () => void;
   handleChangePhoto: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
 export interface MovieDetailsProps {
   user: User | null;
   profile: Profile | null;
@@ -64,6 +66,7 @@ export interface BookCardProps {
   books: Book[];
   setBooks: Dispatch<SetStateAction<Book[] | []>>;
 }
+
 export interface BookFormProps {
   formData: {
     name: string;
@@ -73,6 +76,7 @@ export interface BookFormProps {
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
 }
+
 export interface BookDetailsProps {
   user: User | null;
   profile: Profile | null;

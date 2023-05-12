@@ -25,7 +25,6 @@ import Collapse from '@mui/material/Collapse';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
 // types
-import { Movie } from '../../../types/models'
 import { MovieFormData, EditMovieFormData, PhotoFormData } from '../../../types/forms';
 
 // props
@@ -48,7 +47,17 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 
 const MovieCard = (props: MovieCardProps): JSX.Element => {
-  const { user, profile, movieIdx, setMovieIdx, movie, setMovie, movies, setMovies } = props
+  const {
+    user,
+    profile,
+    movieIdx,
+    setMovieIdx,
+    movie,
+    setMovie,
+    movies,
+    setMovies,
+  } = props
+
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
 
@@ -64,7 +73,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     releaseDate: '',
   })
   const [photoData, setPhotoData] = useState<PhotoFormData>({
-    photo: null
+    photo: null,
   })
 
   const handleChangePhoto = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -128,6 +137,7 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     evt.preventDefault()
     const updatedMovie = await movieService.updateMovie(editFormData, photoData)
     setMovies(movies!?.map(m => m.id === editFormData.movieId ? updatedMovie : m))
+    setMovieIdx(movies.length - 1)
     setMovie(updatedMovie)
     handleEdit()
   }

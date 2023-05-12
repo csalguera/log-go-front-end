@@ -26,8 +26,8 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
   const { user } = props
   const [myProfile, setMyProfile] = useState<Profile | null>(null)
   const [movieIdx, setMovieIdx] = useState(0)
-  const [movies, setMovies] = useState<Movie[] | []>([])
   const [movie, setMovie] = useState<Movie | null>(null)
+  const [movies, setMovies] = useState<Movie[] | []>([])
   const [books, setBooks] = useState<Book[] | []>([])
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchMovies()
-  }, [movies])
+  }, [])
 
   useEffect(() => {
     const fetchMovie = async (): Promise<void> => {
