@@ -90,7 +90,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchBook()
-  }, [])
+  }, [bookIdx, books])
 
   if (!myProfile) return <Loading />
 

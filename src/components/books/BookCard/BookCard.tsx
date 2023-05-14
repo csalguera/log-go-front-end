@@ -6,9 +6,6 @@ import * as bookService from '../../../services/bookService'
 
 // components
 import BookForm from '../BookForm/BookForm';
-import BookDetails from '../BookDetails/BookDetails';
-import CUDBtns from '../../CUDBtns/CUDBtns';
-import NextPrevBtns from '../../NextPrevBtns/NextPrevBtns';
 
 // mui components
 import Card from '@mui/material/Card';
@@ -28,11 +25,7 @@ import Collapse from '@mui/material/Collapse';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
 // types
-import { Book } from '../../../types/models'
 import { BookFormData, EditBookFormData, PhotoFormData } from '../../../types/forms';
-
-// styles
-import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
 
 // props
 import { BookCardProps } from '../../../types/props';
