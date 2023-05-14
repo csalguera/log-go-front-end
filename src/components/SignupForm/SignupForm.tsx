@@ -1,15 +1,16 @@
 // npm modules
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 // services
 import * as authService from '../../services/authService'
 
-// components
-import ColorPicker from '../ColorPicker/ColorPicker'
-
-// stylesheets
-import styles from './SignupForm.module.css'
+// mui components
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
 
 // types
 import { AuthFormProps } from '../../types/props'
@@ -17,7 +18,12 @@ import { SignupFormData, PhotoFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
 const SignupForm = (props: AuthFormProps): JSX.Element => {
-  const {updateMessage, handleAuthEvt} = props
+  const {
+    updateMessage,
+    handleAuthEvt,
+    setDisplayAlert,
+  } = props
+
   const navigate = useNavigate()
 
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -30,7 +36,6 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
   const [photoData, setPhotoData] = useState<PhotoFormData>({
     photo: null
   })
-  const [colorPickerView, setColorPickerView] = useState(false)
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     updateMessage('')
@@ -53,11 +58,11 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
       console.log(err)
       handleErrMsg(err, updateMessage)
       setIsSubmitted(false)
+      setDisplayAlert(true)
+      setTimeout(() => {
+        setDisplayAlert(false)
+      }, 3000);
     }
-  }
-
-  function displayColorPicker() {
-    setColorPickerView(!colorPickerView)
   }
 
   const { name, email, password, passwordConf } = formData
@@ -70,94 +75,87 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
     <form
       autoComplete="off"
       onSubmit={handleSubmit}
-      className={styles.container}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
     >
-      <div className={styles.inputContainer}>
-        <label htmlFor="name" className={styles.label}>Name</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          name="name"
-          onChange={handleChange}
+      <TextField
+        name='name'
+        label='Name'
+        value={name}
+        onChange={handleChange}
+        variant='outlined'
+        focused
+        required
+        sx={{ mb: 2 }}
+      />
+      <TextField
+        name='email'
+        label='Email'
+        value={email}
+        onChange={handleChange}
+        variant='outlined'
+        focused
+        required
+        sx={{ mb: 2 }}
+      />
+      <TextField
+        name='password'
+        label='Password'
+        value={password}
+        type='password'
+        onChange={handleChange}
+        variant='outlined'
+        focused
+        required
+        sx={{ mb: 2 }}
         />
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="email" className={styles.label}>
-          Email
-        </label>
-        <input
-          type="text"
-          id="email"
-          value={email}
-          name="email"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="password" className={styles.label}>
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          name="password"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="confirm" className={styles.label}>
-          Confirm Password
-        </label>
-        <input
-          type="password"
-          id="confirm"
-          value={passwordConf}
-          name="passwordConf"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="photo-upload" className={styles.label}>
+      <TextField
+        name='passwordConf'
+        label='Confirm Password'
+        value={passwordConf}
+        type='password'
+        onChange={handleChange}
+        variant='outlined'
+        focused
+        required
+        sx={{ mb: 2 }}
+      />
+      <Box
+        sx={{ display: 'flex', alignItems: 'center' }}
+      >
+        <Typography>
           Upload Photo
-        </label>
-        <input
-          type="file"
-          id="photo-upload"
-          name="photo"
+        </Typography>
+        <TextField
+          name='photo'
+          type='file'
           onChange={handleChangePhoto}
-          style={{width: "11rem"}}
+          sx={{
+            "& fieldset": { border: 'none' },
+            width: '240px'
+          }}
         />
-      </div>
-
-      {/* Stretch Goal */}
-      {/* <div className={styles.inputContainer}>
-        <label htmlFor="color-picker" className={styles.label}>
-          Favorite Color
-        </label>
-        <button
-          id='color-picker'
-          onClick={displayColorPicker}
+      </Box>
+      <Box>
+        <Button
+          variant='outlined'
+          type='submit'
+          disabled={isFormInvalid() || isSubmitted}
         >
-          {colorPickerView ? 'Cancel' : 'Pick a Color'}
-        </button>
-      </div>
-      <div className={styles.inputContainer}>
-        {colorPickerView && <ColorPicker />}
-      </div> */}
-
-      <div className={styles.inputContainer}>
-        <button 
-          disabled={isFormInvalid() || isSubmitted} 
-          className={styles.button}
+          {!isSubmitted ? 'Sign Up' : 'Sending...'}
+        </Button>
+        <Link
+          href='/'
         >
-          {!isSubmitted ? "Sign Up" : "🚀 Sending..."}
-        </button>
-        <Link to="/">
-          <button>Cancel</button>
+          <Button
+            variant='outlined'
+          >
+            Cancel
+          </Button>
         </Link>
-      </div>
+      </Box>
     </form>
   )
 }

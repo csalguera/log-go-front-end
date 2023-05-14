@@ -10,18 +10,20 @@ import Profiles from './pages/Profiles/Profiles'
 import MyProfile from './pages/MyProfile/MyProfile'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
-import ColorPicker from './components/ColorPicker/ColorPicker'
 
 // components
 import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import Footer from './components/Footer/Footer'
+// import Footer from './components/Footer/Footer'
 
 // services
 import * as authService from './services/authService'
 
 // stylesheets
 import './App.css'
+
+// fonts
+import '@fontsource/roboto'
 
 // types
 import { User } from './types/models'
@@ -30,6 +32,7 @@ function App(): JSX.Element {
   const navigate = useNavigate()
   
   const [user, setUser] = useState<User | null>(authService.getUser())
+  const [displayAlert, setDisplayAlert] = useState(false)
 
   const handleLogout = (): void => {
     authService.logout()
@@ -41,6 +44,10 @@ function App(): JSX.Element {
     setUser(authService.getUser())
   }
 
+  const handleClose = () => {
+    setDisplayAlert(false)
+  }
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
@@ -48,11 +55,25 @@ function App(): JSX.Element {
         <Route path="/" element={<Landing user={user} />} />
         <Route
           path="/signup"
-          element={<Signup handleAuthEvt={handleAuthEvt} />}
+          element={
+            <Signup
+              handleAuthEvt={handleAuthEvt}
+              displayAlert={displayAlert}
+              setDisplayAlert={setDisplayAlert}
+              handleClose={handleClose}
+            />
+          }
         />
         <Route
           path="/login"
-          element={<Login handleAuthEvt={handleAuthEvt} />}
+          element={
+            <Login
+              handleAuthEvt={handleAuthEvt}
+              displayAlert={displayAlert}
+              setDisplayAlert={setDisplayAlert}
+              handleClose={handleClose}
+            />
+          }
         />
         <Route
           path="/profiles"
@@ -87,7 +108,7 @@ function App(): JSX.Element {
           }
         />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

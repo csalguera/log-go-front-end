@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { Navigate } from 'react-router-dom'
 
 // types
-import { User } from '../../types/models'
+import { User, Profile } from '../../types/models'
 
 interface ProtectedRouteProps {
   user: User | null;

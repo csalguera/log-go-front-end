@@ -3,6 +3,7 @@ import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react";
 
 // types
 import { User, Profile, Movie, Book } from '../types/models'
+import { MovieFormData } from "./forms";
 
 /* ---------======= custom props ======--------- */
 
@@ -30,29 +31,26 @@ export interface NextPrevBtnsProps {
   category: string;
 }
 
-export interface AvatarProps {
-  profile: Profile | null;
-  size1: string;
-  size2: string;
-  size3: string;
-}
-
 // movies
 export interface MovieCardProps {
   user: User | null;
   profile: Profile | null;
+  movieIdx: number;
+  setMovieIdx: Dispatch<SetStateAction<number>>;
+  movie: Movie | null;
+  setMovie: Dispatch<SetStateAction<Movie | null>>;
   movies: Movie[];
   setMovies: Dispatch<SetStateAction<Movie[] | []>>;
 }
+
 export interface MovieFormProps {
-  formData: {
-    name: string;
-    director: string;
-    releaseDate: string;
-  };
+  formData: MovieFormData;
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
+  handleCancel: () => void;
+  handleChangePhoto: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
 export interface MovieDetailsProps {
   user: User | null;
   profile: Profile | null;
@@ -68,6 +66,7 @@ export interface BookCardProps {
   books: Book[];
   setBooks: Dispatch<SetStateAction<Book[] | []>>;
 }
+
 export interface BookFormProps {
   formData: {
     name: string;
@@ -77,6 +76,7 @@ export interface BookFormProps {
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleSubmit: (evt: FormEvent<HTMLFormElement>) => Promise<void>;
 }
+
 export interface BookDetailsProps {
   user: User | null;
   profile: Profile | null;
@@ -91,4 +91,5 @@ export interface BookDetailsProps {
 export interface AuthFormProps {
   handleAuthEvt: () => void;
   updateMessage: (msg: string) => void;
+  setDisplayAlert: Dispatch<SetStateAction<boolean>>;
 }

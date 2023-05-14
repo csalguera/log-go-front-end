@@ -3,6 +3,10 @@ h1 {
 }
 
 .page-component-container {
-  min-height: 85vh;
-  border: solid 1px transparent;
+  margin: 0;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2vh;
 }

@@ -1,8 +1,19 @@
+// mui components
+import Box from "@mui/material/Box"
+import CircularProgress from "@mui/material/CircularProgress"
+
 const Loading = (): JSX.Element => {
   return (
-    <main className="page-component-container">
-      <h1>Loading...</h1>
-    </main>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%'
+      }}
+    >
+      <CircularProgress color="inherit" />
+    </Box>
   )
 }
 

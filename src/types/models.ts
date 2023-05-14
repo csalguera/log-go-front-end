@@ -6,6 +6,7 @@ export interface Movie {
   director: string;
   category: string;
   releaseDate: number;
+  photo: string;
   profileId: number;
   createdAt: string;
   updatedAt: string;
@@ -37,7 +38,7 @@ export interface Profile {
 export interface User {
   name: string;
   email: string;
-  profile: { id: number };
+  profile: { id: number, photo: string };
   id: number;
   createdAt: string;
   updatedAt: string;

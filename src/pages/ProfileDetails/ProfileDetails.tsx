@@ -6,10 +6,13 @@ import { useParams } from 'react-router';
 import * as profileService from '../../services/profileService'
 
 // components
-import Avatar from '../../components/Avatar/Avatar';
 import Loading from '../../components/Loading/Loading';
 import MovieCard from '../../components/movies/MovieCard/MovieCard';
 import BookCard from '../../components/books/BookCard/BookCard';
+
+// mui components
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
 
 // stylesheets
 import styles from './ProfileDetails.module.css'
@@ -24,6 +27,8 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   const { user } = props
   const { id } = useParams<{ id: string }>()
   const [profile, setProfile] = useState<Profile | null>(null)
+  const [movieIdx, setMovieIdx] = useState(0)
+  const [movie, setMovie] = useState<Movie | null>(null)
   const [movies, setMovies] = useState<Movie[] | []>([])
   const [books, setBooks] = useState<Book[] | []>([])
 
@@ -37,7 +42,7 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchProfile()
-  }, [id])
+  }, [])
 
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {
@@ -49,7 +54,19 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchMovies()
-  }, [id])
+  }, [])
+
+  useEffect(() => {
+    const fetchMovie = async (): Promise<void> => {
+      try {
+        const data = await profileService.getProfile(id)
+        setMovie(data.movies[movieIdx])
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchMovie()
+  }, [movieIdx, movies])
 
   useEffect(() => {
     const fetchBooks = async (): Promise<void> => {
@@ -61,34 +78,49 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
       }
     }
     fetchBooks()
-  }, [id])
+  }, [])
 
   if (!profile) return <Loading />
+
   return (
     <main className='page-component-container'>
-      <div className={styles["profile-container"]}>
-        <Avatar
-          profile={profile}
-          size1='118px'
-          size2='110px'
-          size3='48px'
-        />
-        <h2>{profile?.name}</h2>
-        <div className={styles["card-container"]}>
-          <MovieCard
-            user={user}
-            profile={profile}
-            movies={movies}
-            setMovies={setMovies}
-          />
-          <BookCard
-            user={user}
-            profile={profile}
-            books={books}
-            setBooks={setBooks}
-          />
-        </div>
-      </div>
+      <Avatar
+        alt={profile.name}
+        src={profile.photo ?? profile.name}
+        sx={{
+          width: 100,
+          height: 100,
+          fontSize: 50,
+          justifyContent: 'center',
+          alignItems: 'center',
+          mt: 2,
+        }}
+      />
+      <Typography
+        sx={{
+          fontSize: '24px',
+          fontWeight: 'bold',
+          my: 2,
+        }}
+      >
+        {profile.name}
+      </Typography>
+      <MovieCard
+        user={user}
+        profile={profile}
+        movieIdx={movieIdx}
+        setMovieIdx={setMovieIdx}
+        movies={movies}
+        movie={movie}
+        setMovie={setMovie}
+        setMovies={setMovies}
+      />
+      {/* <BookCard
+        user={user}
+        profile={profile}
+        books={books}
+        setBooks={setBooks}
+      /> */}
     </main>
   )
 }

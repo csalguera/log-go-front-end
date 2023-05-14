@@ -1,12 +1,18 @@
 // npm modules
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 // services
-import styles from './LoginForm.module.css'
+import * as authService from '../../services/authService'
+
+// mui components
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import Link from '@mui/material/Link'
 
 // stylesheets
-import * as authService from '../../services/authService'
+// import styles from './LoginForm.module.css'
 
 // types
 import { AuthFormProps } from '../../types/props'
@@ -14,7 +20,7 @@ import { LoginFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
 const LoginForm = (props: AuthFormProps): JSX.Element => {
-  const {updateMessage, handleAuthEvt} = props
+  const {updateMessage, handleAuthEvt, setDisplayAlert} = props
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState<LoginFormData>({
@@ -36,6 +42,10 @@ const LoginForm = (props: AuthFormProps): JSX.Element => {
     } catch (err) {
       console.log(err)
       handleErrMsg(err, updateMessage)
+      setDisplayAlert(true)
+      setTimeout(() => {
+        setDisplayAlert(false)
+      }, 3000);
     }
   }
 
@@ -49,37 +59,85 @@ const LoginForm = (props: AuthFormProps): JSX.Element => {
     <form
       autoComplete="off"
       onSubmit={handleSubmit}
-      className={styles.container}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
     >
-      <div className={styles.inputContainer}>
-        <label htmlFor="email" className={styles.label}>Email</label>
-        <input
-          type="text"
-          id="email"
-          value={formData.email}
-          name="email"
-          onChange={handleChange}
+      <TextField
+        name='email'
+        label='Email'
+        value={formData.email}
+        onChange={handleChange}
+        variant='outlined'
+        focused
+        required
+        sx={{ mb: 2 }}
+      />
+      <TextField
+        name='password'
+        label='Password'
+        value={formData.password}
+        type='password'
+        onChange={handleChange}
+        variant='outlined'
+        focused
+        required
+        sx={{ mb: 2 }}
         />
-      </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor="password" className={styles.label}>Password</label>
-        <input
-          type="password"
-          id="password"
-          value={formData.password}
-          name="password"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <button disabled={isFormInvalid()} className={styles.button}>
+      <Box>
+        <Button
+          variant='outlined'
+          type='submit'
+          disabled={isFormInvalid()}
+        >
           Log In
-        </button>
-        <Link to="/">
-          <button>Cancel</button>
+        </Button>
+        <Link
+          href='/'
+        >
+          <Button
+            variant='outlined'
+          >
+            Cancel
+          </Button>
         </Link>
-      </div>
+      </Box>
     </form>
+    // <form
+    //   autoComplete="off"
+    //   onSubmit={handleSubmit}
+    //   className={styles.container}
+    // >
+    //   <div className={styles.inputContainer}>
+    //     <label htmlFor="email" className={styles.label}>Email</label>
+    //     <input
+    //       type="text"
+    //       id="email"
+    //       value={formData.email}
+    //       name="email"
+    //       onChange={handleChange}
+    //     />
+    //   </div>
+    //   <div className={styles.inputContainer}>
+    //     <label htmlFor="password" className={styles.label}>Password</label>
+    //     <input
+    //       type="password"
+    //       id="password"
+    //       value={formData.password}
+    //       name="password"
+    //       onChange={handleChange}
+    //     />
+    //   </div>
+    //   <div className={styles.inputContainer}>
+    //     <button disabled={isFormInvalid()} className={styles.button}>
+    //       Log In
+    //     </button>
+    //     <Link to="/">
+    //       <button>Cancel</button>
+    //     </Link>
+    //   </div>
+    // </form>
   )
 }
 
