@@ -16,9 +16,6 @@ import Typography from '@mui/material/Typography';
 // types
 import { Profile, Movie, Book } from '../../types/models'
 
-// styles
-import styles from '../ProfileDetails/ProfileDetails.module.css'
-
 // props
 import { ProfileDetailsProps } from '../../types/props'
 

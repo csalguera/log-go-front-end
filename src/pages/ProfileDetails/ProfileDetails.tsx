@@ -14,9 +14,6 @@ import BookCard from '../../components/books/BookCard/BookCard';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
-// stylesheets
-import styles from './ProfileDetails.module.css'
-
 // types
 import { Profile, Movie, Book } from '../../types/models'
 
@@ -30,6 +27,8 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   const [movieIdx, setMovieIdx] = useState(0)
   const [movie, setMovie] = useState<Movie | null>(null)
   const [movies, setMovies] = useState<Movie[] | []>([])
+  const [bookIdx, setBookIdx] = useState(0)
+  const [book, setBook] = useState<Book | null>(null)
   const [books, setBooks] = useState<Book[] | []>([])
 
   useEffect(() => {
@@ -80,6 +79,19 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
     fetchBooks()
   }, [])
 
+  useEffect(() => {
+    const fetchBook = async (): Promise<void> => {
+      try {
+        const data = await profileService.getProfile(id)
+        setBook(data.books[bookIdx])
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchBook()
+  }, [bookIdx, books])
+
+
   if (!profile) return <Loading />
 
   return (
@@ -115,12 +127,16 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
         setMovie={setMovie}
         setMovies={setMovies}
       />
-      {/* <BookCard
+      <BookCard
         user={user}
         profile={profile}
+        bookIdx={bookIdx}
+        setBookIdx={setBookIdx}
+        book={book}
+        setBook={setBook}
         books={books}
         setBooks={setBooks}
-      /> */}
+      />
     </main>
   )
 }
