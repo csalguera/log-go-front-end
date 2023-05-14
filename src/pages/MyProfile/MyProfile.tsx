@@ -28,6 +28,8 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
   const [movieIdx, setMovieIdx] = useState(0)
   const [movie, setMovie] = useState<Movie | null>(null)
   const [movies, setMovies] = useState<Movie[] | []>([])
+  const [bookIdx, setBookIdx] = useState(0)
+  const [book, setBook] = useState<Book | null>(null)
   const [books, setBooks] = useState<Book[] | []>([])
 
   useEffect(() => {
@@ -78,6 +80,18 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
     fetchBooks()
   }, [])
 
+  useEffect(() => {
+    const fetchBook = async (): Promise<void> => {
+      try {
+        const data = await profileService.getMyProfile()
+        setBook(data.books[bookIdx])
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchBook()
+  }, [])
+
   if (!myProfile) return <Loading />
 
   return (
@@ -108,17 +122,21 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
         profile={myProfile}
         movieIdx={movieIdx}
         setMovieIdx={setMovieIdx}
-        movies={movies}
         movie={movie}
         setMovie={setMovie}
+        movies={movies}
         setMovies={setMovies}
       />
-      {/* <BookCard
+      <BookCard
         user={user}
         profile={myProfile}
+        bookIdx={bookIdx}
+        setBookIdx={setBookIdx}
+        book={book}
+        setBook={setBook}
         books={books}
         setBooks={setBooks}
-      /> */}
+      />
     </main>
   )
 }
