@@ -27,6 +27,8 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   const { user } = props
   const { id } = useParams<{ id: string }>()
   const [profile, setProfile] = useState<Profile | null>(null)
+  const [movieIdx, setMovieIdx] = useState(0)
+  const [movie, setMovie] = useState<Movie | null>(null)
   const [movies, setMovies] = useState<Movie[] | []>([])
   const [books, setBooks] = useState<Book[] | []>([])
 
@@ -53,6 +55,18 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
     }
     fetchMovies()
   }, [])
+
+  useEffect(() => {
+    const fetchMovie = async (): Promise<void> => {
+      try {
+        const data = await profileService.getProfile(id)
+        setMovie(data.movies[movieIdx])
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchMovie()
+  }, [movieIdx, movies])
 
   useEffect(() => {
     const fetchBooks = async (): Promise<void> => {
@@ -91,20 +105,22 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
       >
         {profile.name}
       </Typography>
-        <div className={styles["card-container"]}>
-          <MovieCard
-            user={user}
-            profile={profile}
-            movies={movies}
-            setMovies={setMovies}
-          />
-          <BookCard
-            user={user}
-            profile={profile}
-            books={books}
-            setBooks={setBooks}
-          />
-        </div>
+      <MovieCard
+        user={user}
+        profile={profile}
+        movieIdx={movieIdx}
+        setMovieIdx={setMovieIdx}
+        movies={movies}
+        movie={movie}
+        setMovie={setMovie}
+        setMovies={setMovies}
+      />
+      {/* <BookCard
+        user={user}
+        profile={profile}
+        books={books}
+        setBooks={setBooks}
+      /> */}
     </main>
   )
 }

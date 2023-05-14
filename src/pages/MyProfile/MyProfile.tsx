@@ -103,24 +103,22 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
       >
         {myProfile.name}
       </Typography>
-        <div className={styles["card-container"]}>
-          <MovieCard
-            user={user}
-            profile={myProfile}
-            movieIdx={movieIdx}
-            setMovieIdx={setMovieIdx}
-            movies={movies}
-            movie={movie}
-            setMovie={setMovie}
-            setMovies={setMovies}
-          />
-          <BookCard
-            user={user}
-            profile={myProfile}
-            books={books}
-            setBooks={setBooks}
-          />
-        </div>
+      <MovieCard
+        user={user}
+        profile={myProfile}
+        movieIdx={movieIdx}
+        setMovieIdx={setMovieIdx}
+        movies={movies}
+        movie={movie}
+        setMovie={setMovie}
+        setMovies={setMovies}
+      />
+      {/* <BookCard
+        user={user}
+        profile={myProfile}
+        books={books}
+        setBooks={setBooks}
+      /> */}
     </main>
   )
 }
