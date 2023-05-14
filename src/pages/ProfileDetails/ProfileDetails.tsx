@@ -13,9 +13,7 @@ import BookCard from '../../components/books/BookCard/BookCard';
 // mui components
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-
-// stylesheets
-import styles from './ProfileDetails.module.css'
+import Box from '@mui/material/Box';
 
 // types
 import { Profile, Movie, Book } from '../../types/models'
@@ -30,6 +28,8 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
   const [movieIdx, setMovieIdx] = useState(0)
   const [movie, setMovie] = useState<Movie | null>(null)
   const [movies, setMovies] = useState<Movie[] | []>([])
+  const [bookIdx, setBookIdx] = useState(0)
+  const [book, setBook] = useState<Book | null>(null)
   const [books, setBooks] = useState<Book[] | []>([])
 
   useEffect(() => {
@@ -80,6 +80,19 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
     fetchBooks()
   }, [])
 
+  useEffect(() => {
+    const fetchBook = async (): Promise<void> => {
+      try {
+        const data = await profileService.getProfile(id)
+        setBook(data.books[bookIdx])
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchBook()
+  }, [bookIdx, books])
+
+
   if (!profile) return <Loading />
 
   return (
@@ -105,22 +118,33 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
       >
         {profile.name}
       </Typography>
-      <MovieCard
-        user={user}
-        profile={profile}
-        movieIdx={movieIdx}
-        setMovieIdx={setMovieIdx}
-        movies={movies}
-        movie={movie}
-        setMovie={setMovie}
-        setMovies={setMovies}
-      />
-      {/* <BookCard
-        user={user}
-        profile={profile}
-        books={books}
-        setBooks={setBooks}
-      /> */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+        }}
+      >
+        <MovieCard
+          user={user}
+          profile={profile}
+          movieIdx={movieIdx}
+          setMovieIdx={setMovieIdx}
+          movie={movie}
+          setMovie={setMovie}
+          movies={movies}
+          setMovies={setMovies}
+        />
+        <BookCard
+          user={user}
+          profile={profile}
+          bookIdx={bookIdx}
+          setBookIdx={setBookIdx}
+          book={book}
+          setBook={setBook}
+          books={books}
+          setBooks={setBooks}
+        />
+      </Box>
     </main>
   )
 }

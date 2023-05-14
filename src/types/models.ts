@@ -18,6 +18,7 @@ export interface Book {
   author: string;
   category: string;
   published: number;
+  photo: string;
   profileId: number;
   createdAt: string;
   updatedAt: string;

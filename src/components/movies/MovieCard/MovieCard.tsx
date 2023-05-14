@@ -56,7 +56,6 @@ const ExpandMoreAnimation = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-
 const MovieCard = (props: MovieCardProps): JSX.Element => {
   const {
     user,
@@ -71,7 +70,6 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
 
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
-
   const [formData, setFormData] = useState<MovieFormData>({
     name: '',
     director: '',
@@ -167,8 +165,8 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   async function handleDelete(): Promise<void> {
     await movieService.deleteMovie(movie!.id)
     setMovies(movies.filter(m => m.id !== movie!.id))
-    setMovie(movies[movieIdx])
     setMovieIdx(movies.length - 2)
+    setMovie(movies[movieIdx])
   }
 
   if (!movies) return <h2>Loading...</h2>
@@ -177,7 +175,8 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
     <Card sx={{
       width: 400,
       maxHeight: formDisplay || editFormDisplay ? '930px' : '600px',
-      transition: 'max-height 0.25s'
+      transition: 'max-height 0.25s',
+      mx: 2,
       }}
     >
       <CardMedia
