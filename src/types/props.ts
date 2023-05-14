@@ -93,5 +93,4 @@ export interface BookDetailsProps {
 export interface AuthFormProps {
   handleAuthEvt: () => void;
   updateMessage: (msg: string) => void;
-  setDisplayAlert: Dispatch<SetStateAction<boolean>>;
 }
