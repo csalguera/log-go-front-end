@@ -179,7 +179,8 @@ const BookCard = (props: BookCardProps): JSX.Element => {
     <Card sx={{
       width: 400,
       maxHeight: formDisplay || editFormDisplay ? '930px' : '600px',
-      transition: 'max-height 0.25s'
+      transition: 'max-height 0.25s',
+      mx: 2,
       }}
     >
       <CardMedia
