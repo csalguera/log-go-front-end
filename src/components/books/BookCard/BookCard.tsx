@@ -199,10 +199,10 @@ const BookCard = (props: BookCardProps): JSX.Element => {
           {book ? `${book.name}` : `${profile?.name}'s Books`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {book ? `Directed by: ${book.author}` : `${profile?.name} has not added any books.`}
+          {book ? `Author: ${book.author}` : `${profile?.name} has not added any books.`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {book ? `Released: ${book.published}` : 'Check again later.'}
+          {book ? `Published: ${book.published}` : 'Check again later.'}
         </Typography>
       </CardContent>
       <CardActions
