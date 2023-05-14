@@ -12,6 +12,7 @@ import BookCard from '../../components/books/BookCard/BookCard'
 // mui components
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box'
 
 // types
 import { Profile, Movie, Book } from '../../types/models'
@@ -114,26 +115,33 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
       >
         {myProfile.name}
       </Typography>
-      <MovieCard
-        user={user}
-        profile={myProfile}
-        movieIdx={movieIdx}
-        setMovieIdx={setMovieIdx}
-        movie={movie}
-        setMovie={setMovie}
-        movies={movies}
-        setMovies={setMovies}
-      />
-      <BookCard
-        user={user}
-        profile={myProfile}
-        bookIdx={bookIdx}
-        setBookIdx={setBookIdx}
-        book={book}
-        setBook={setBook}
-        books={books}
-        setBooks={setBooks}
-      />
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+        }}
+      >
+        <MovieCard
+          user={user}
+          profile={myProfile}
+          movieIdx={movieIdx}
+          setMovieIdx={setMovieIdx}
+          movie={movie}
+          setMovie={setMovie}
+          movies={movies}
+          setMovies={setMovies}
+        />
+        <BookCard
+          user={user}
+          profile={myProfile}
+          bookIdx={bookIdx}
+          setBookIdx={setBookIdx}
+          book={book}
+          setBook={setBook}
+          books={books}
+          setBooks={setBooks}
+        />
+      </Box>
     </main>
   )
 }
