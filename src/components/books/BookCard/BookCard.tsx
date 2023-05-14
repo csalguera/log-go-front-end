@@ -162,7 +162,7 @@ const BookCard = (props: BookCardProps): JSX.Element => {
     setBooks([...books!, newBook])
     setBookIdx(books.length)
     setBook(newBook)
-    handleCancelAdd
+    handleCancelAdd()
   }
 
   async function handleUpdate(evt: FormEvent<HTMLFormElement>) {

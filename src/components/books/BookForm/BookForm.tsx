@@ -1,51 +1,95 @@
-// styles
-import styles from '../../../pages/ProfileDetails/ProfileDetails.module.css'
+// mui components
+import TextField from "@mui/material/TextField"
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
+import Typography from "@mui/material/Typography"
 
 // types
 import { BookFormProps } from "../../../types/props"
 
-const BookForm = ({ formData, handleSubmit, handleChange }: BookFormProps): JSX.Element => {
+const BookForm = (props : BookFormProps): JSX.Element => {
+  const { formData, handleSubmit, handleChange, handleCancel, handleChangePhoto } = props
   const { name, author, published } = formData
 
   return (
-    <>
-      <h4>Enter Book Details:</h4>
-      <form
-      className={styles.form}
-        autoComplete='off'
-        onSubmit={handleSubmit}
+    <form
+      autoComplete='off'
+      onSubmit={handleSubmit}
+      style={{
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+    >
+      <TextField
+        name='name'
+        value={name}
+        label='Title'
+        variant='outlined'
+        onChange={handleChange}
+        focused
+        required
+        sx={{
+          mb: 2,
+        }}
+      />
+      <TextField
+        name='author'
+        value={author}
+        label='Author'
+        variant='outlined'
+        onChange={handleChange}
+        focused
+        required
+        sx={{
+          mb: 2,
+        }}
+      />
+      <TextField
+        name='published'
+        value={published}
+        label='Released'
+        variant='outlined'
+        onChange={handleChange}
+        focused
+        required
+        sx={{
+          mb: 2,
+        }}
+      />
+      <Box
+        sx={{ display: 'flex', alignItems: 'center' }}
       >
-        <div className={styles["inputs-container"]}>
-          <input
-            type="text"
-            name='name'
-            placeholder='Enter Title'
-            value={name}
-            onChange={handleChange}
-            required={true}
-          />
-          <input
-            type="text"
-            name='author'
-            placeholder='Enter Author'
-            value={author}
-            onChange={handleChange}
-            required={true}
-          />
-          <input
-            type="text"
-            name='published'
-            placeholder='Enter Publish Year'
-            value={published}
-            onChange={handleChange}
-            required={true}
-          />
-        </div>
-        <button>
-          Submit
-        </button>
-      </form>
-    </>
+        <Typography>
+          Upload Photo
+        </Typography>
+        <TextField
+          name='photo'
+          type='file'
+          onChange={handleChangePhoto}
+          sx={{
+            "& fieldset": { border: 'none' },
+            width: '240px'
+          }}
+        />
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}
+        >
+        <Button
+          type='submit'
+        >
+          Save
+        </Button>
+        <Button
+          onClick={handleCancel}
+        >
+          Cancel
+        </Button>
+      </Box>
+    </form>
   )
 }
 
