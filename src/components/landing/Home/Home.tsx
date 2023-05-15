@@ -15,6 +15,7 @@ import { Movie, Profile } from "../../../types/models"
 
 // props
 import { HomeProps } from "../../../types/props"
+import { Box } from "@mui/material"
 
 const Home = (props: HomeProps) => {
   const { user } = props
@@ -37,14 +38,32 @@ const Home = (props: HomeProps) => {
       <Typography
         variant="h3"
       >
-        This is the Home component
+        Welcome, {user?.name}
       </Typography>
-      {movies.map(movie => (
-        <HomeCard
-          key={movie.name}
-          resource={movie}
-        />
-      ))}
+      <Typography
+        variant="h4"
+        sx={{
+          mt: 4,
+        }}
+      >
+        {movies.length} Most Recent Movie Submissions
+      </Typography>
+      <Box
+        sx={{
+          mt: 1,
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {movies.map(movie => (
+          <HomeCard
+            key={movie.name}
+            resource={movie}
+          />
+        ))}
+      </Box>
     </>
   )
 }
