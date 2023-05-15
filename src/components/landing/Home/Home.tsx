@@ -29,9 +29,6 @@ const Home = (props: HomeProps) => {
     index()
   }, [])
 
-  console.log(resources!?.movies);
-  
-
   return (
     <>
       <Typography
@@ -39,6 +36,9 @@ const Home = (props: HomeProps) => {
       >
         This is the Home component
       </Typography>
+      {resources?.movies.map(movie => (
+        movie.name
+      ))}
     </>
   )
 }
