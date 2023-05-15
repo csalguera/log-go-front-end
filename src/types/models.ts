@@ -1,10 +1,5 @@
 /* ---------===== custom props ====--------- */
 
-export interface Resource {
-  movies: Movie[];
-  books: Book[];
-}
-
 export interface Movie {
   id: number;
   name: string;
@@ -13,6 +8,7 @@ export interface Movie {
   releaseDate: number;
   photo: string;
   profileId: number;
+  profile: Profile;
   createdAt: string;
   updatedAt: string;
 }
@@ -25,6 +21,7 @@ export interface Book {
   published: number;
   photo: string;
   profileId: number;
+  profile: Profile;
   createdAt: string;
   updatedAt: string;
 }

@@ -1,6 +1,9 @@
 // npm modules
 import { useState, useEffect } from "react"
 
+// components
+import HomeCard from "../HomeCard/HomeCard"
+
 // mui components
 import Typography from "@mui/material/Typography"
 
@@ -8,25 +11,25 @@ import Typography from "@mui/material/Typography"
 import * as indexService from "../../../services/indexService"
 
 // types
-import { Resource } from "../../../types/models"
+import { Movie, Profile } from "../../../types/models"
 
 // props
 import { HomeProps } from "../../../types/props"
 
 const Home = (props: HomeProps) => {
   const { user } = props
-  const [resources, setResources] = useState<Resource | null>(null)
+  const [movies, setMovies] = useState<Movie[] | []>([])
 
   useEffect(() => {
-    const fetchResources = async (): Promise<void> => {
+    const fetchMovies = async (): Promise<void> => {
       try {
         const data = await indexService.index()
-        setResources(data)
+        setMovies(data.movies)
       } catch (error) {
         console.log(error);
       }
     }
-    fetchResources()
+    fetchMovies()
   }, [])
 
   return (
@@ -36,8 +39,11 @@ const Home = (props: HomeProps) => {
       >
         This is the Home component
       </Typography>
-      {resources?.movies.map(movie => (
-        movie.name
+      {movies.map(movie => (
+        <HomeCard
+          key={movie.name}
+          movie={movie}
+        />
       ))}
     </>
   )

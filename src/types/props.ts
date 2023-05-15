@@ -19,6 +19,10 @@ export interface HomeProps {
   user: User | null;
 }
 
+export interface HomeCardProps {
+  movie: Movie | null;
+}
+
 // movies
 export interface MovieCardProps {
   user: User | null;
