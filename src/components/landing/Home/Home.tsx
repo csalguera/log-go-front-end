@@ -60,7 +60,7 @@ const Home = (props: HomeProps) => {
         {movies.map(movie => (
           <HomeCard
             key={movie.name}
-            resource={movie}
+            movie={movie}
           />
         ))}
       </Box>

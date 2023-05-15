@@ -20,7 +20,7 @@ export interface HomeProps {
 }
 
 export interface HomeCardProps {
-  resource: Movie | null;
+  movie: Movie | null;
 }
 
 // movies

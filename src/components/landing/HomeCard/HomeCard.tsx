@@ -13,7 +13,7 @@ import { HomeCardProps } from "../../../types/props"
 
 const HomeCard = (props: HomeCardProps) => {
   const {
-    resource,
+    movie,
   } = props
 
   return (
@@ -25,9 +25,9 @@ const HomeCard = (props: HomeCardProps) => {
     >
       <CardMedia
         component="img"
-        alt={resource?.name}
+        alt={movie?.name}
         height={300}
-        image={resource?.photo}
+        image={movie?.photo}
         sx={{
           objectFit: 'contain',
           py: 5,
@@ -36,19 +36,19 @@ const HomeCard = (props: HomeCardProps) => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {resource?.name}
+          {movie?.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Directed by: {resource?.director}
+          Directed by: {movie?.director}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Released: {resource?.releaseDate}
+          Released: {movie?.releaseDate}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Added by: <Link
-            href={`/profiles/${resource?.profile.id}`}
+            href={`/profiles/${movie?.profile.id}`}
           >
-            {resource?.profile.name}
+            {movie?.profile.name}
           </Link>
         </Typography>
       </CardContent>
