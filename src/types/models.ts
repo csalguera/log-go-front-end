@@ -1,5 +1,10 @@
 /* ---------===== custom props ====--------- */
 
+export interface Resource {
+  movies: Movie[];
+  books: Book[];
+}
+
 export interface Movie {
   id: number;
   name: string;
