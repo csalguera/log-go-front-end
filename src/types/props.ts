@@ -94,3 +94,9 @@ export interface AuthFormProps {
   handleAuthEvt: () => void;
   updateMessage: (msg: string) => void;
 }
+
+export interface LoginFormProps {
+  handleAuthEvt: () => void;
+  updateMessage: (msg: string) => void;
+  setDisplayAlert: Dispatch<SetStateAction<boolean>>;
+}
