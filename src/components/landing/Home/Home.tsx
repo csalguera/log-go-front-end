@@ -60,7 +60,7 @@ const Home = (props: HomeProps) => {
           mt: 4,
         }}
       >
-        {movies.length} Most Recent Movie Submissions
+        {movies.length >= 5 ? 5 : movies.length} Most Recent Movie Submissions
       </Typography>
       <Box
         sx={{
@@ -84,7 +84,7 @@ const Home = (props: HomeProps) => {
           mt: 4,
         }}
       >
-        {books.length} Most Recent Book Submissions
+        {books.length >= 5 ? 5 : books.length} Most Recent Book Submissions
       </Typography>
       <Box
         sx={{
