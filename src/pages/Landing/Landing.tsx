@@ -18,7 +18,9 @@ const Landing = (props: LandingProps): JSX.Element => {
     <main className='page-component-container'>
       {user
       ?
-        <Home />
+        <Home
+          user={user}
+        />
       :
         <Typography
           variant='h3'

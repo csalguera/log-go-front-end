@@ -1,7 +1,19 @@
-const Home = () => {
+// mui components
+import Typography from "@mui/material/Typography"
+
+// props
+import { HomeProps } from "../../../types/props"
+
+const Home = (props: HomeProps) => {
+  const { user } = props
+
   return (
     <>
-      <h1>This is the Home component</h1>
+      <Typography
+        variant="h3"
+      >
+        This is the Home component
+      </Typography>
     </>
   )
 }
