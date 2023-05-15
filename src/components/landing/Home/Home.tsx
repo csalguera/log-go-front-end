@@ -18,7 +18,7 @@ const Home = (props: HomeProps) => {
   const [resources, setResources] = useState<Resource | null>(null)
 
   useEffect(() => {
-    const index = async (): Promise<void> => {
+    const fetchResources = async (): Promise<void> => {
       try {
         const data = await indexService.index()
         setResources(data)
@@ -26,7 +26,7 @@ const Home = (props: HomeProps) => {
         console.log(error);
       }
     }
-    index()
+    fetchResources()
   }, [])
 
   return (
