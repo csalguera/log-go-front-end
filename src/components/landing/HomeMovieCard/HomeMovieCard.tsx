@@ -7,7 +7,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
 
-
 // props
 import { HomeMovieCardProps } from "../../../types/props"
 
