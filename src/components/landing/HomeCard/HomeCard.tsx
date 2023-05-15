@@ -3,12 +3,12 @@ import { HomeCardProps } from "../../../types/props"
 
 const HomeCard = (props: HomeCardProps) => {
   const {
-    movie,
+    resource,
   } = props
 
   return (
     <>
-      <h1>{movie!?.name}</h1>
+      <h1>{resource!?.name}</h1>
     </>
   )
 }

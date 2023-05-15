@@ -42,7 +42,7 @@ const Home = (props: HomeProps) => {
       {movies.map(movie => (
         <HomeCard
           key={movie.name}
-          movie={movie}
+          resource={movie}
         />
       ))}
     </>
