@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography"
 import * as indexService from "../../../services/indexService"
 
 // types
-import { Movie, Profile } from "../../../types/models"
+import { Movie, Book } from "../../../types/models"
 
 // props
 import { HomeProps } from "../../../types/props"
@@ -20,6 +20,7 @@ import { Box } from "@mui/material"
 const Home = (props: HomeProps) => {
   const { user } = props
   const [movies, setMovies] = useState<Movie[] | []>([])
+  const [books, setBooks] = useState<Book[] | []>([])
 
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {
@@ -31,6 +32,18 @@ const Home = (props: HomeProps) => {
       }
     }
     fetchMovies()
+  }, [])
+
+  useEffect(() => {
+    const fetchBooks = async (): Promise<void> => {
+      try {
+        const data = await indexService.index()
+        setBooks(data.books)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchBooks()
   }, [])
 
   return (
@@ -64,6 +77,14 @@ const Home = (props: HomeProps) => {
           />
         ))}
       </Box>
+      <Typography
+        variant="h4"
+        sx={{
+          mt: 4,
+        }}
+      >
+        {books.length} Most Recent Book Submissions
+      </Typography>
     </>
   )
 }
