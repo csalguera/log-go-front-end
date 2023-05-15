@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 
 // components
 import HomeMovieCard from "../HomeMovieCard/HomeMovieCard"
+import HomeBookCard from "./HomeBookCard/HomeBookCard"
 
 // mui components
 import Typography from "@mui/material/Typography"
@@ -85,6 +86,22 @@ const Home = (props: HomeProps) => {
       >
         {books.length} Most Recent Book Submissions
       </Typography>
+      <Box
+        sx={{
+          mt: 1,
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {books.map(book => (
+          <HomeBookCard
+            key={book.name}
+            book={book}
+          />
+        ))}
+      </Box>
     </>
   )
 }

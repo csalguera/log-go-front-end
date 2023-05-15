@@ -23,6 +23,10 @@ export interface HomeMovieCardProps {
   movie: Movie | null;
 }
 
+export interface HomeBookCardProps {
+  book: Book | null;
+}
+
 // movies
 export interface MovieCardProps {
   user: User | null;
