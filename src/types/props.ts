@@ -15,20 +15,16 @@ export interface ProfileDetailsProps {
   user: User | null;
 }
 
-export interface CUDBtnsProps {
+export interface HomeProps {
   user: User | null;
-  profile: Profile | null;
-  resource: Movie[] | Book[];
-  displayForm: () => void;
-  formDisplay: boolean;
-  editFormDisplay: boolean;
-  handleEdit: () => void;
-  handleDelete: () => void;
 }
 
-export interface NextPrevBtnsProps {
-  handleClick: (evt: React.MouseEvent) => void;
-  category: string;
+export interface HomeMovieCardProps {
+  movie: Movie | null;
+}
+
+export interface HomeBookCardProps {
+  book: Book | null;
 }
 
 // movies
@@ -91,6 +87,11 @@ export interface BookDetailsProps {
 /* ---------===== auth form props =====--------- */
 
 export interface AuthFormProps {
+  handleAuthEvt: () => void;
+  updateMessage: (msg: string) => void;
+}
+
+export interface LoginFormProps {
   handleAuthEvt: () => void;
   updateMessage: (msg: string) => void;
   setDisplayAlert: Dispatch<SetStateAction<boolean>>;

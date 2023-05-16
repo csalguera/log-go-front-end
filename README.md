@@ -26,6 +26,7 @@
 
 - TypeScript
 - Vite
+- Material UI
 - React
 - React Router
 - CSS
@@ -34,8 +35,8 @@
 
 - PostgreSQL
 - Sequelize
-- Express
 - Node
+- Express
 - JWT Auth
 - JavaScript
 

@@ -8,6 +8,7 @@ export interface Movie {
   releaseDate: number;
   photo: string;
   profileId: number;
+  profile: Profile;
   createdAt: string;
   updatedAt: string;
 }
@@ -20,6 +21,7 @@ export interface Book {
   published: number;
   photo: string;
   profileId: number;
+  profile: Profile;
   createdAt: string;
   updatedAt: string;
 }

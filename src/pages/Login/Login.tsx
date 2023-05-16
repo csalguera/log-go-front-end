@@ -10,9 +10,6 @@ import Stack from '@mui/material/Stack';
 import Zoom from '@mui/material/Zoom';
 import Alert from '@mui/material/Alert';
 
-// stylesheets
-import styles from './Login.module.css'
-
 // types
 interface LoginPageProps {
   handleAuthEvt: () => void;
@@ -30,11 +27,6 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
 
   return (
     <main className='page-component-container'>
-      {/* <main className={styles.container}>
-        <h1>Log In</h1>
-        <p>{message}</p>
-        <LoginForm {...props} updateMessage={updateMessage} />
-      </main> */}
       <Typography
         variant='h3'
         sx={{

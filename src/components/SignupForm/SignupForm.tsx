@@ -13,11 +13,11 @@ import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 
 // types
-import { AuthFormProps } from '../../types/props'
+import { LoginFormProps } from '../../types/props'
 import { SignupFormData, PhotoFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
-const SignupForm = (props: AuthFormProps): JSX.Element => {
+const SignupForm = (props: LoginFormProps): JSX.Element => {
   const {
     updateMessage,
     handleAuthEvt,

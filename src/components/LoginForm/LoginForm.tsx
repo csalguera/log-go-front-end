@@ -15,12 +15,17 @@ import Link from '@mui/material/Link'
 // import styles from './LoginForm.module.css'
 
 // types
-import { AuthFormProps } from '../../types/props'
+import { LoginFormProps } from '../../types/props'
 import { LoginFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
-const LoginForm = (props: AuthFormProps): JSX.Element => {
-  const {updateMessage, handleAuthEvt, setDisplayAlert} = props
+const LoginForm = (props: LoginFormProps): JSX.Element => {
+  const {
+    updateMessage,
+    handleAuthEvt,
+    setDisplayAlert,
+  } = props
+  
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState<LoginFormData>({
