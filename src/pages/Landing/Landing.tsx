@@ -1,3 +1,6 @@
+// components
+import Home from '../../components/landing/Home/Home';
+
 // mui components
 import Typography from '@mui/material/Typography';
 
@@ -15,11 +18,9 @@ const Landing = (props: LandingProps): JSX.Element => {
     <main className='page-component-container'>
       {user
       ?
-        <Typography
-          variant='h3'
-        >
-          Currently Under Construction
-        </Typography>
+        <Home
+          user={user}
+        />
       :
         <Typography
           variant='h3'
