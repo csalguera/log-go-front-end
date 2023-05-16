@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
+import Box from "@mui/material/Box";
 
 // props
 import { HomeBookCardProps } from "../../../../types/props"
@@ -22,17 +23,42 @@ const HomeBookCard = (props: HomeBookCardProps) => {
         m: 2,
       }}
     >
-      <CardMedia
-        component="img"
-        alt={book?.name}
-        height={300}
-        image={book?.photo}
-        sx={{
-          objectFit: 'contain',
-          py: 5,
-          background: 'rgba(0,0,0,0.9)'
-        }}
-      />
+      {book?.photo
+      ?
+        <CardMedia
+          component="img"
+          alt={book?.name}
+          height={300}
+          image={book?.photo}
+          sx={{
+            objectFit: 'contain',
+            py: 5,
+            backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
+          }}
+          />
+        :
+          <Box
+          height={300}
+          sx={{
+            py: 5,
+            backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
+            zIndex: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          >
+            <Typography
+              variant="h4"
+              color='white'
+              sx={{
+                textShadow: `4px 4px 4px grey`
+              }}
+            >
+              No Image
+            </Typography>
+          </Box>
+      }
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {book?.name}
