@@ -26,8 +26,8 @@ const Home = (props: HomeProps) => {
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {
       try {
-        const data = await indexService.index()
-        setMovies(data.movies)
+        const { movies } = await indexService.fetchData()
+        setMovies(movies)
       } catch (error) {
         console.log(error);
       }
@@ -38,14 +38,14 @@ const Home = (props: HomeProps) => {
   useEffect(() => {
     const fetchBooks = async (): Promise<void> => {
       try {
-        const data = await indexService.index()
-        setBooks(data.books)
+        const { books } = await indexService.fetchData()
+        setBooks(books)
       } catch (error) {
         console.log(error);
       }
     }
     fetchBooks()
-  }, [])
+  }, [])  
 
   return (
     <>
@@ -60,7 +60,7 @@ const Home = (props: HomeProps) => {
           mt: 4,
         }}
       >
-        {movies.length >= 5 ? 5 : movies.length} Most Recent Movie Submissions
+        {movies && movies.length >= 5 ? 5 : movies.length} Most Recent Movie Submissions
       </Typography>
       <Box
         sx={{
@@ -71,7 +71,7 @@ const Home = (props: HomeProps) => {
           alignItems: 'center',
         }}
       >
-        {movies.map(movie => (
+        {movies!?.map(movie => (
           <HomeMovieCard
             key={movie.id}
             movie={movie}
@@ -84,7 +84,7 @@ const Home = (props: HomeProps) => {
           mt: 4,
         }}
       >
-        {books.length >= 5 ? 5 : books.length} Most Recent Book Submissions
+        {books && books.length >= 5 ? 5 : books.length} Most Recent Book Submissions
       </Typography>
       <Box
         sx={{
@@ -95,7 +95,7 @@ const Home = (props: HomeProps) => {
           alignItems: 'center',
         }}
       >
-        {books.map(book => (
+        {books!?.map(book => (
           <HomeBookCard
             key={book.id}
             book={book}
