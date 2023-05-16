@@ -11,6 +11,7 @@ const NoImage = () => {
         backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
         zIndex: 1,
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
       }}
@@ -19,10 +20,21 @@ const NoImage = () => {
         variant="h4"
         color='white'
         sx={{
-          textShadow: `4px 4px 4px grey`
+          textShadow: `4px 4px 4px grey`,
+          py: 2,
         }}
       >
         No Image
+      </Typography>
+      <Typography
+        variant="h4"
+        color='white'
+        sx={{
+          textShadow: `4px 4px 4px grey`,
+          py: 2,
+        }}
+      >
+        Available
       </Typography>
     </Box>
   )
