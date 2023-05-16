@@ -29,7 +29,7 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { BookFormData, EditBookFormData, PhotoFormData } from '../../../types/forms';
 
 // props
-import { BookCardProps } from '../../../types/props';
+import { BookCardCUDProps } from '../../../types/props';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -57,7 +57,7 @@ const ExpandMoreAnimation = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-const BookCard = (props: BookCardProps): JSX.Element => {
+const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
   const {
     user,
     profile,
@@ -323,4 +323,4 @@ const BookCard = (props: BookCardProps): JSX.Element => {
   )
 }
 
-export default BookCard
+export default BookCardCUD

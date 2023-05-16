@@ -29,7 +29,7 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { MovieFormData, EditMovieFormData, PhotoFormData } from '../../../types/forms';
 
 // props
-import { MovieCardProps } from '../../../types/props';
+import { MovieCardCUDProps } from '../../../types/props';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -57,7 +57,7 @@ const ExpandMoreAnimation = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-const MovieCard = (props: MovieCardProps): JSX.Element => {
+const MovieCardCUD = (props: MovieCardCUDProps): JSX.Element => {
   const {
     user,
     profile,
@@ -319,4 +319,4 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
   )
 }
 
-export default MovieCard
+export default MovieCardCUD

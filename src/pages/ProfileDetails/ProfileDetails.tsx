@@ -7,8 +7,8 @@ import * as profileService from '../../services/profileService'
 
 // components
 import Loading from '../../components/Loading/Loading';
-import MovieCard from '../../components/movies/MovieCard/MovieCard';
-import BookCard from '../../components/books/BookCard/BookCard';
+import MovieCardCUD from '../../components/movies/MovieCardCUD/MovieCardCUD';
+import BookCardCUD from '../../components/books/BookCardCUD/BookCardCUD';
 
 // mui components
 import Avatar from '@mui/material/Avatar';
@@ -124,7 +124,7 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
           flexWrap: 'wrap',
         }}
       >
-        <MovieCard
+        <MovieCardCUD
           user={user}
           profile={profile}
           movieIdx={movieIdx}
@@ -134,7 +134,7 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
           movies={movies}
           setMovies={setMovies}
         />
-        <BookCard
+        <BookCardCUD
           user={user}
           profile={profile}
           bookIdx={bookIdx}

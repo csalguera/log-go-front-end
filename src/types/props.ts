@@ -28,7 +28,7 @@ export interface HomeBookCardProps {
 }
 
 // movies
-export interface MovieCardProps {
+export interface MovieCardCUDProps {
   user: User | null;
   profile: Profile | null;
   movieIdx: number;
@@ -56,7 +56,7 @@ export interface MovieDetailsProps {
 }
 
 // books
-export interface BookCardProps {
+export interface BookCardCUDProps {
   user: User | null;
   profile: Profile | null;
   bookIdx: number;
