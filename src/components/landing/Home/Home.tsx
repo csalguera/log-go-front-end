@@ -73,7 +73,7 @@ const Home = (props: HomeProps) => {
       >
         {movies.map(movie => (
           <HomeMovieCard
-            key={movie.name}
+            key={movie.id}
             movie={movie}
           />
         ))}
@@ -97,7 +97,7 @@ const Home = (props: HomeProps) => {
       >
         {books.map(book => (
           <HomeBookCard
-            key={book.name}
+            key={book.id}
             book={book}
           />
         ))}
