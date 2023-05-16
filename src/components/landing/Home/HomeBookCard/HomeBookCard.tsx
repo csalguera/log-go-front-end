@@ -1,3 +1,6 @@
+// components
+import NoImage from "../../../NoImage/NoImage";
+
 // mui components
 import Typography from "@mui/material/Typography"
 import Card from '@mui/material/Card';
@@ -37,27 +40,7 @@ const HomeBookCard = (props: HomeBookCardProps) => {
           }}
           />
         :
-          <Box
-          height={300}
-          sx={{
-            py: 5,
-            backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
-            zIndex: 1,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          >
-            <Typography
-              variant="h4"
-              color='white'
-              sx={{
-                textShadow: `4px 4px 4px grey`
-              }}
-            >
-              No Image
-            </Typography>
-          </Box>
+          <NoImage />
       }
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
