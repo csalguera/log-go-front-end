@@ -1,3 +1,6 @@
+// components
+import NoImage from "../../NoImage/NoImage";
+
 // mui components
 import Typography from "@mui/material/Typography"
 import Card from '@mui/material/Card';
@@ -22,17 +25,21 @@ const HomeMovieCard = (props: HomeMovieCardProps) => {
         m: 2,
       }}
     >
-      <CardMedia
-        component="img"
-        alt={movie?.name}
-        height={300}
-        image={movie?.photo}
-        sx={{
-          objectFit: 'contain',
-          py: 5,
-          background: 'rgba(0,0,0,0.9)'
-        }}
-      />
+      {movie?.photo ? (
+        <CardMedia
+          component="img"
+          alt={movie?.name}
+          height={300}
+          image={movie?.photo}
+          sx={{
+            objectFit: 'contain',
+            py: 5,
+            backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
+          }}
+        />
+      ) : (
+        <NoImage />
+      )}
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {movie?.name}

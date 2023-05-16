@@ -26,8 +26,7 @@ const HomeBookCard = (props: HomeBookCardProps) => {
         m: 2,
       }}
     >
-      {book?.photo
-      ?
+      {book?.photo ? (
         <CardMedia
           component="img"
           alt={book?.name}
@@ -38,10 +37,10 @@ const HomeBookCard = (props: HomeBookCardProps) => {
             py: 5,
             backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
           }}
-          />
-        :
-          <NoImage />
-      }
+        />
+      ) : (
+        <NoImage />
+      )}
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {book?.name}
