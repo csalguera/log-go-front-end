@@ -47,7 +47,7 @@ const BookForm = (props : BookFormProps): JSX.Element => {
       <TextField
         name='published'
         value={published}
-        label='Released'
+        label='Published'
         variant='outlined'
         onChange={handleChange}
         focused

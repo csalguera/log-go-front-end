@@ -183,11 +183,11 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
         component="img"
         alt=""
         height="300"
-        image={movie!?.photo ? movie.photo : "https://img.freepik.com/free-photo/solid-concrete-wall-textured-backdrop_53876-129493.jpg?w=360"}
+        image={movie?.photo}
         sx={{
           objectFit: 'contain',
           py: 5,
-          background: 'rgba(0,0,0,0.9)'
+          backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
         }}
       />
       <CardContent>
