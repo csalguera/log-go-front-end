@@ -6,6 +6,7 @@ import * as movieService from '../../../services/movieService'
 
 // components
 import MovieForm from '../MovieForm/MovieForm';
+import NoImage from '../../NoImage/NoImage';
 
 // mui components
 import Card from '@mui/material/Card';
@@ -179,17 +180,21 @@ const MovieCard = (props: MovieCardProps): JSX.Element => {
       mx: 2,
       }}
     >
-      <CardMedia
-        component="img"
-        alt=""
-        height="300"
-        image={movie?.photo}
-        sx={{
-          objectFit: 'contain',
-          py: 5,
-          backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
-        }}
-      />
+      {movie?.photo ? (
+        <CardMedia
+          component="img"
+          alt=""
+          height="300"
+          image={movie?.photo}
+          sx={{
+            objectFit: 'contain',
+            py: 5,
+            backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
+          }}
+        />
+      ) : (
+        <NoImage />
+      )}
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {movie ? `${movie.name}` : `${profile?.name}'s Movies`}

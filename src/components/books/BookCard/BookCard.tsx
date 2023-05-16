@@ -6,6 +6,7 @@ import * as bookService from '../../../services/bookService'
 
 // components
 import BookForm from '../BookForm/BookForm';
+import NoImage from '../../NoImage/NoImage';
 
 // mui components
 import Card from '@mui/material/Card';
@@ -183,17 +184,21 @@ const BookCard = (props: BookCardProps): JSX.Element => {
       mx: 2,
       }}
     >
-      <CardMedia
-        component="img"
-        alt=""
-        height="300"
-        image={book!?.photo ? book.photo : "https://img.freepik.com/free-photo/solid-concrete-wall-textured-backdrop_53876-129493.jpg?w=360"}
-        sx={{
-          objectFit: 'contain',
-          py: 5,
-          background: 'rgba(0,0,0,0.9)'
-        }}
-      />
+      {book?.photo ? (
+        <CardMedia
+          component="img"
+          alt=""
+          height="300"
+          image={book!?.photo}
+          sx={{
+            objectFit: 'contain',
+            py: 5,
+            backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
+          }}
+        />
+      ) : (
+        <NoImage />
+      )}
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {book ? `${book.name}` : `${profile?.name}'s Books`}

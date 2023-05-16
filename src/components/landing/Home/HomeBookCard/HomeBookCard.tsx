@@ -9,7 +9,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
-import Box from "@mui/material/Box";
 
 // props
 import { HomeBookCardProps } from "../../../../types/props"
