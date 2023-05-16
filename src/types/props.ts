@@ -19,11 +19,11 @@ export interface HomeProps {
   user: User | null;
 }
 
-export interface HomeMovieCardProps {
+export interface MovieCardRProps {
   movie: Movie | null;
 }
 
-export interface HomeBookCardProps {
+export interface BookCardRProps {
   book: Book | null;
 }
 

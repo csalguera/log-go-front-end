@@ -11,9 +11,9 @@ import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
 
 // props
-import { HomeMovieCardProps } from "../../../types/props"
+import { MovieCardRProps } from "../../../types/props"
 
-const HomeMovieCard = (props: HomeMovieCardProps) => {
+const MovieCardR = (props: MovieCardRProps) => {
   const {
     movie,
   } = props
@@ -66,4 +66,4 @@ const HomeMovieCard = (props: HomeMovieCardProps) => {
   )
 }
 
-export default HomeMovieCard
+export default MovieCardR

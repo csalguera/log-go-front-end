@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react"
 
 // components
-import HomeMovieCard from "../HomeMovieCard/HomeMovieCard"
-import HomeBookCard from "./HomeBookCard/HomeBookCard"
+import MovieCardR from "../../movies/MovieCardR/MovieCardR"
+import BookCardR from "../../books/BookCardR/BookCardR"
 
 // mui components
 import Typography from "@mui/material/Typography"
@@ -72,7 +72,7 @@ const Home = (props: HomeProps) => {
         }}
       >
         {movies!?.map(movie => (
-          <HomeMovieCard
+          <MovieCardR
             key={movie.id}
             movie={movie}
           />
@@ -96,7 +96,7 @@ const Home = (props: HomeProps) => {
         }}
       >
         {books!?.map(book => (
-          <HomeBookCard
+          <BookCardR
             key={book.id}
             book={book}
           />

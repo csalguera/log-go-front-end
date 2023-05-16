@@ -1,5 +1,5 @@
 // components
-import NoImage from "../../../NoImage/NoImage";
+import NoImage from "../../NoImage/NoImage";
 
 // mui components
 import Typography from "@mui/material/Typography"
@@ -11,9 +11,9 @@ import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
 
 // props
-import { HomeBookCardProps } from "../../../../types/props"
+import { BookCardRProps } from "../../../types/props"
 
-const HomeBookCard = (props: HomeBookCardProps) => {
+const BookCardR = (props: BookCardRProps) => {
   const {
     book,
   } = props
@@ -66,4 +66,4 @@ const HomeBookCard = (props: HomeBookCardProps) => {
   )
 }
 
-export default HomeBookCard
+export default BookCardR
