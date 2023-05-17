@@ -23,8 +23,8 @@ const Home = (props: HomeProps) => {
   const { user } = props
   const [movies, setMovies] = useState<Movie[] | []>([])
   const [books, setBooks] = useState<Book[] | []>([])
-  const [scrollLeft, setScrollLeft] = useState(-1)
-  const [scrollValue, setScrollValue] = useState(382)
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [scrollValue, setScrollValue] = useState(0)
 
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {
@@ -52,28 +52,28 @@ const Home = (props: HomeProps) => {
 
   useEffect(() => {
     const setScroll = () => {
-      setScrollLeft(-1)
-      setScrollValue(382)
+      setScrollPosition(0)
+      setScrollValue(0)
     }
     setScroll()
   }, [])
 
   function handleLClick(): void {
-    if (scrollLeft <= -1) {
-      setScrollLeft(books.length - 2)
-      setScrollValue((books.length - 2) *- 382)
+    if (scrollPosition <= 0) {
+      setScrollPosition(books.length - 3)
+      setScrollValue((books.length - 3) *- 382)
     } else {
-      setScrollLeft(scrollLeft - 1)
+      setScrollPosition(scrollPosition - 1)
       setScrollValue(scrollValue + 382)
     }
   }
 
   function handleRClick(): void {
-    if (scrollLeft >= books.length - 2) {
-      setScrollLeft(-1)
-      setScrollValue(382)
+    if (scrollPosition >= books.length - 3) {
+      setScrollPosition(0)
+      setScrollValue(0)
     } else {
-      setScrollLeft(scrollLeft + 1)
+      setScrollPosition(scrollPosition + 1)
       setScrollValue(scrollValue - 382)
     }
   }
@@ -121,27 +121,38 @@ const Home = (props: HomeProps) => {
         sx={{
           width: 1146,
           overflowX: 'hidden',
+          border: 'solid',
+          display: 'flex',
+          justifyContent: 'center',
         }}
       >
         <Box
           sx={{
-            mt: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 600,
-            transform: scrollLeft ? `translate(${scrollValue}px)` : '',
-            transition: 'ease-in-out 1s'
+            border: 'solid red',
+            width: 1164,
+            overflowX: 'hidden'
           }}
         >
-          {books!?.map(book => (
-            <BookCardR
-              key={book.id}
-              book={book}
-            />
-          ))}
+          <Box
+            sx={{
+              mt: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 600,
+              transform: scrollPosition ? `translate(${scrollValue}px)` : '',
+              transition: 'ease-in-out 1s',
+            }}
+          >
+            {books!?.map(book => (
+              <BookCardR
+                key={book.id}
+                book={book}
+              />
+            ))}
+          </Box>
         </Box>
       </Box>
       <Box>
