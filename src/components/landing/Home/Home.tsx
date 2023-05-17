@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 // components
 import MovieCardR from "../../movies/MovieCardR/MovieCardR"
 import BookCardR from "../../books/BookCardR/BookCardR"
+import MovieCarousel from "../MovieCarousel/MovieCarousel"
 import BookCarousel from "../BookCarousel/BookCarousel"
 
 // mui components
@@ -64,56 +65,9 @@ const Home = (props: HomeProps) => {
       >
         {movies && movies.length >= 5 ? 5 : movies.length} Most Recent Movie Submissions
       </Typography>
-      {/* <Box
-        sx={{
-          width: 1146,
-          overflowX: 'hidden',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <Box
-          sx={{
-            width: 1164,
-            overflowX: 'hidden'
-          }}
-        >
-          <Box
-            sx={{
-              mt: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: 600,
-              transform: bookscrollPosition ? `translate(${bookscrollValue}px)` : '',
-              transition: 'ease-in-out 1s',
-            }}
-          >
-            {movies!?.map(movie => (
-              <MovieCardR
-                key={movie.id}
-                movie={movie}
-              />
-            ))}
-          </Box>
-        </Box>
-      </Box>
-      <Box>
-        <Button
-          onClick={handleBookLClick}
-          disabled={books.length <= 3 || bookscrollPosition <= 0 ? true : false}
-          >
-          Left
-        </Button>
-        <Button
-          onClick={handleBookRClick}
-          disabled={books.length <= 3 || bookscrollPosition >= books.length - 3 ? true : false}
-        >
-          Right
-        </Button>
-      </Box> */}
+      <MovieCarousel
+        movies={movies}
+      />
       <Typography
         variant="h4"
         sx={{
