@@ -7,6 +7,8 @@ import BookCardR from "../../books/BookCardR/BookCardR"
 // mui components
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft"
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight"
 
 // props
 import { BookCarouselProps } from "../../../types/props"
@@ -91,13 +93,15 @@ const BookCarousel = (props: BookCarouselProps) => {
           onClick={handleBookLClick}
           disabled={books.length <= 3 || bookscrollPosition <= 0 ? true : false}
           >
-          Left
+          <KeyboardArrowLeft />
+          BACK
         </Button>
         <Button
           onClick={handleBookRClick}
           disabled={books.length <= 3 || bookscrollPosition >= books.length - 3 ? true : false}
         >
-          Right
+          NEXT
+          <KeyboardArrowRight />
         </Button>
       </Box>
     </>

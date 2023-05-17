@@ -7,6 +7,8 @@ import MovieCardR from "../../movies/MovieCardR/MovieCardR"
 // mui components
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft"
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight"
 
 // props
 import { MovieCarouselProps } from "../../../types/props"
@@ -91,13 +93,15 @@ const MovieCarousel = (props: MovieCarouselProps) => {
           onClick={handleMovieLClick}
           disabled={movies.length <= 3 || moviescrollPosition <= 0 ? true : false}
           >
-          Left
+          <KeyboardArrowLeft />
+          BACK
         </Button>
         <Button
           onClick={handleMovieRClick}
           disabled={movies.length <= 3 || moviescrollPosition >= movies.length - 3 ? true : false}
         >
-          Right
+          NEXT
+          <KeyboardArrowRight />
         </Button>
       </Box>
     </>
