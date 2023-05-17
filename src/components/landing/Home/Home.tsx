@@ -99,19 +99,53 @@ const Home = (props: HomeProps) => {
       </Typography>
       <Box
         sx={{
-          mt: 1,
+          width: 1146,
+          overflowX: 'hidden',
           display: 'flex',
-          flexWrap: 'wrap',
           justifyContent: 'center',
-          alignItems: 'center',
         }}
       >
-        {movies!?.map(movie => (
-          <MovieCardR
-            key={movie.id}
-            movie={movie}
-          />
-        ))}
+        <Box
+          sx={{
+            width: 1164,
+            overflowX: 'hidden'
+          }}
+        >
+          <Box
+            sx={{
+              mt: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 600,
+              transform: bookscrollPosition ? `translate(${bookscrollValue}px)` : '',
+              transition: 'ease-in-out 1s',
+            }}
+          >
+            {movies!?.map(movie => (
+              <MovieCardR
+                key={movie.id}
+                movie={movie}
+              />
+            ))}
+          </Box>
+        </Box>
+      </Box>
+      <Box>
+        <Button
+          onClick={handleBookLClick}
+          disabled={books.length <= 3 || bookscrollPosition <= 0 ? true : false}
+          >
+          Left
+        </Button>
+        <Button
+          onClick={handleBookRClick}
+          disabled={books.length <= 3 || bookscrollPosition >= books.length - 3 ? true : false}
+        >
+          Right
+        </Button>
       </Box>
       <Typography
         variant="h4"
