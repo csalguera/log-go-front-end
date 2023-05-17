@@ -12,9 +12,7 @@ import Button from "@mui/material/Button"
 import { Book } from "../../../types/models"
 
 // props
-interface BookCarouselProps {
-  books: Book[];
-}
+import { BookCarouselProps } from "../../../types/props"
 
 const BookCarousel = (props: BookCarouselProps) => {
   const { books } = props

@@ -55,6 +55,10 @@ export interface MovieDetailsProps {
   index: number;
 }
 
+export interface MovieCarouselProps {
+  movies: Movie[];
+}
+
 // books
 export interface BookCardCUDProps {
   user: User | null;
@@ -83,6 +87,9 @@ export interface BookDetailsProps {
   index: number;
 }
 
+export interface BookCarouselProps {
+  books: Book[];
+}
 
 /* ---------===== auth form props =====--------- */
 

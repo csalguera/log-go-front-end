@@ -12,9 +12,7 @@ import Button from "@mui/material/Button"
 import { Movie } from "../../../types/models"
 
 // props
-interface MovieCarouselProps {
-  movies: Movie[];
-}
+import { MovieCarouselProps } from "../../../types/props"
 
 const MovieCarousel = (props: MovieCarouselProps) => {
   const { movies } = props
