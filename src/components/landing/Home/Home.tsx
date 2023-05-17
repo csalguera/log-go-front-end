@@ -61,7 +61,7 @@ const Home = (props: HomeProps) => {
   function handleLClick(): void {
     if (scrollLeft <= -1) {
       setScrollLeft(books.length - 2)
-      setScrollValue(books.length - 2 *- 382)
+      setScrollValue((books.length - 2) *- 382)
     } else {
       setScrollLeft(scrollLeft - 1)
       setScrollValue(scrollValue + 382)
@@ -77,9 +77,6 @@ const Home = (props: HomeProps) => {
       setScrollValue(scrollValue - 382)
     }
   }
-
-  console.log(scrollLeft);
-  
 
   return (
     <>
