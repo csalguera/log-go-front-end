@@ -23,8 +23,8 @@ const Home = (props: HomeProps) => {
   const { user } = props
   const [movies, setMovies] = useState<Movie[] | []>([])
   const [books, setBooks] = useState<Book[] | []>([])
-  const [scrollLeft, setScrollLeft] = useState(0)
-  const [scrollValue, setScrollValue] = useState(0)
+  const [scrollLeft, setScrollLeft] = useState(-1)
+  const [scrollValue, setScrollValue] = useState(382)
 
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {
