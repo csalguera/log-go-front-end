@@ -121,14 +121,12 @@ const Home = (props: HomeProps) => {
         sx={{
           width: 1146,
           overflowX: 'hidden',
-          border: 'solid',
           display: 'flex',
           justifyContent: 'center',
         }}
       >
         <Box
           sx={{
-            border: 'solid red',
             width: 1164,
             overflowX: 'hidden'
           }}
@@ -158,11 +156,13 @@ const Home = (props: HomeProps) => {
       <Box>
         <Button
           onClick={handleLClick}
-        >
+          disabled={books.length <= 3 || scrollPosition <= 0 ? true : false}
+          >
           Left
         </Button>
         <Button
           onClick={handleRClick}
+          disabled={books.length <= 3 || scrollPosition >= books.length - 3 ? true : false}
         >
           Right
         </Button>
