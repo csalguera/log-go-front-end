@@ -179,7 +179,7 @@ const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
   return (
     <Card sx={{
       width: 400,
-      maxHeight: formDisplay || editFormDisplay ? '930px' : '600px',
+      maxHeight: formDisplay || editFormDisplay ? '975px' : '650px',
       transition: 'max-height 0.25s',
       mx: 2,
       }}
@@ -200,7 +200,16 @@ const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
         <NoImage />
       )}
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{
+            height: 70,
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           {book ? `${book.name}` : `${profile?.name}'s Books`}
         </Typography>
         <Typography variant="body2" color="text.secondary">

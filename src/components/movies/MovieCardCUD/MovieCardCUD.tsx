@@ -175,7 +175,7 @@ const MovieCardCUD = (props: MovieCardCUDProps): JSX.Element => {
   return (
     <Card sx={{
       width: 400,
-      maxHeight: formDisplay || editFormDisplay ? '930px' : '600px',
+      maxHeight: formDisplay || editFormDisplay ? '975px' : '650px',
       transition: 'max-height 0.25s',
       mx: 2,
       }}
@@ -196,7 +196,16 @@ const MovieCardCUD = (props: MovieCardCUDProps): JSX.Element => {
         <NoImage />
       )}
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{
+            height: 70,
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           {movie ? `${movie.name}` : `${profile?.name}'s Movies`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
