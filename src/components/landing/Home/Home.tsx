@@ -58,6 +58,10 @@ const Home = (props: HomeProps) => {
     setScroll()
   }, [])
 
+  setTimeout(() => {
+    if (books.length > 3) handleRClick()
+  }, 3000);
+
   function handleLClick(): void {
     if (scrollPosition <= 0) {
       setScrollPosition(books.length - 3)
