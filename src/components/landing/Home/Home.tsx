@@ -7,6 +7,8 @@ import BookCardR from "../../books/BookCardR/BookCardR"
 
 // mui components
 import Typography from "@mui/material/Typography"
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
 
 // services
 import * as indexService from "../../../services/indexService"
@@ -16,12 +18,13 @@ import { Movie, Book } from "../../../types/models"
 
 // props
 import { HomeProps } from "../../../types/props"
-import { Box } from "@mui/material"
 
 const Home = (props: HomeProps) => {
   const { user } = props
   const [movies, setMovies] = useState<Movie[] | []>([])
   const [books, setBooks] = useState<Book[] | []>([])
+  const [scrollLeft, setScrollLeft] = useState(0)
+  const [scrollValue, setScrollValue] = useState(0)
 
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {
@@ -45,7 +48,25 @@ const Home = (props: HomeProps) => {
       }
     }
     fetchBooks()
-  }, [])  
+  }, [])
+
+  useEffect(() => {
+    const setScroll = () => {
+      setScrollLeft(-1)
+      setScrollValue(382)
+    }
+    setScroll()
+  }, [])
+
+  function handleLClick(): void {
+    setScrollLeft(scrollLeft - 1)
+    setScrollValue(scrollValue + 382)
+  }
+
+  function handleRClick(): void {
+    setScrollLeft(scrollLeft + 1)
+    setScrollValue(scrollValue - 382)
+  }
 
   return (
     <>
@@ -88,19 +109,41 @@ const Home = (props: HomeProps) => {
       </Typography>
       <Box
         sx={{
-          mt: 1,
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignItems: 'center',
+          width: 1146,
+          overflowX: 'hidden',
         }}
       >
-        {books!?.map(book => (
-          <BookCardR
-            key={book.id}
-            book={book}
-          />
-        ))}
+        <Box
+          sx={{
+            mt: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 600,
+            transform: scrollLeft ? `translate(${scrollValue}px)` : ''
+          }}
+        >
+          {books!?.map(book => (
+            <BookCardR
+              key={book.id}
+              book={book}
+            />
+          ))}
+        </Box>
+      </Box>
+      <Box>
+        <Button
+          onClick={handleLClick}
+        >
+          Left
+        </Button>
+        <Button
+          onClick={handleRClick}
+        >
+          Right
+        </Button>
       </Box>
     </>
   )
