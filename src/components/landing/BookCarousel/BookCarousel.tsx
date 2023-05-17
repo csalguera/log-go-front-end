@@ -8,9 +8,6 @@ import BookCardR from "../../books/BookCardR/BookCardR"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 
-// types
-import { Book } from "../../../types/models"
-
 // props
 import { BookCarouselProps } from "../../../types/props"
 

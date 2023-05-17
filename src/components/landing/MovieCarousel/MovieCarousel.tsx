@@ -8,9 +8,6 @@ import MovieCardR from "../../movies/MovieCardR/MovieCardR"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 
-// types
-import { Movie } from "../../../types/models"
-
 // props
 import { MovieCarouselProps } from "../../../types/props"
 

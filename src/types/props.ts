@@ -19,14 +19,6 @@ export interface HomeProps {
   user: User | null;
 }
 
-export interface MovieCardRProps {
-  movie: Movie | null;
-}
-
-export interface BookCardRProps {
-  book: Book | null;
-}
-
 // movies
 export interface MovieCardCUDProps {
   user: User | null;
@@ -53,6 +45,10 @@ export interface MovieDetailsProps {
   movie: Movie;
   movies: Movie[];
   index: number;
+}
+
+export interface MovieCardRProps {
+  movie: Movie | null;
 }
 
 export interface MovieCarouselProps {
@@ -85,6 +81,10 @@ export interface BookDetailsProps {
   book: Book;
   books: Book[];
   index: number;
+}
+
+export interface BookCardRProps {
+  book: Book | null;
 }
 
 export interface BookCarouselProps {
