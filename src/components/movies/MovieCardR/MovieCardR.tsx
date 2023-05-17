@@ -22,7 +22,7 @@ const MovieCardR = (props: MovieCardRProps) => {
     <Card
       sx={{
         width: 350,
-        m: 2,
+        mx: 2,
       }}
     >
       {movie?.photo ? (
@@ -41,7 +41,16 @@ const MovieCardR = (props: MovieCardRProps) => {
         <NoImage />
       )}
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{
+            height: 60,
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           {movie?.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
