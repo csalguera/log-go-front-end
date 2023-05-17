@@ -132,7 +132,8 @@ const Home = (props: HomeProps) => {
             justifyContent: 'center',
             alignItems: 'center',
             height: 600,
-            transform: scrollLeft ? `translate(${scrollValue}px)` : ''
+            transform: scrollLeft ? `translate(${scrollValue}px)` : '',
+            transition: 'ease-in-out 1s'
           }}
         >
           {books!?.map(book => (
