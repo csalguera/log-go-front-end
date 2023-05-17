@@ -59,14 +59,27 @@ const Home = (props: HomeProps) => {
   }, [])
 
   function handleLClick(): void {
-    setScrollLeft(scrollLeft - 1)
-    setScrollValue(scrollValue + 382)
+    if (scrollLeft <= -1) {
+      setScrollLeft(books.length - 2)
+      setScrollValue(books.length - 2 *- 382)
+    } else {
+      setScrollLeft(scrollLeft - 1)
+      setScrollValue(scrollValue + 382)
+    }
   }
 
   function handleRClick(): void {
-    setScrollLeft(scrollLeft + 1)
-    setScrollValue(scrollValue - 382)
+    if (scrollLeft >= books.length - 2) {
+      setScrollLeft(-1)
+      setScrollValue(382)
+    } else {
+      setScrollLeft(scrollLeft + 1)
+      setScrollValue(scrollValue - 382)
+    }
   }
+
+  console.log(scrollLeft);
+  
 
   return (
     <>
