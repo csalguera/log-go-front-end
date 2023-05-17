@@ -23,8 +23,8 @@ const Home = (props: HomeProps) => {
   const { user } = props
   const [movies, setMovies] = useState<Movie[] | []>([])
   const [books, setBooks] = useState<Book[] | []>([])
-  const [scrollPosition, setScrollPosition] = useState(0)
-  const [scrollValue, setScrollValue] = useState(0)
+  const [bookscrollPosition, setBookScrollPosition] = useState(0)
+  const [bookscrollValue, setBookScrollValue] = useState(0)
 
   useEffect(() => {
     const fetchMovies = async (): Promise<void> => {
@@ -52,33 +52,33 @@ const Home = (props: HomeProps) => {
 
   useEffect(() => {
     const setScroll = () => {
-      setScrollPosition(0)
-      setScrollValue(0)
+      setBookScrollPosition(0)
+      setBookScrollValue(0)
     }
     setScroll()
   }, [])
 
   setTimeout(() => {
-    if (books.length > 3) handleRClick()
+    if (books.length > 3) handleBookRClick()
   }, 3000);
 
-  function handleLClick(): void {
-    if (scrollPosition <= 0) {
-      setScrollPosition(books.length - 3)
-      setScrollValue((books.length - 3) *- 382)
+  function handleBookLClick(): void {
+    if (bookscrollPosition <= 0) {
+      setBookScrollPosition(books.length - 3)
+      setBookScrollValue((books.length - 3) *- 382)
     } else {
-      setScrollPosition(scrollPosition - 1)
-      setScrollValue(scrollValue + 382)
+      setBookScrollPosition(bookscrollPosition - 1)
+      setBookScrollValue(bookscrollValue + 382)
     }
   }
 
-  function handleRClick(): void {
-    if (scrollPosition >= books.length - 3) {
-      setScrollPosition(0)
-      setScrollValue(0)
+  function handleBookRClick(): void {
+    if (bookscrollPosition >= books.length - 3) {
+      setBookScrollPosition(0)
+      setBookScrollValue(0)
     } else {
-      setScrollPosition(scrollPosition + 1)
-      setScrollValue(scrollValue - 382)
+      setBookScrollPosition(bookscrollPosition + 1)
+      setBookScrollValue(bookscrollValue - 382)
     }
   }
 
@@ -144,7 +144,7 @@ const Home = (props: HomeProps) => {
               justifyContent: 'center',
               alignItems: 'center',
               height: 600,
-              transform: scrollPosition ? `translate(${scrollValue}px)` : '',
+              transform: bookscrollPosition ? `translate(${bookscrollValue}px)` : '',
               transition: 'ease-in-out 1s',
             }}
           >
@@ -159,14 +159,14 @@ const Home = (props: HomeProps) => {
       </Box>
       <Box>
         <Button
-          onClick={handleLClick}
-          disabled={books.length <= 3 || scrollPosition <= 0 ? true : false}
+          onClick={handleBookLClick}
+          disabled={books.length <= 3 || bookscrollPosition <= 0 ? true : false}
           >
           Left
         </Button>
         <Button
-          onClick={handleRClick}
-          disabled={books.length <= 3 || scrollPosition >= books.length - 3 ? true : false}
+          onClick={handleBookRClick}
+          disabled={books.length <= 3 || bookscrollPosition >= books.length - 3 ? true : false}
         >
           Right
         </Button>
