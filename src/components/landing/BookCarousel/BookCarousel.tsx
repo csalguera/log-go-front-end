@@ -9,6 +9,7 @@ import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft"
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight"
+import MobileStepper from "@mui/material/MobileStepper"
 
 // props
 import { BookCarouselProps } from "../../../types/props"
@@ -88,21 +89,34 @@ const BookCarousel = (props: BookCarouselProps) => {
           </Box>
         </Box>
       </Box>
-      <Box>
-        <Button
-          onClick={handleBookLClick}
-          disabled={books.length <= 3 || bookscrollPosition <= 0 ? true : false}
+      <Box
+        sx={{
+          width: 1146,
+        }}
+      >
+        <MobileStepper
+          steps={books.length ? books.length - 2 : 0}
+          position="static"
+          activeStep={bookscrollPosition}
+          backButton={
+            <Button
+            onClick={handleBookLClick}
+            disabled={books.length <= 3 || bookscrollPosition <= 0 ? true : false}
+            >
+            <KeyboardArrowLeft />
+            BACK
+          </Button>
+          }
+          nextButton={
+            <Button
+            onClick={handleBookRClick}
+            disabled={books.length <= 3 || bookscrollPosition >= books.length - 3 ? true : false}
           >
-          <KeyboardArrowLeft />
-          BACK
-        </Button>
-        <Button
-          onClick={handleBookRClick}
-          disabled={books.length <= 3 || bookscrollPosition >= books.length - 3 ? true : false}
-        >
-          NEXT
-          <KeyboardArrowRight />
-        </Button>
+            NEXT
+            <KeyboardArrowRight />
+          </Button>
+          }
+        />
       </Box>
     </>
   )

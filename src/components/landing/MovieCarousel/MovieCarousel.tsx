@@ -9,6 +9,7 @@ import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft"
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight"
+import MobileStepper from "@mui/material/MobileStepper"
 
 // props
 import { MovieCarouselProps } from "../../../types/props"
@@ -88,21 +89,34 @@ const MovieCarousel = (props: MovieCarouselProps) => {
           </Box>
         </Box>
       </Box>
-      <Box>
-        <Button
-          onClick={handleMovieLClick}
-          disabled={movies.length <= 3 || moviescrollPosition <= 0 ? true : false}
+      <Box
+        sx={{
+          width: 1146,
+        }}
+      >
+        <MobileStepper
+          steps={movies.length ? movies.length - 2 : 0}
+          position="static"
+          activeStep={moviescrollPosition}
+          backButton={
+            <Button
+            onClick={handleMovieLClick}
+            disabled={movies.length <= 3 || moviescrollPosition <= 0 ? true : false}
+            >
+            <KeyboardArrowLeft />
+            BACK
+          </Button>
+          }
+          nextButton={
+            <Button
+            onClick={handleMovieRClick}
+            disabled={movies.length <= 3 || moviescrollPosition >= movies.length - 3 ? true : false}
           >
-          <KeyboardArrowLeft />
-          BACK
-        </Button>
-        <Button
-          onClick={handleMovieRClick}
-          disabled={movies.length <= 3 || moviescrollPosition >= movies.length - 3 ? true : false}
-        >
-          NEXT
-          <KeyboardArrowRight />
-        </Button>
+            NEXT
+            <KeyboardArrowRight />
+          </Button>
+          }
+        />
       </Box>
     </>
   )
