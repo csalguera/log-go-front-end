@@ -89,35 +89,39 @@ const BookCarousel = (props: BookCarouselProps) => {
           </Box>
         </Box>
       </Box>
-      <Box
-        sx={{
-          width: 1146,
-        }}
-      >
-        <MobileStepper
-          steps={books.length ? books.length - 2 : 0}
-          position="static"
-          activeStep={bookscrollPosition}
-          backButton={
-            <Button
-            onClick={handleBookLClick}
-            disabled={books.length <= 3 || bookscrollPosition <= 0 ? true : false}
+      {books.length ? (
+        <Box
+          sx={{
+            width: 1146,
+          }}
+        >
+          <MobileStepper
+            steps={books.length ? books.length - 2 : 0}
+            position="static"
+            activeStep={bookscrollPosition}
+            backButton={
+              <Button
+              onClick={handleBookLClick}
+              disabled={books.length <= 3 || bookscrollPosition <= 0 ? true : false}
+              >
+              <KeyboardArrowLeft />
+              BACK
+            </Button>
+            }
+            nextButton={
+              <Button
+              onClick={handleBookRClick}
+              disabled={books.length <= 3 || bookscrollPosition >= books.length - 3 ? true : false}
             >
-            <KeyboardArrowLeft />
-            BACK
-          </Button>
-          }
-          nextButton={
-            <Button
-            onClick={handleBookRClick}
-            disabled={books.length <= 3 || bookscrollPosition >= books.length - 3 ? true : false}
-          >
-            NEXT
-            <KeyboardArrowRight />
-          </Button>
-          }
-        />
-      </Box>
+              NEXT
+              <KeyboardArrowRight />
+            </Button>
+            }
+          />
+        </Box>
+      ) : (
+        ''
+      )}
     </>
   )
 }

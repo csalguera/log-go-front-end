@@ -89,35 +89,39 @@ const MovieCarousel = (props: MovieCarouselProps) => {
           </Box>
         </Box>
       </Box>
-      <Box
-        sx={{
-          width: 1146,
-        }}
-      >
-        <MobileStepper
-          steps={movies.length ? movies.length - 2 : 0}
-          position="static"
-          activeStep={moviescrollPosition}
-          backButton={
-            <Button
-            onClick={handleMovieLClick}
-            disabled={movies.length <= 3 || moviescrollPosition <= 0 ? true : false}
+      {movies.length ? (
+        <Box
+          sx={{
+            width: 1146,
+          }}
+        >
+          <MobileStepper
+            steps={movies.length ? movies.length - 2 : 0}
+            position="static"
+            activeStep={moviescrollPosition}
+            backButton={
+              <Button
+              onClick={handleMovieLClick}
+              disabled={movies.length <= 3 || moviescrollPosition <= 0 ? true : false}
+              >
+              <KeyboardArrowLeft />
+              BACK
+            </Button>
+            }
+            nextButton={
+              <Button
+              onClick={handleMovieRClick}
+              disabled={movies.length <= 3 || moviescrollPosition >= movies.length - 3 ? true : false}
             >
-            <KeyboardArrowLeft />
-            BACK
-          </Button>
-          }
-          nextButton={
-            <Button
-            onClick={handleMovieRClick}
-            disabled={movies.length <= 3 || moviescrollPosition >= movies.length - 3 ? true : false}
-          >
-            NEXT
-            <KeyboardArrowRight />
-          </Button>
-          }
-        />
-      </Box>
+              NEXT
+              <KeyboardArrowRight />
+            </Button>
+            }
+          />
+        </Box>
+      ) : (
+        ''
+      )}
     </>
   )
 }
