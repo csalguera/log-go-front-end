@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react"
 
 // components
-import MovieCardR from "../../movies/MovieCardR/MovieCardR"
-import BookCardR from "../../books/BookCardR/BookCardR"
+import MovieCarousel from "../MovieCarousel/MovieCarousel"
+import BookCarousel from "../BookCarousel/BookCarousel"
 
 // mui components
 import Typography from "@mui/material/Typography"
@@ -16,7 +16,6 @@ import { Movie, Book } from "../../../types/models"
 
 // props
 import { HomeProps } from "../../../types/props"
-import { Box } from "@mui/material"
 
 const Home = (props: HomeProps) => {
   const { user } = props
@@ -45,7 +44,7 @@ const Home = (props: HomeProps) => {
       }
     }
     fetchBooks()
-  }, [])  
+  }, [])
 
   return (
     <>
@@ -62,22 +61,9 @@ const Home = (props: HomeProps) => {
       >
         {movies && movies.length >= 5 ? 5 : movies.length} Most Recent Movie Submissions
       </Typography>
-      <Box
-        sx={{
-          mt: 1,
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        {movies!?.map(movie => (
-          <MovieCardR
-            key={movie.id}
-            movie={movie}
-          />
-        ))}
-      </Box>
+      <MovieCarousel
+        movies={movies}
+      />
       <Typography
         variant="h4"
         sx={{
@@ -86,22 +72,9 @@ const Home = (props: HomeProps) => {
       >
         {books && books.length >= 5 ? 5 : books.length} Most Recent Book Submissions
       </Typography>
-      <Box
-        sx={{
-          mt: 1,
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        {books!?.map(book => (
-          <BookCardR
-            key={book.id}
-            book={book}
-          />
-        ))}
-      </Box>
+      <BookCarousel
+        books={books}
+      />
     </>
   )
 }

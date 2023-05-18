@@ -22,7 +22,7 @@ const BookCardR = (props: BookCardRProps) => {
     <Card
       sx={{
         width: 350,
-        m: 2,
+        mx: 2,
       }}
     >
       {book?.photo ? (
@@ -41,7 +41,16 @@ const BookCardR = (props: BookCardRProps) => {
         <NoImage />
       )}
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{
+            height: 60,
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           {book?.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
