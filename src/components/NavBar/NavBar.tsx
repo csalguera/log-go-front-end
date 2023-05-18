@@ -26,7 +26,7 @@ interface NavBarProps {
 }
 
 const pages = ['profiles']
-const settings = ['profile'];
+const settings = ['profile', 'settings'];
 
 const NavBar = (props: NavBarProps): JSX.Element => {
   const { user, handleLogout } = props
@@ -191,7 +191,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       onClick={handleCloseUserMenu}
                     >
                       <Link
-                        href={setting === 'profile' ? '/profiles/my-profile' : setting}
+                        href={setting === 'profile' ? '/profiles/my-profile' : `/${setting}`}
                         underline='none'
                       >
                         <Typography
