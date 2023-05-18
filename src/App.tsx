@@ -135,7 +135,7 @@ function App(): JSX.Element {
             }
           />
           <Route
-            path='/account-settings'
+            path='/settings'
             element={
               <ProtectedRoute user={user}>
                 <AccountSettings />
