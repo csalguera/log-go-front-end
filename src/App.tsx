@@ -8,8 +8,9 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import MyProfile from './pages/MyProfile/MyProfile'
-import ChangePassword from './pages/ChangePassword/ChangePassword'
 import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
+import ChangePassword from './pages/ChangePassword/ChangePassword'
+import AccountSettings from './pages/AccountSettings/AccountSettings'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -130,6 +131,14 @@ function App(): JSX.Element {
             element={
               <ProtectedRoute user={user}>
                 <ChangePassword handleAuthEvt={handleAuthEvt} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/account-settings'
+            element={
+              <ProtectedRoute user={user}>
+                <AccountSettings />
               </ProtectedRoute>
             }
           />
