@@ -43,6 +43,7 @@ export interface User {
   email: string;
   profile: { id: number, photo: string };
   id: number;
+  favColor: string;
   createdAt: string;
   updatedAt: string;
 }

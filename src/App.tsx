@@ -1,5 +1,5 @@
 // npm modules 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // page components
@@ -18,7 +18,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // mui components
 import { createTheme, ThemeProvider } from '@mui/material'
-import { blue, grey } from '@mui/material/colors'
+import { grey } from '@mui/material/colors'
 
 // services
 import * as authService from './services/authService'
@@ -32,26 +32,12 @@ import '@fontsource/roboto'
 // types
 import { User } from './types/models'
 
-const lightTheme = createTheme({
-  palette: {
-    primary: {
-      main: blue[500],
-    },
-    background: {
-      default: grey[200],
-      paper: grey[300],
-    },
-    text: {
-      primary: grey[900],
-    },
-  }
-})
-
 function App(): JSX.Element {
   const navigate = useNavigate()
   
   const [user, setUser] = useState<User | null>(authService.getUser())
   const [displayAlert, setDisplayAlert] = useState(false)
+  const [favColor, setFavColor] = useState('#1a76d2')
 
   const handleLogout = (): void => {
     authService.logout()
@@ -66,6 +52,26 @@ function App(): JSX.Element {
   const handleClose = () => {
     setDisplayAlert(false)
   }
+
+  useEffect(() => {
+    // setFavColor(user!?.favColor)
+    setFavColor('#1a76d2')
+  }, [])
+
+  const lightTheme = createTheme({
+    palette: {
+      primary: {
+        main: favColor,
+      },
+      background: {
+        default: grey[200],
+        paper: grey[300],
+      },
+      text: {
+        primary: grey[900],
+      },
+    }
+  })
 
   return (
     <>
