@@ -8,6 +8,7 @@ import Button from "@mui/material/Button"
 
 // services
 import * as authService from '../../services/authService'
+import * as profileService from '../../services/profileService'
 
 const AccountSettings = () => {
   const [nameFormData, setNameFormData] = useState({ name: '' })
@@ -19,6 +20,7 @@ const AccountSettings = () => {
   const handleNameSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault()
     await authService.changeUsername(nameFormData)
+    await profileService.changeUsername(nameFormData)
   }
 
   const { name } = nameFormData

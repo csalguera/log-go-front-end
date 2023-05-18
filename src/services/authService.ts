@@ -103,6 +103,7 @@ async function changeUsername(formData: ChangeUsernameFormData): Promise<void> {
     })
     const json = await res.json()
     if (json.token) {
+      tokenService.removeToken()
       tokenService.setToken(json.token)
     }
     if (json.err) {
