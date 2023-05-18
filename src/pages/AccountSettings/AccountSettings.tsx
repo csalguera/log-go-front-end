@@ -1,5 +1,6 @@
 // npm modules
 import { useState } from "react"
+import { useNavigate } from "react-router"
 
 // mui components
 import Typography from "@mui/material/Typography"
@@ -10,7 +11,14 @@ import Button from "@mui/material/Button"
 import * as authService from '../../services/authService'
 import * as profileService from '../../services/profileService'
 
-const AccountSettings = () => {
+interface AccountSettingsProps {
+  handleAuthEvt: () => void;
+}
+
+const AccountSettings = (props: AccountSettingsProps) => {
+  const { handleAuthEvt } = props
+  const navigate = useNavigate()
+  
   const [nameFormData, setNameFormData] = useState({ name: '' })
 
   const handleNameChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,6 +29,9 @@ const AccountSettings = () => {
     evt.preventDefault()
     await authService.changeUsername(nameFormData)
     await profileService.changeUsername(nameFormData)
+    setNameFormData({ name: '' })
+    handleAuthEvt()
+    navigate('/profiles/my-profile')
   }
 
   const { name } = nameFormData
@@ -51,6 +62,7 @@ const AccountSettings = () => {
           value={name}
           onChange={handleNameChange}
           focused
+          required
         />
         <Button
           type="submit"

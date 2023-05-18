@@ -138,7 +138,7 @@ function App(): JSX.Element {
             path='/settings'
             element={
               <ProtectedRoute user={user}>
-                <AccountSettings />
+                <AccountSettings handleAuthEvt={handleAuthEvt} />
               </ProtectedRoute>
             }
           />
