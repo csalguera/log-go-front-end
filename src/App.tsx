@@ -16,6 +16,10 @@ import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 // import Footer from './components/Footer/Footer'
 
+// mui components
+import { createTheme, ThemeProvider } from '@mui/material'
+import { blue, grey } from '@mui/material/colors'
+
 // services
 import * as authService from './services/authService'
 
@@ -27,6 +31,21 @@ import '@fontsource/roboto'
 
 // types
 import { User } from './types/models'
+
+const lightTheme = createTheme({
+  palette: {
+    primary: {
+      main: blue[500],
+    },
+    background: {
+      default: grey[200],
+      paper: grey[300],
+    },
+    text: {
+      primary: grey[900],
+    },
+  }
+})
 
 function App(): JSX.Element {
   const navigate = useNavigate()
@@ -50,65 +69,67 @@ function App(): JSX.Element {
 
   return (
     <>
-      <NavBar user={user} handleLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={<Landing user={user} />} />
-        <Route
-          path="/signup"
-          element={
-            <Signup
-              handleAuthEvt={handleAuthEvt}
-              displayAlert={displayAlert}
-              setDisplayAlert={setDisplayAlert}
-              handleClose={handleClose}
-            />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <Login
-              handleAuthEvt={handleAuthEvt}
-              displayAlert={displayAlert}
-              setDisplayAlert={setDisplayAlert}
-              handleClose={handleClose}
-            />
-          }
-        />
-        <Route
-          path="/profiles"
-          element={
-            <ProtectedRoute user={user}>
-              <Profiles user={user} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/profiles/:id'
-          element={
-            <ProtectedRoute user={user}>
-              <ProfileDetails user={user} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/profiles/my-profile'
-          element={
-            <ProtectedRoute user={user}>
-              <MyProfile user={user} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/change-password"
-          element={
-            <ProtectedRoute user={user}>
-              <ChangePassword handleAuthEvt={handleAuthEvt} />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-      {/* <Footer /> */}
+      <ThemeProvider theme={lightTheme}>
+        <NavBar user={user} handleLogout={handleLogout} />
+        <Routes>
+          <Route path="/" element={<Landing user={user} />} />
+          <Route
+            path="/signup"
+            element={
+              <Signup
+                handleAuthEvt={handleAuthEvt}
+                displayAlert={displayAlert}
+                setDisplayAlert={setDisplayAlert}
+                handleClose={handleClose}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Login
+                handleAuthEvt={handleAuthEvt}
+                displayAlert={displayAlert}
+                setDisplayAlert={setDisplayAlert}
+                handleClose={handleClose}
+              />
+            }
+          />
+          <Route
+            path="/profiles"
+            element={
+              <ProtectedRoute user={user}>
+                <Profiles user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/profiles/:id'
+            element={
+              <ProtectedRoute user={user}>
+                <ProfileDetails user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/profiles/my-profile'
+            element={
+              <ProtectedRoute user={user}>
+                <MyProfile user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/change-password"
+            element={
+              <ProtectedRoute user={user}>
+                <ChangePassword handleAuthEvt={handleAuthEvt} />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+        {/* <Footer /> */}
+      </ThemeProvider>
     </>
   )
 }
