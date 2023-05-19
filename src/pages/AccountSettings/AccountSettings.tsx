@@ -20,9 +20,14 @@ const AccountSettings = (props: AccountSettingsProps) => {
   const navigate = useNavigate()
   
   const [nameFormData, setNameFormData] = useState({ name: '' })
+  const [favColorFormData, setFavColorFormData] = useState({ favColor: '' })
 
   const handleNameChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setNameFormData({ ...nameFormData, [evt.target.name]: evt.target.value })
+  }
+
+  const handleFavColorChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setFavColorFormData({ ...favColorFormData, [evt.target.name]: evt.target.value })
   }
 
   const handleNameSubmit = async (evt: React.FormEvent) => {
@@ -34,7 +39,16 @@ const AccountSettings = (props: AccountSettingsProps) => {
     navigate('/profiles/my-profile')
   }
 
+  const handleFavColorSubmit = async (evt: React.FormEvent) => {
+    evt.preventDefault()
+    await authService.changeFavColor(favColorFormData)
+    setFavColorFormData({ favColor: '' })
+    handleAuthEvt()
+    navigate('/profiles/my-profile')
+  }
+
   const { name } = nameFormData
+  const { favColor } = favColorFormData
 
   return (
     <main className='page-component-container'>
@@ -61,6 +75,30 @@ const AccountSettings = (props: AccountSettingsProps) => {
           name="name"
           value={name}
           onChange={handleNameChange}
+          focused
+          required
+        />
+        <Button
+          type="submit"
+        >
+          Submit
+        </Button>
+      </form>
+      <form
+        autoComplete="off"
+        onSubmit={handleFavColorSubmit}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <TextField
+          label='Favorite Color'
+          name="favColor"
+          value={favColor}
+          onChange={handleFavColorChange}
           focused
           required
         />

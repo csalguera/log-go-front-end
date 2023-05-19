@@ -55,9 +55,9 @@ function App(): JSX.Element {
   }
 
   useEffect(() => {
-    // setFavColor(user!?.favColor)
-    setFavColor('#1a76d2')
-  }, [])
+    setFavColor(user!?.favColor)
+    // setFavColor('#1a76d2')
+  }, [user])
 
   const lightTheme = createTheme({
     palette: {
