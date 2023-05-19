@@ -18,6 +18,7 @@ const MovieCarousel = (props: MovieCarouselProps) => {
   const { movies } = props
   const [moviescrollPosition, setMovieScrollPosition] = useState(0)
   const [moviescrollValue, setMovieScrollValue] = useState(0)
+  const [autoScroll, setAutoScroll] = useState(true)
 
   useEffect(() => {
     const setScroll = () => {
@@ -28,10 +29,12 @@ const MovieCarousel = (props: MovieCarouselProps) => {
   }, [])
 
   setTimeout(() => {
-    if (movies.length > 3) handleMovieRClick()
+    if(!autoScroll) return
+    if (movies.length > 3) handleAutoScroll()
   }, 3000);
 
   function handleMovieLClick(): void {
+    setAutoScroll(false)
     if (moviescrollPosition <= 0) {
       setMovieScrollPosition(movies.length - 3)
       setMovieScrollValue((movies.length - 3) *- 382)
@@ -40,8 +43,19 @@ const MovieCarousel = (props: MovieCarouselProps) => {
       setMovieScrollValue(moviescrollValue + 382)
     }
   }
-
+  
   function handleMovieRClick(): void {
+    setAutoScroll(false)
+    if (moviescrollPosition >= movies.length - 3) {
+      setMovieScrollPosition(0)
+      setMovieScrollValue(0)
+    } else {
+      setMovieScrollPosition(moviescrollPosition + 1)
+      setMovieScrollValue(moviescrollValue - 382)
+    }
+  }
+
+  const handleAutoScroll = () => {
     if (moviescrollPosition >= movies.length - 3) {
       setMovieScrollPosition(0)
       setMovieScrollValue(0)

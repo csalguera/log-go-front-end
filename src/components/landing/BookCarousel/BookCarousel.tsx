@@ -18,6 +18,7 @@ const BookCarousel = (props: BookCarouselProps) => {
   const { books } = props
   const [bookscrollPosition, setBookScrollPosition] = useState(0)
   const [bookscrollValue, setBookScrollValue] = useState(0)
+  const [autoScroll, setAutoScroll] = useState(true)
 
   useEffect(() => {
     const setScroll = () => {
@@ -28,10 +29,12 @@ const BookCarousel = (props: BookCarouselProps) => {
   }, [])
 
   setTimeout(() => {
-    if (books.length > 3) handleBookRClick()
+    if(!autoScroll) return
+    if (books.length > 3) handleAutoScroll()
   }, 3000);
 
   function handleBookLClick(): void {
+    setAutoScroll(false)
     if (bookscrollPosition <= 0) {
       setBookScrollPosition(books.length - 3)
       setBookScrollValue((books.length - 3) *- 382)
@@ -42,6 +45,17 @@ const BookCarousel = (props: BookCarouselProps) => {
   }
 
   function handleBookRClick(): void {
+    setAutoScroll(false)
+    if (bookscrollPosition >= books.length - 3) {
+      setBookScrollPosition(0)
+      setBookScrollValue(0)
+    } else {
+      setBookScrollPosition(bookscrollPosition + 1)
+      setBookScrollValue(bookscrollValue - 382)
+    }
+  }
+
+  const handleAutoScroll = () => {
     if (bookscrollPosition >= books.length - 3) {
       setBookScrollPosition(0)
       setBookScrollValue(0)
