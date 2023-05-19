@@ -63,7 +63,7 @@ const BookCarousel = (props: BookCarouselProps) => {
       >
         <Box
           sx={{
-            width: 1164,
+            width: 1146,
             overflowX: 'hidden'
           }}
         >
@@ -92,7 +92,7 @@ const BookCarousel = (props: BookCarouselProps) => {
       {books.length >= 3 ? (
         <Box
           sx={{
-            width: 1146,
+            width: 1110,
           }}
         >
           <MobileStepper

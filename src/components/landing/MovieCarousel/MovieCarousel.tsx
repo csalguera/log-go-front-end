@@ -63,8 +63,8 @@ const MovieCarousel = (props: MovieCarouselProps) => {
       >
         <Box
           sx={{
-            width: 1164,
-            overflowX: 'hidden'
+            width: 1146,
+            overflowX: 'hidden',
           }}
         >
           <Box
@@ -92,7 +92,7 @@ const MovieCarousel = (props: MovieCarouselProps) => {
       {movies.length >= 3 ? (
         <Box
           sx={{
-            width: 1146,
+            width: 1110,
           }}
         >
           <MobileStepper
