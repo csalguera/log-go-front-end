@@ -59,7 +59,7 @@ const Home = (props: HomeProps) => {
           mt: 4,
         }}
       >
-        {movies && movies.length >= 5 ? 5 : movies.length} Most Recent Movie Submissions
+        {movies && movies.length >= 5 ? 5 : movies.length} Most Recent Movie Submission(s)
       </Typography>
       <MovieCarousel
         movies={movies}
@@ -70,7 +70,7 @@ const Home = (props: HomeProps) => {
           mt: 4,
         }}
       >
-        {books && books.length >= 5 ? 5 : books.length} Most Recent Book Submissions
+        {books && books.length >= 5 ? 5 : books.length} Most Recent Book Submission(s)
       </Typography>
       <BookCarousel
         books={books}

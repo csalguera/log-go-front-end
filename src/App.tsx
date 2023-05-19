@@ -1,5 +1,5 @@
 // npm modules 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // page components
@@ -8,8 +8,9 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import MyProfile from './pages/MyProfile/MyProfile'
-import ChangePassword from './pages/ChangePassword/ChangePassword'
 import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
+import ChangePassword from './pages/ChangePassword/ChangePassword'
+import AccountSettings from './pages/AccountSettings/AccountSettings'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -35,9 +36,13 @@ import { User } from './types/models'
 function App(): JSX.Element {
   const navigate = useNavigate()
   
+  const initialFavColor = useMemo(() => {
+    return authService.getUser()?.favColor
+  }, [])
+  
   const [user, setUser] = useState<User | null>(authService.getUser())
   const [displayAlert, setDisplayAlert] = useState(false)
-  const [favColor, setFavColor] = useState('#1a76d2')
+  const [favColor, setFavColor] = useState<string | undefined>(initialFavColor)
 
   const handleLogout = (): void => {
     authService.logout()
@@ -54,14 +59,13 @@ function App(): JSX.Element {
   }
 
   useEffect(() => {
-    // setFavColor(user!?.favColor)
-    setFavColor('#1a76d2')
-  }, [])
+    setFavColor(user!?.favColor)
+  }, [user])
 
   const lightTheme = createTheme({
     palette: {
       primary: {
-        main: favColor,
+        main: favColor || '#1a76d2',
       },
       background: {
         default: grey[200],
@@ -130,6 +134,14 @@ function App(): JSX.Element {
             element={
               <ProtectedRoute user={user}>
                 <ChangePassword handleAuthEvt={handleAuthEvt} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/settings'
+            element={
+              <ProtectedRoute user={user}>
+                <AccountSettings handleAuthEvt={handleAuthEvt} />
               </ProtectedRoute>
             }
           />

@@ -3,6 +3,7 @@ import * as tokenService from './tokenService'
 
 // types
 import { Profile } from '../types/models'
+import { ChangeUsernameFormData } from '../types/forms'
 
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/profiles`
 
@@ -57,9 +58,27 @@ async function getMyProfile(): Promise<Profile> {
   }
 }
 
+async function changeUsername(formData: ChangeUsernameFormData) {
+  try {
+    const res = await fetch(`${BASE_URL}/change-username`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    const editedMovie = await res.json() as Profile
+    return editedMovie
+  } catch (error) {
+    throw error
+  }
+}
+
 export {
   getAllProfiles,
   addPhoto,
   getProfile,
   getMyProfile,
+  changeUsername,
 }

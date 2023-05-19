@@ -49,3 +49,11 @@ export interface ChangePasswordFormData {
 export interface PhotoFormData {
   photo: File | null;
 }
+
+export interface ChangeUsernameFormData {
+  name: string;
+}
+
+export interface ChangeFavColoreFormData {
+  favColor: string;
+}

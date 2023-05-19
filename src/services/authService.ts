@@ -7,7 +7,9 @@ import {
   ChangePasswordFormData,
   LoginFormData,
   SignupFormData,
-  PhotoFormData
+  PhotoFormData,
+  ChangeUsernameFormData,
+  ChangeFavColoreFormData,
 } from '../types/forms'
 import { User } from '../types/models'
 
@@ -90,4 +92,58 @@ async function changePassword(formData: ChangePasswordFormData): Promise<void> {
   }
 }
 
-export { signup, getUser, logout, login, changePassword }
+async function changeUsername(formData: ChangeUsernameFormData): Promise<void> {
+  try {
+    const res = await fetch(`${BASE_URL}/change-username`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+      },
+      body: JSON.stringify(formData),
+    })
+    const json = await res.json()
+    if (json.token) {
+      tokenService.removeToken()
+      tokenService.setToken(json.token)
+    }
+    if (json.err) {
+      throw new Error(json.err)
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
+async function changeFavColor(formData: ChangeFavColoreFormData): Promise<void> {
+  try {
+    const res = await fetch(`${BASE_URL}/change-favorite-color`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+      },
+      body: JSON.stringify(formData),
+    })
+    const json = await res.json()
+    if (json.token) {
+      tokenService.removeToken()
+      tokenService.setToken(json.token)
+    }
+    if (json.err) {
+      throw new Error(json.err)
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
+export {
+  signup,
+  getUser,
+  logout,
+  login,
+  changePassword,
+  changeUsername,
+  changeFavColor,
+}
