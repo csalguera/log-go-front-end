@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 // components
-import ChangePasswordForm from '../../components/ChangePasswordForm/ChangePasswordForm'
+import ChangePasswordForm from '../../components/forms/ChangePasswordForm/ChangePasswordForm'
 
 // stylesheets
 import styles from './ChangePassword.module.css'

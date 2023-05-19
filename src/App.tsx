@@ -1,5 +1,5 @@
 // npm modules 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // page components
@@ -36,9 +36,13 @@ import { User } from './types/models'
 function App(): JSX.Element {
   const navigate = useNavigate()
   
+  const initialFavColor = useMemo(() => {
+    return authService.getUser()?.favColor
+  }, [])
+  
   const [user, setUser] = useState<User | null>(authService.getUser())
   const [displayAlert, setDisplayAlert] = useState(false)
-  const [favColor, setFavColor] = useState('#1a76d2')
+  const [favColor, setFavColor] = useState<string | undefined>(initialFavColor)
 
   const handleLogout = (): void => {
     authService.logout()
@@ -55,17 +59,13 @@ function App(): JSX.Element {
   }
 
   useEffect(() => {
-    if (favColor) {
-      setFavColor(user!?.favColor)
-    } else {
-      setFavColor('#1a76d2')
-    }
+    setFavColor(user!?.favColor)
   }, [user])
 
   const lightTheme = createTheme({
     palette: {
       primary: {
-        main: favColor,
+        main: favColor || '#1a76d2',
       },
       background: {
         default: grey[200],
