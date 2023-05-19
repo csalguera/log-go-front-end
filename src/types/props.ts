@@ -103,3 +103,7 @@ export interface LoginFormProps {
   updateMessage: (msg: string) => void;
   setDisplayAlert: Dispatch<SetStateAction<boolean>>;
 }
+
+export interface AccountSettingsProps {
+  handleAuthEvt: () => void;
+}

@@ -7,36 +7,23 @@ import Typography from "@mui/material/Typography"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 
+// components
+import ChangeNameForm from "../../components/forms/ChangeNameForm/ChangeNameForm"
+
 // services
 import * as authService from '../../services/authService'
-import * as profileService from '../../services/profileService'
 
-interface AccountSettingsProps {
-  handleAuthEvt: () => void;
-}
+// props
+import { AccountSettingsProps } from "../../types/props"
 
 const AccountSettings = (props: AccountSettingsProps) => {
   const { handleAuthEvt } = props
   const navigate = useNavigate()
-  
-  const [nameFormData, setNameFormData] = useState({ name: '' })
-  const [favColorFormData, setFavColorFormData] = useState({ favColor: '' })
 
-  const handleNameChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setNameFormData({ ...nameFormData, [evt.target.name]: evt.target.value })
-  }
+  const [favColorFormData, setFavColorFormData] = useState({ favColor: '' })
 
   const handleFavColorChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setFavColorFormData({ ...favColorFormData, [evt.target.name]: evt.target.value })
-  }
-
-  const handleNameSubmit = async (evt: React.FormEvent) => {
-    evt.preventDefault()
-    await authService.changeUsername(nameFormData)
-    await profileService.changeUsername(nameFormData)
-    setNameFormData({ name: '' })
-    handleAuthEvt()
-    navigate('/profiles/my-profile')
   }
 
   const handleFavColorSubmit = async (evt: React.FormEvent) => {
@@ -47,7 +34,6 @@ const AccountSettings = (props: AccountSettingsProps) => {
     navigate('/profiles/my-profile')
   }
 
-  const { name } = nameFormData
   const { favColor } = favColorFormData
 
   return (
@@ -60,30 +46,9 @@ const AccountSettings = (props: AccountSettingsProps) => {
       >
         Account Settings
       </Typography>
-      <form
-        autoComplete="off"
-        onSubmit={handleNameSubmit}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <TextField
-          label='Name'
-          name="name"
-          value={name}
-          onChange={handleNameChange}
-          focused
-          required
-        />
-        <Button
-          type="submit"
-        >
-          Submit
-        </Button>
-      </form>
+      <ChangeNameForm
+        handleAuthEvt={handleAuthEvt}
+      />
       <form
         autoComplete="off"
         onSubmit={handleFavColorSubmit}
