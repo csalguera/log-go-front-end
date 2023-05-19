@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography"
 // components
 import ChangeNameForm from "../../components/forms/ChangeNameForm/ChangeNameForm"
 import ChangeFavColorForm from "../../components/forms/ChangeFavColorForm/ChangeFavColorForm"
+import ColorPicker from "../../components/ColorPicker/ColorPicker"
 
 // props
 import { AccountSettingsProps } from "../../types/props"
@@ -27,6 +28,7 @@ const AccountSettings = (props: AccountSettingsProps) => {
       <ChangeFavColorForm
         handleAuthEvt={handleAuthEvt}
       />
+      <ColorPicker />
     </main>
   )
 }
