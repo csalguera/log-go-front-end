@@ -89,14 +89,14 @@ const BookCarousel = (props: BookCarouselProps) => {
           </Box>
         </Box>
       </Box>
-      {books.length ? (
+      {books.length >= 3 ? (
         <Box
           sx={{
             width: 1146,
           }}
         >
           <MobileStepper
-            steps={books.length ? books.length - 2 : 0}
+            steps={books.length > 3 ? books.length - 2 : books.length ? 1 : 0}
             position="static"
             activeStep={bookscrollPosition}
             backButton={

@@ -89,14 +89,14 @@ const MovieCarousel = (props: MovieCarouselProps) => {
           </Box>
         </Box>
       </Box>
-      {movies.length ? (
+      {movies.length >= 3 ? (
         <Box
           sx={{
             width: 1146,
           }}
         >
           <MobileStepper
-            steps={movies.length ? movies.length - 2 : 0}
+            steps={movies.length > 3 ? movies.length - 2 : movies.length ? 1 : 0}
             position="static"
             activeStep={moviescrollPosition}
             backButton={
