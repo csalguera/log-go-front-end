@@ -17,7 +17,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import Link from '@mui/material/Link';
-import { useTheme } from '@mui/material';
 import Switch from '@mui/material/Switch';
 
 // types
@@ -34,7 +33,6 @@ const settings = ['profile', 'settings'];
 const NavBar = (props: NavBarProps): JSX.Element => {
   const { user, handleLogout } = props
 
-  const theme = useTheme()
   const pathname = useLocation().pathname
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -62,14 +60,14 @@ const NavBar = (props: NavBarProps): JSX.Element => {
   return (
     <>
       {user ? (
-        <AppBar position="static">
+        <AppBar position="static" color='inherit'>
           <Container maxWidth="xl">
             <Toolbar disableGutters>
               <QuestionAnswerIcon
                 sx={{
                   display: { xs: 'none', md: 'flex' },
                   mr: 1,
-                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  color: pathname === '/' ? 'primary.main' : 'text.primary',
                 }}
               />
               <Typography
@@ -83,7 +81,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   fontFamily: 'monospace',
                   fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  color: pathname === '/' ? 'primary.main' : 'text.primary',
                   textDecoration: 'none',
                 }}
               >
@@ -127,7 +125,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                         href={`/${page}`}
                         underline='none'
                         sx={{
-                          color: theme.palette.primary.main,
+                          color: 'primary.main',
                         }}
                       >
                         <Typography
@@ -144,7 +142,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                 sx={{
                   display: { xs: 'flex', md: 'none' },
                   mr: 1,
-                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  color: pathname === '/' ? 'primary.main' : 'text.primary',
                 }}
               />
               <Typography
@@ -159,7 +157,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   fontFamily: 'monospace',
                   fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  color: pathname === '/' ? 'primary.main' : 'text.primary',
                   textDecoration: 'none',
                 }}
               >
@@ -170,12 +168,13 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   <Link
                     key={page}
                     href={`/${page}`}
+                    underline='none'
                   >
                     <Button
                       onClick={handleCloseNavMenu}
                       sx={{
                         my: 2,
-                        color: pathname === `/${page}` ? theme.palette.text.secondary : theme.palette.text.primary,
+                        color: pathname === `/${page}` ? 'primary.main' : 'text.primary',
                         display: 'block',
                       }}
                     >
@@ -221,7 +220,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                         <Typography
                           textAlign="center"
                           sx={{
-                            color: theme.palette.primary.main
+                            color: 'primary.main'
                           }}
                         >
                           {pascalize(setting)}
@@ -247,7 +246,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                     >
                       <Typography
                         sx={{
-                          color: theme.palette.primary.main
+                          color: 'primary.main'
                         }}
                       >
                         Logout
@@ -285,7 +284,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                 sx={{
                   display: { xs: 'none', md: 'flex' },
                   mr: 1,
-                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  color: pathname === '/' ? 'text.secondary' : 'text.primary',
                 }}
               />
                 <Typography
@@ -299,7 +298,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                     fontFamily: 'monospace',
                     fontWeight: 700,
                     letterSpacing: '.3rem',
-                    color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                    color: pathname === '/' ? 'text.secondary' : 'text.primary',
                     textDecoration: 'none',
                     flexGrow: 1,
                   }}
@@ -309,7 +308,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
               <Link href='login'>
                 <Button
                   sx={{
-                    color: pathname === '/login' ? theme.palette.text.secondary : theme.palette.text.primary,
+                    color: pathname === '/login' ? 'text.secondary' : 'text.primary',
                   }}
                 >
                   Login
@@ -318,7 +317,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
               <Link href='signup'>
                 <Button
                   sx={{
-                    color: pathname === '/signup' ? theme.palette.text.secondary : theme.palette.text.primary,
+                    color: pathname === '/signup' ? 'text.secondary' : 'text.primary',
                   }}
                 >
                   Sign up

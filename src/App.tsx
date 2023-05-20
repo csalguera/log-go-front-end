@@ -70,7 +70,7 @@ function App(): JSX.Element {
       },
       background: {
         default: grey[200],
-        paper: grey[300],
+        paper: grey[400],
       },
       text: {
         primary: '#000',
@@ -97,7 +97,7 @@ function App(): JSX.Element {
 
   return (
     <>
-      <ThemeProvider theme={!darkPref ? darkTheme : lightTheme}>
+      <ThemeProvider theme={darkPref ? darkTheme : lightTheme}>
         <NavBar user={user} handleLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<Landing user={user} />} />
