@@ -104,7 +104,12 @@ function App(): JSX.Element {
   return (
     <>
       <ThemeProvider theme={darkPref ? darkTheme : lightTheme}>
-        <NavBar user={user} handleLogout={handleLogout} setDarkPref={setDarkPref} />
+        <NavBar
+          user={user}
+          handleLogout={handleLogout}
+          darkPref={darkPref}
+          setDarkPref={setDarkPref}
+        />
         <Routes>
           <Route path="/" element={<Landing user={user} />} />
           <Route

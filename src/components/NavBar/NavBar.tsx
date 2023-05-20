@@ -25,6 +25,7 @@ import { User } from '../../types/models'
 interface NavBarProps {
   user: User | null;
   handleLogout: () => void;
+  darkPref: boolean;
   setDarkPref: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -32,7 +33,7 @@ const pages = ['profiles']
 const settings = ['profile', 'settings'];
 
 const NavBar = (props: NavBarProps): JSX.Element => {
-  const { user, handleLogout, setDarkPref } = props
+  const { user, handleLogout, darkPref, setDarkPref } = props
 
   const pathname = useLocation().pathname
 
@@ -56,6 +57,10 @@ const NavBar = (props: NavBarProps): JSX.Element => {
 
   const pascalize = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1)
+  }
+
+  const handleSwitch = () => {
+    setDarkPref(!darkPref)
   }
 
   return (
@@ -239,7 +244,9 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                     >
                       Dark Mode
                     </Typography>
-                    <Switch />
+                    <Switch
+                      onChange={handleSwitch}
+                    />
                   </MenuItem>
                   <MenuItem
                     onClick={handleCloseNavMenu}
