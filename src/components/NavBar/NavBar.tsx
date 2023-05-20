@@ -1,5 +1,5 @@
 // npm modules
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useLocation } from 'react-router';
 
 // mui components
@@ -25,13 +25,14 @@ import { User } from '../../types/models'
 interface NavBarProps {
   user: User | null;
   handleLogout: () => void;
+  setDarkPref: Dispatch<SetStateAction<boolean>>;
 }
 
 const pages = ['profiles']
 const settings = ['profile', 'settings'];
 
 const NavBar = (props: NavBarProps): JSX.Element => {
-  const { user, handleLogout } = props
+  const { user, handleLogout, setDarkPref } = props
 
   const pathname = useLocation().pathname
 
