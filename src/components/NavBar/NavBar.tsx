@@ -18,6 +18,7 @@ import MenuItem from '@mui/material/MenuItem';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import Link from '@mui/material/Link';
 import { useTheme } from '@mui/material';
+import Switch from '@mui/material/Switch';
 
 // types
 import { User } from '../../types/models'
@@ -228,6 +229,14 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       </Link>
                     </MenuItem>
                   ))}
+                  <MenuItem>
+                    <Typography
+                      color='primary'
+                    >
+                      Dark Mode
+                    </Typography>
+                    <Switch />
+                  </MenuItem>
                   <MenuItem
                     onClick={handleCloseNavMenu}
                   >
