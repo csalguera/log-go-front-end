@@ -109,6 +109,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
         }}
       />
       <Typography
+        color='text.primary'
         sx={{
           fontSize: '24px',
           fontWeight: 'bold',

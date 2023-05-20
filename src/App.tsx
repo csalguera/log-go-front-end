@@ -86,7 +86,7 @@ function App(): JSX.Element {
       },
       background: {
         default: grey[900],
-        paper: grey[600],
+        paper: grey[800],
       },
       text: {
         primary: '#fff',

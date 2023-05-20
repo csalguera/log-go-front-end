@@ -50,11 +50,13 @@ const Home = (props: HomeProps) => {
     <>
       <Typography
         variant="h3"
+        color='text.primary'
       >
         Welcome, {user?.name}
       </Typography>
       <Typography
         variant="h4"
+        color='text.primary'
         sx={{
           mt: 4,
         }}
@@ -66,6 +68,7 @@ const Home = (props: HomeProps) => {
       />
       <Typography
         variant="h4"
+        color='text.primary'
         sx={{
           mt: 4,
         }}
