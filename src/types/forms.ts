@@ -55,5 +55,5 @@ export interface ChangeUsernameFormData {
 }
 
 export interface ChangeFavColoreFormData {
-  favColor: string;
+  favColor: string | undefined;
 }
