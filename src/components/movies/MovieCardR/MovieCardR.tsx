@@ -9,6 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
+import { useTheme } from "@mui/material";
 
 // props
 import { MovieCardRProps } from "../../../types/props"
@@ -17,6 +18,8 @@ const MovieCardR = (props: MovieCardRProps) => {
   const {
     movie,
   } = props
+
+  const theme = useTheme()
 
   return (
     <Card
@@ -34,7 +37,7 @@ const MovieCardR = (props: MovieCardRProps) => {
           sx={{
             objectFit: 'contain',
             py: 5,
-            backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
+            backgroundImage: `linear-gradient(to bottom, ${theme.palette.primary.main}, rgba(0,0,0,1))`,
           }}
         />
       ) : (
@@ -53,13 +56,13 @@ const MovieCardR = (props: MovieCardRProps) => {
         >
           {movie?.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Directed by: {movie?.director}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Released: {movie?.releaseDate}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Added by: <Link
             href={`/profiles/${movie?.profile.id}`}
           >

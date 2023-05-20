@@ -1,5 +1,6 @@
 // npm modules
 import { useState } from 'react';
+import { useLocation } from 'react-router';
 
 // mui components
 import AppBar from '@mui/material/AppBar';
@@ -14,11 +15,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import Link from '@mui/material/Link';
+import { useTheme } from '@mui/material';
 
 // types
-import { User, Profile } from '../../types/models'
+import { User } from '../../types/models'
 
 interface NavBarProps {
   user: User | null;
@@ -30,6 +32,9 @@ const settings = ['profile', 'settings'];
 
 const NavBar = (props: NavBarProps): JSX.Element => {
   const { user, handleLogout } = props
+
+  const theme = useTheme()
+  const pathname = useLocation().pathname
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -55,12 +60,17 @@ const NavBar = (props: NavBarProps): JSX.Element => {
 
   return (
     <>
-      {user
-      ?
+      {user ? (
         <AppBar position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+              <QuestionAnswerIcon
+                sx={{
+                  display: { xs: 'none', md: 'flex' },
+                  mr: 1,
+                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                }}
+              />
               <Typography
                 variant="h6"
                 noWrap
@@ -72,7 +82,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   fontFamily: 'monospace',
                   fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: 'inherit',
+                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
                   textDecoration: 'none',
                 }}
               >
@@ -115,6 +125,9 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       <Link
                         href={`/${page}`}
                         underline='none'
+                        sx={{
+                          color: theme.palette.primary.main,
+                        }}
                       >
                         <Typography
                           textAlign="center"
@@ -126,7 +139,13 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   ))}
                 </Menu>
               </Box>
-              <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+              <QuestionAnswerIcon
+                sx={{
+                  display: { xs: 'flex', md: 'none' },
+                  mr: 1,
+                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                }}
+              />
               <Typography
                 variant="h5"
                 noWrap
@@ -139,7 +158,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   fontFamily: 'monospace',
                   fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: 'inherit',
+                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
                   textDecoration: 'none',
                 }}
               >
@@ -153,7 +172,11 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   >
                     <Button
                       onClick={handleCloseNavMenu}
-                      sx={{ my: 2, color: 'white', display: 'block' }}
+                      sx={{
+                        my: 2,
+                        color: pathname === `/${page}` ? theme.palette.text.secondary : theme.palette.text.primary,
+                        display: 'block',
+                      }}
                     >
                       {page}
                     </Button>
@@ -196,6 +219,9 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       >
                         <Typography
                           textAlign="center"
+                          sx={{
+                            color: theme.palette.primary.main
+                          }}
                         >
                           {pascalize(setting)}
                         </Typography>
@@ -210,7 +236,11 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       onClick={handleLogout}
                       underline='none'
                     >
-                      <Typography>
+                      <Typography
+                        sx={{
+                          color: theme.palette.primary.main
+                        }}
+                      >
                         Logout
                       </Typography>
                     </Link>
@@ -220,7 +250,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
             </Toolbar>
           </Container>
         </AppBar>
-      :
+      ) : (
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
@@ -242,8 +272,13 @@ const NavBar = (props: NavBarProps): JSX.Element => {
               >
                 log-go
               </Typography>
-
-              <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+              <QuestionAnswerIcon
+                sx={{
+                  display: { xs: 'none', md: 'flex' },
+                  mr: 1,
+                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                }}
+              />
                 <Typography
                   variant="h6"
                   noWrap
@@ -255,29 +290,35 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                     fontFamily: 'monospace',
                     fontWeight: 700,
                     letterSpacing: '.3rem',
-                    color: 'inherit',
+                    color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
                     textDecoration: 'none',
                     flexGrow: 1,
                   }}
                 >
                   log-go
               </Typography>
-              <Link
-                href='login'
-                sx={{ color: 'white' }}
+              <Link href='login'>
+                <Button
+                  sx={{
+                    color: pathname === '/login' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  }}
                 >
-                <Button color="inherit">Login</Button>
+                  Login
+                </Button>
               </Link>
-              <Link
-                href='signup'
-                sx={{ color: 'white' }}
-              >
-                <Button color="inherit">Sign up</Button>
+              <Link href='signup'>
+                <Button
+                  sx={{
+                    color: pathname === '/signup' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  }}
+                >
+                  Sign up
+                </Button>
               </Link>
             </Toolbar>
           </AppBar>
         </Box>
-      }
+      )}
     </>
   )
 }

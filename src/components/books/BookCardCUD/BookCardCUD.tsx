@@ -24,6 +24,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import { useTheme } from '@mui/material';
 
 // types
 import { BookFormData, EditBookFormData, PhotoFormData } from '../../../types/forms';
@@ -68,6 +69,8 @@ const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
     books,
     setBooks
   } = props
+
+  const theme = useTheme()
 
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
@@ -176,12 +179,13 @@ const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
   }
 
   if (!books) return <h2>Loading...</h2>
+
   return (
     <Card sx={{
       width: 400,
       maxHeight: formDisplay || editFormDisplay ? '975px' : '650px',
       transition: 'max-height 0.25s',
-      mx: 2,
+      m: 2,
       }}
     >
       {book?.photo ? (
@@ -193,7 +197,7 @@ const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
           sx={{
             objectFit: 'contain',
             py: 5,
-            backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
+            backgroundImage: `linear-gradient(to bottom, ${theme.palette.primary.main}, rgba(0,0,0,1))`,
           }}
         />
       ) : (
@@ -212,10 +216,10 @@ const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
         >
           {book ? `${book.name}` : `${profile?.name}'s Books`}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           {book ? `Author: ${book.author}` : `${profile?.name} has not added any books.`}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           {book ? `Published: ${book.published}` : 'Check again later.'}
         </Typography>
       </CardContent>

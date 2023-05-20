@@ -10,12 +10,16 @@ import Button from "@mui/material/Button"
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft"
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight"
 import MobileStepper from "@mui/material/MobileStepper"
+import { useTheme } from "@mui/material"
 
 // props
 import { BookCarouselProps } from "../../../types/props"
 
 const BookCarousel = (props: BookCarouselProps) => {
   const { books } = props
+  
+  const theme = useTheme()
+
   const [bookscrollPosition, setBookScrollPosition] = useState(0)
   const [bookscrollValue, setBookScrollValue] = useState(0)
   const [autoScroll, setAutoScroll] = useState(true)
@@ -113,23 +117,26 @@ const BookCarousel = (props: BookCarouselProps) => {
             steps={books.length > 3 ? books.length - 2 : books.length ? 1 : 0}
             position="static"
             activeStep={bookscrollPosition}
+            sx={{
+              backgroundColor: theme.palette.background.paper
+            }}
             backButton={
               <Button
-              onClick={handleBookLClick}
-              disabled={books.length <= 3 || bookscrollPosition <= 0 ? true : false}
+                onClick={handleBookLClick}
+                disabled={books.length <= 3 || bookscrollPosition <= 0 ? true : false}
               >
-              <KeyboardArrowLeft />
-              BACK
-            </Button>
+                <KeyboardArrowLeft />
+                BACK
+              </Button>
             }
             nextButton={
               <Button
-              onClick={handleBookRClick}
-              disabled={books.length <= 3 || bookscrollPosition >= books.length - 3 ? true : false}
-            >
-              NEXT
-              <KeyboardArrowRight />
-            </Button>
+                onClick={handleBookRClick}
+                disabled={books.length <= 3 || bookscrollPosition >= books.length - 3 ? true : false}
+              >
+                NEXT
+                <KeyboardArrowRight />
+              </Button>
             }
           />
         </Box>

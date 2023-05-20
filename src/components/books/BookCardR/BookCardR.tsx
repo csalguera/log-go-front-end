@@ -9,6 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
+import { useTheme } from "@mui/material";
 
 // props
 import { BookCardRProps } from "../../../types/props"
@@ -17,6 +18,8 @@ const BookCardR = (props: BookCardRProps) => {
   const {
     book,
   } = props
+
+  const theme = useTheme()
 
   return (
     <Card
@@ -34,7 +37,7 @@ const BookCardR = (props: BookCardRProps) => {
           sx={{
             objectFit: 'contain',
             py: 5,
-            backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
+            backgroundImage: `linear-gradient(to bottom, ${theme.palette.primary.main}, rgba(0,0,0,1))`,
           }}
         />
       ) : (
@@ -53,13 +56,13 @@ const BookCardR = (props: BookCardRProps) => {
         >
           {book?.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Directed by: {book?.author}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Released: {book?.published}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Added by: <Link
             href={`/profiles/${book?.profile.id}`}
           >

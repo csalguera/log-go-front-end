@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import Avatar from '@mui/material/Avatar'
+import { useTheme } from '@mui/material'
 
 // services
 import * as profileService from '../../services/profileService'
@@ -21,6 +22,7 @@ import { ProfilesProps } from '../../types/props'
 
 const Profiles = (props: ProfilesProps): JSX.Element => {
   const { user } = props
+  const theme = useTheme()
   const [profiles, setProfiles] = useState<Profile[]>([])
 
   useEffect((): void => {
@@ -38,7 +40,7 @@ const Profiles = (props: ProfilesProps): JSX.Element => {
   if (!profiles.length) return <Loading />
 
   return (
-    <main className='page-component-container'>
+    <main className='page-component-container' style={{ backgroundColor: theme.palette.background.default }}>
       <Typography
         variant='h3'
         sx={{

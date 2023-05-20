@@ -10,12 +10,16 @@ import Button from "@mui/material/Button"
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft"
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight"
 import MobileStepper from "@mui/material/MobileStepper"
+import { useTheme } from "@mui/material"
 
 // props
 import { MovieCarouselProps } from "../../../types/props"
 
 const MovieCarousel = (props: MovieCarouselProps) => {
   const { movies } = props
+
+  const theme = useTheme()
+
   const [moviescrollPosition, setMovieScrollPosition] = useState(0)
   const [moviescrollValue, setMovieScrollValue] = useState(0)
   const [autoScroll, setAutoScroll] = useState(true)
@@ -113,23 +117,26 @@ const MovieCarousel = (props: MovieCarouselProps) => {
             steps={movies.length > 3 ? movies.length - 2 : movies.length ? 1 : 0}
             position="static"
             activeStep={moviescrollPosition}
+            sx={{
+              backgroundColor: theme.palette.background.paper
+            }}
             backButton={
               <Button
-              onClick={handleMovieLClick}
-              disabled={movies.length <= 3 || moviescrollPosition <= 0 ? true : false}
+                onClick={handleMovieLClick}
+                disabled={movies.length <= 3 || moviescrollPosition <= 0 ? true : false}
               >
-              <KeyboardArrowLeft />
-              BACK
-            </Button>
+                <KeyboardArrowLeft />
+                BACK
+              </Button>
             }
             nextButton={
               <Button
-              onClick={handleMovieRClick}
-              disabled={movies.length <= 3 || moviescrollPosition >= movies.length - 3 ? true : false}
-            >
-              NEXT
-              <KeyboardArrowRight />
-            </Button>
+                onClick={handleMovieRClick}
+                disabled={movies.length <= 3 || moviescrollPosition >= movies.length - 3 ? true : false}
+              >
+                NEXT
+                <KeyboardArrowRight />
+              </Button>
             }
           />
         </Box>

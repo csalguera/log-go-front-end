@@ -15,7 +15,7 @@ import AccountSettings from './pages/AccountSettings/AccountSettings'
 // components
 import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-// import Footer from './components/Footer/Footer'
+import Footer from './components/Footer/Footer'
 
 // mui components
 import { createTheme, ThemeProvider } from '@mui/material'
@@ -72,7 +72,8 @@ function App(): JSX.Element {
         paper: grey[300],
       },
       text: {
-        primary: grey[900],
+        primary: '#000',
+        secondary: '#fff',
       },
     }
   })
@@ -141,12 +142,16 @@ function App(): JSX.Element {
             path='/settings'
             element={
               <ProtectedRoute user={user}>
-                <AccountSettings handleAuthEvt={handleAuthEvt} />
+                <AccountSettings
+                  handleAuthEvt={handleAuthEvt}
+                  favColor={favColor}
+                  setFavColor={setFavColor}
+                />
               </ProtectedRoute>
             }
           />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </ThemeProvider>
     </>
   )

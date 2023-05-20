@@ -11,9 +11,9 @@ import * as profileService from '../../../services/profileService'
 import * as authService from '../../../services/authService'
 
 // props
-import { AccountSettingsProps } from "../../../types/props"
+import { ChangeNameFormProps } from "../../../types/props"
 
-const ChangeNameForm = (props: AccountSettingsProps) => {
+const ChangeNameForm = (props: ChangeNameFormProps) => {
   const { handleAuthEvt } = props
   const navigate = useNavigate()
   const [nameFormData, setNameFormData] = useState({ name: '' })
