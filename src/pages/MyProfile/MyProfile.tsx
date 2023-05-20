@@ -106,6 +106,8 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
           justifyContent: 'center',
           alignItems: 'center',
           mt: 2,
+          color: 'primary.main',
+          backgroundColor: 'background.paper',
         }}
       />
       <Typography

@@ -70,7 +70,7 @@ function App(): JSX.Element {
       },
       background: {
         default: grey[200],
-        paper: grey[400],
+        paper: grey[300],
       },
       text: {
         primary: '#000',
