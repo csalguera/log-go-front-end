@@ -105,6 +105,7 @@ export interface LoginFormProps {
 }
 
 export interface AccountSettingsProps {
+  user: User | null;
   handleAuthEvt: () => void;
   favColor: string | undefined;
   setFavColor: Dispatch<SetStateAction<string | undefined>>;
@@ -115,6 +116,8 @@ export interface ChangeNameFormProps {
 }
 
 export interface ColorPickerProps {
+  user: User | null;
+  handleAuthEvt: () => void;
   favColor: string | undefined;
   setFavColor: Dispatch<SetStateAction<string | undefined>>;
 }

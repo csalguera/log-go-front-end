@@ -10,7 +10,7 @@ import { useTheme } from "@mui/material"
 import { AccountSettingsProps } from "../../types/props"
 
 const AccountSettings = (props: AccountSettingsProps) => {
-  const { handleAuthEvt, favColor, setFavColor } = props
+  const { user, handleAuthEvt, favColor, setFavColor } = props
   const theme = useTheme()
 
   return (
@@ -27,6 +27,8 @@ const AccountSettings = (props: AccountSettingsProps) => {
         handleAuthEvt={handleAuthEvt}
       />
       <ColorPicker
+        user={user}
+        handleAuthEvt={handleAuthEvt}
         favColor={favColor}
         setFavColor={setFavColor}
       />
