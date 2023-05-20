@@ -8,10 +8,8 @@ import Button from "@mui/material/Button";
 // services
 import * as authService from '../../services/authService'
 
-interface ColorPickerProps {
-  favColor: string | undefined;
-  setFavColor: Dispatch<SetStateAction<string | undefined>>;
-}
+// props
+import { ColorPickerProps } from "../../types/props";
 
 const ColorPicker = (props: ColorPickerProps) => {
   const { favColor, setFavColor } = props

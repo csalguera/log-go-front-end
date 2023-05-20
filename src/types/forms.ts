@@ -53,7 +53,3 @@ export interface PhotoFormData {
 export interface ChangeUsernameFormData {
   name: string;
 }
-
-export interface ChangeFavColoreFormData {
-  favColor: string;
-}

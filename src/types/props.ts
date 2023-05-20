@@ -113,3 +113,8 @@ export interface AccountSettingsProps {
 export interface ChangeNameFormProps {
   handleAuthEvt: () => void;
 }
+
+export interface ColorPickerProps {
+  favColor: string | undefined;
+  setFavColor: Dispatch<SetStateAction<string | undefined>>;
+}

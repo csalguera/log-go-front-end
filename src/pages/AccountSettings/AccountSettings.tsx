@@ -3,7 +3,6 @@ import Typography from "@mui/material/Typography"
 
 // components
 import ChangeNameForm from "../../components/forms/ChangeNameForm/ChangeNameForm"
-import ChangeFavColorForm from "../../components/forms/ChangeFavColorForm/ChangeFavColorForm"
 import ColorPicker from "../../components/ColorPicker/ColorPicker"
 
 // props
@@ -25,9 +24,6 @@ const AccountSettings = (props: AccountSettingsProps) => {
       <ChangeNameForm
         handleAuthEvt={handleAuthEvt}
       />
-      {/* <ChangeFavColorForm
-        handleAuthEvt={handleAuthEvt}
-      /> */}
       <ColorPicker
         favColor={favColor}
         setFavColor={setFavColor}
