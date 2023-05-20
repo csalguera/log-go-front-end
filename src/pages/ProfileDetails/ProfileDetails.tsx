@@ -117,6 +117,8 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
           fontSize: '24px',
           fontWeight: 'bold',
           my: 2,
+          color: 'primary.main',
+          backgroundColor: 'background.paper',
         }}
       >
         {profile.name}
