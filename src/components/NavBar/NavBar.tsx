@@ -189,6 +189,10 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                     <Avatar
                       alt={user.name}
                       src={user.profile!?.photo ?? user.name}
+                      sx={{
+                        color: 'primary.main',
+                        backgroundColor: 'background.default'
+                      }}
                     />
                   </IconButton>
                 </Tooltip>
