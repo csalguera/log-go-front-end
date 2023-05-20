@@ -10,7 +10,7 @@ import ColorPicker from "../../components/ColorPicker/ColorPicker"
 import { AccountSettingsProps } from "../../types/props"
 
 const AccountSettings = (props: AccountSettingsProps) => {
-  const { handleAuthEvt } = props
+  const { handleAuthEvt, favColor, setFavColor } = props
 
   return (
     <main className='page-component-container'>
@@ -25,10 +25,13 @@ const AccountSettings = (props: AccountSettingsProps) => {
       <ChangeNameForm
         handleAuthEvt={handleAuthEvt}
       />
-      <ChangeFavColorForm
+      {/* <ChangeFavColorForm
         handleAuthEvt={handleAuthEvt}
+      /> */}
+      <ColorPicker
+        favColor={favColor}
+        setFavColor={setFavColor}
       />
-      <ColorPicker />
     </main>
   )
 }

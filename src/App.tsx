@@ -141,7 +141,11 @@ function App(): JSX.Element {
             path='/settings'
             element={
               <ProtectedRoute user={user}>
-                <AccountSettings handleAuthEvt={handleAuthEvt} />
+                <AccountSettings
+                  handleAuthEvt={handleAuthEvt}
+                  favColor={favColor}
+                  setFavColor={setFavColor}
+                />
               </ProtectedRoute>
             }
           />
