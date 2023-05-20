@@ -11,7 +11,7 @@ const NoImage = () => {
       height={300}
       sx={{
         py: 5,
-        backgroundImage: `linear-gradient(to bottom, ${theme.palette.primary.main}, rgba(0,0,0,1))`,
+        backgroundImage: `linear-gradient(to bottom, ${theme.palette.primary.main}, ${theme.palette.background.paper})`,
         zIndex: 1,
         display: 'flex',
         flexDirection: 'column',
