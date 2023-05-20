@@ -19,7 +19,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // mui components
 import { createTheme, ThemeProvider } from '@mui/material'
-import { grey } from '@mui/material/colors'
+import { grey, red } from '@mui/material/colors'
 
 // services
 import * as authService from './services/authService'
@@ -72,7 +72,8 @@ function App(): JSX.Element {
         paper: grey[300],
       },
       text: {
-        primary: grey[900],
+        primary: '#000',
+        secondary: '#fff',
       },
     }
   })

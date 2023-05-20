@@ -16,9 +16,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Link from '@mui/material/Link';
+import { useTheme } from '@mui/material';
 
 // types
-import { User, Profile } from '../../types/models'
+import { User } from '../../types/models'
 
 interface NavBarProps {
   user: User | null;
@@ -30,6 +31,8 @@ const settings = ['profile', 'settings'];
 
 const NavBar = (props: NavBarProps): JSX.Element => {
   const { user, handleLogout } = props
+
+  const theme = useTheme()
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -115,6 +118,9 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       <Link
                         href={`/${page}`}
                         underline='none'
+                        sx={{
+                          color: theme.palette.text.primary
+                        }}
                       >
                         <Typography
                           textAlign="center"
@@ -139,7 +145,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   fontFamily: 'monospace',
                   fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: 'inherit',
+                  color: theme.palette.text.primary,
                   textDecoration: 'none',
                 }}
               >
@@ -153,7 +159,11 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   >
                     <Button
                       onClick={handleCloseNavMenu}
-                      sx={{ my: 2, color: 'white', display: 'block' }}
+                      sx={{
+                        my: 2,
+                        color: theme.palette.text.primary,
+                        display: 'block',
+                      }}
                     >
                       {page}
                     </Button>
@@ -196,6 +206,9 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       >
                         <Typography
                           textAlign="center"
+                          sx={{
+                            color: theme.palette.primary.main
+                          }}
                         >
                           {pascalize(setting)}
                         </Typography>
@@ -210,7 +223,11 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       onClick={handleLogout}
                       underline='none'
                     >
-                      <Typography>
+                      <Typography
+                        sx={{
+                          color: theme.palette.primary.main
+                        }}
+                      >
                         Logout
                       </Typography>
                     </Link>
