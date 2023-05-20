@@ -1,5 +1,6 @@
 // npm modules
 import { useState } from 'react';
+import { useLocation } from 'react-router';
 
 // mui components
 import AppBar from '@mui/material/AppBar';
@@ -14,7 +15,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import Link from '@mui/material/Link';
 import { useTheme } from '@mui/material';
 
@@ -33,6 +34,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
   const { user, handleLogout } = props
 
   const theme = useTheme()
+  const pathname = useLocation().pathname
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -63,7 +65,13 @@ const NavBar = (props: NavBarProps): JSX.Element => {
         <AppBar position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+              <QuestionAnswerIcon
+                sx={{
+                  display: { xs: 'none', md: 'flex' },
+                  mr: 1,
+                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                }}
+              />
               <Typography
                 variant="h6"
                 noWrap
@@ -75,7 +83,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   fontFamily: 'monospace',
                   fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: 'inherit',
+                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
                   textDecoration: 'none',
                 }}
               >
@@ -119,7 +127,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                         href={`/${page}`}
                         underline='none'
                         sx={{
-                          color: theme.palette.text.primary
+                          color: theme.palette.primary.main,
                         }}
                       >
                         <Typography
@@ -132,7 +140,13 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   ))}
                 </Menu>
               </Box>
-              <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+              <QuestionAnswerIcon
+                sx={{
+                  display: { xs: 'flex', md: 'none' },
+                  mr: 1,
+                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                }}
+              />
               <Typography
                 variant="h5"
                 noWrap
@@ -145,7 +159,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   fontFamily: 'monospace',
                   fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: theme.palette.text.primary,
+                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
                   textDecoration: 'none',
                 }}
               >
@@ -161,7 +175,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       onClick={handleCloseNavMenu}
                       sx={{
                         my: 2,
-                        color: theme.palette.text.primary,
+                        color: pathname === `/${page}` ? theme.palette.text.secondary : theme.palette.text.primary,
                         display: 'block',
                       }}
                     >
@@ -260,7 +274,13 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                 log-go
               </Typography>
 
-              <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+              <QuestionAnswerIcon
+                sx={{
+                  display: { xs: 'none', md: 'flex' },
+                  mr: 1,
+                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                }}
+              />
                 <Typography
                   variant="h6"
                   noWrap
@@ -272,24 +292,30 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                     fontFamily: 'monospace',
                     fontWeight: 700,
                     letterSpacing: '.3rem',
-                    color: 'inherit',
+                    color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
                     textDecoration: 'none',
                     flexGrow: 1,
                   }}
                 >
                   log-go
               </Typography>
-              <Link
-                href='login'
-                sx={{ color: 'white' }}
+              <Link href='login'>
+                <Button
+                  sx={{
+                    color: pathname === '/login' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  }}
                 >
-                <Button color="inherit">Login</Button>
+                  Login
+                </Button>
               </Link>
-              <Link
-                href='signup'
-                sx={{ color: 'white' }}
-              >
-                <Button color="inherit">Sign up</Button>
+              <Link href='signup'>
+                <Button
+                  sx={{
+                    color: pathname === '/signup' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  }}
+                >
+                  Sign up
+                </Button>
               </Link>
             </Toolbar>
           </AppBar>
