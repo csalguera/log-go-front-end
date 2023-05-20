@@ -43,6 +43,7 @@ function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(authService.getUser())
   const [displayAlert, setDisplayAlert] = useState(false)
   const [favColor, setFavColor] = useState<string | undefined>(initialFavColor)
+  const [darkPref, setDarkPref] = useState(false)
 
   const handleLogout = (): void => {
     authService.logout()
@@ -78,9 +79,25 @@ function App(): JSX.Element {
     }
   })
 
+  const darkTheme = createTheme({
+    palette: {
+      primary: {
+        main: favColor || '#`a76d2',
+      },
+      background: {
+        default: grey[900],
+        paper: grey[600],
+      },
+      text: {
+        primary: '#fff',
+        secondary: '#000'
+      },
+    }
+  })
+
   return (
     <>
-      <ThemeProvider theme={lightTheme}>
+      <ThemeProvider theme={!darkPref ? darkTheme : lightTheme}>
         <NavBar user={user} handleLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<Landing user={user} />} />
