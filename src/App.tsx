@@ -82,7 +82,7 @@ function App(): JSX.Element {
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: favColor || '#`a76d2',
+        main: favColor || '#1a76d2',
       },
       background: {
         default: grey[900],
