@@ -16,7 +16,7 @@ import { ChangeFavColoreFormData } from "../../types/forms";
 import { ColorPickerProps } from "../../types/props";
 
 const ColorPicker = (props: ColorPickerProps) => {
-  const { favColor, setFavColor } = props
+  const { user, handleAuthEvt, favColor, setFavColor } = props
 
   const [favColorFormData, setFavColorFormData] = useState<ChangeFavColoreFormData>({ favColor: favColor })
 
@@ -27,11 +27,17 @@ const ColorPicker = (props: ColorPickerProps) => {
 
   const handleSubmit = async () => {
     await authService.changeFavColor(favColorFormData)
+    handleAuthEvt()
   }
 
   const handleReset = async () => {
     setFavColor('#1a76d2')
     setFavColorFormData({ favColor: '#1a76d2' })
+  }
+
+  const handleCancel = () => {
+    setFavColor(user?.favColor)
+    setFavColorFormData({ favColor })
   }
 
   return (
@@ -43,15 +49,24 @@ const ColorPicker = (props: ColorPickerProps) => {
       <Box>
         <Button
           type="submit"
-          onClick={handleSubmit}
+          onClick={handleReset}
+          disabled={favColor === '#1a76d2'}
         >
-          Submit
+          Reset
         </Button>
         <Button
           type="submit"
-          onClick={handleReset}
+          onClick={handleSubmit}
+          disabled={favColor === user?.favColor}
         >
-          Reset
+          Save
+        </Button>
+        <Button
+          type="submit"
+          onClick={handleCancel}
+          disabled={favColor === user?.favColor}
+        >
+          Cancel
         </Button>
       </Box>
     </>

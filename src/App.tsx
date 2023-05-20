@@ -143,6 +143,7 @@ function App(): JSX.Element {
             element={
               <ProtectedRoute user={user}>
                 <AccountSettings
+                  user={user}
                   handleAuthEvt={handleAuthEvt}
                   favColor={favColor}
                   setFavColor={setFavColor}
