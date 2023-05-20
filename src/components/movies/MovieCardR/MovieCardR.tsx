@@ -56,13 +56,13 @@ const MovieCardR = (props: MovieCardRProps) => {
         >
           {movie?.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Directed by: {movie?.director}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Released: {movie?.releaseDate}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Added by: <Link
             href={`/profiles/${movie?.profile.id}`}
           >

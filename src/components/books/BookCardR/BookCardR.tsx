@@ -56,13 +56,13 @@ const BookCardR = (props: BookCardRProps) => {
         >
           {book?.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Directed by: {book?.author}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Released: {book?.published}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Added by: <Link
             href={`/profiles/${book?.profile.id}`}
           >

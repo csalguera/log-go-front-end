@@ -216,10 +216,10 @@ const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
         >
           {book ? `${book.name}` : `${profile?.name}'s Books`}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           {book ? `Author: ${book.author}` : `${profile?.name} has not added any books.`}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           {book ? `Published: ${book.published}` : 'Check again later.'}
         </Typography>
       </CardContent>

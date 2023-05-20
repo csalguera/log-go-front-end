@@ -211,10 +211,10 @@ const MovieCardCUD = (props: MovieCardCUDProps): JSX.Element => {
         >
           {movie ? `${movie.name}` : `${profile?.name}'s Movies`}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="teext.primary">
           {movie ? `Directed by: ${movie.director}` : `${profile?.name} has not added any movies.`}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="teext.primary">
           {movie ? `Released: ${movie.releaseDate}` : 'Check again later.'}
         </Typography>
       </CardContent>
