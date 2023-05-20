@@ -124,6 +124,8 @@ const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => {
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <MovieCardCUD

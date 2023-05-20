@@ -185,7 +185,7 @@ const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
       width: 400,
       maxHeight: formDisplay || editFormDisplay ? '975px' : '650px',
       transition: 'max-height 0.25s',
-      mx: 2,
+      m: 2,
       }}
     >
       {book?.photo ? (
