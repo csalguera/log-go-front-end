@@ -125,7 +125,6 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          alignItems: 'center',
         }}
       >
         <MovieCardCUD
