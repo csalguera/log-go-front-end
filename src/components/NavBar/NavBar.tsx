@@ -60,8 +60,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
 
   return (
     <>
-      {user
-      ?
+      {user ? (
         <AppBar position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
@@ -251,7 +250,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
             </Toolbar>
           </Container>
         </AppBar>
-      :
+      ) : (
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
@@ -273,7 +272,6 @@ const NavBar = (props: NavBarProps): JSX.Element => {
               >
                 log-go
               </Typography>
-
               <QuestionAnswerIcon
                 sx={{
                   display: { xs: 'none', md: 'flex' },
@@ -320,7 +318,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
             </Toolbar>
           </AppBar>
         </Box>
-      }
+      )}
     </>
   )
 }
