@@ -15,7 +15,7 @@ import AccountSettings from './pages/AccountSettings/AccountSettings'
 // components
 import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-// import Footer from './components/Footer/Footer'
+import Footer from './components/Footer/Footer'
 
 // mui components
 import { createTheme, ThemeProvider } from '@mui/material'
@@ -151,7 +151,7 @@ function App(): JSX.Element {
             }
           />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </ThemeProvider>
     </>
   )
