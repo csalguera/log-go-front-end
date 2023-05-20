@@ -37,7 +37,7 @@ const BookCardR = (props: BookCardRProps) => {
           sx={{
             objectFit: 'contain',
             py: 5,
-            backgroundImage: `linear-gradient(to bottom, ${theme.palette.primary.main}, rgba(0,0,0,1))`,
+            backgroundImage: `linear-gradient(to bottom, ${theme.palette.primary.main}, ${theme.palette.background.paper})`,
           }}
         />
       ) : (
