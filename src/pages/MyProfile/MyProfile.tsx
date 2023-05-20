@@ -13,6 +13,7 @@ import BookCardCUD from '../../components/books/BookCardCUD/BookCardCUD'
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box'
+import { useTheme } from '@mui/material'
 
 // types
 import { Profile, Movie, Book } from '../../types/models'
@@ -22,6 +23,7 @@ import { ProfileDetailsProps } from '../../types/props'
 
 const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
   const { user } = props
+  const theme = useTheme()
   const [myProfile, setMyProfile] = useState<Profile | null>(null)
   const [movieIdx, setMovieIdx] = useState(0)
   const [movie, setMovie] = useState<Movie | null>(null)
@@ -93,7 +95,7 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
   if (!myProfile) return <Loading />
 
   return (
-    <main className='page-component-container'>
+    <main className='page-component-container' style={{ backgroundColor: theme.palette.background.default }}>
       <Avatar
         alt={myProfile.name}
         src={myProfile.photo ?? myProfile.name}

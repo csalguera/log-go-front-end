@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Zoom from '@mui/material/Zoom';
 import Alert from '@mui/material/Alert';
+import { useTheme } from '@mui/material';
 
 // types
 interface SignupProps {
@@ -20,13 +21,13 @@ interface SignupProps {
 
 const Signup = (props: SignupProps): JSX.Element => {
   const { displayAlert, handleClose } = props
-
+  const theme = useTheme()
   const [message, setMessage] = useState('')
 
   const updateMessage = (msg: string): void => setMessage(msg)
 
   return (
-    <main className='page-component-container'>
+    <main className='page-component-container' style={{ backgroundColor: theme.palette.background.default }}>
       <Typography
         variant='h3'
         sx={{

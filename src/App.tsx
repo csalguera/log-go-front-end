@@ -19,7 +19,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // mui components
 import { createTheme, ThemeProvider } from '@mui/material'
-import { grey, red } from '@mui/material/colors'
+import { grey } from '@mui/material/colors'
 
 // services
 import * as authService from './services/authService'
