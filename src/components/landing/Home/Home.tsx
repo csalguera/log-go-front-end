@@ -4,9 +4,11 @@ import { useState, useEffect } from "react"
 // components
 import MovieCarousel from "../MovieCarousel/MovieCarousel"
 import BookCarousel from "../BookCarousel/BookCarousel"
+import NoImage from "../../NoImage/NoImage"
 
 // mui components
 import Typography from "@mui/material/Typography"
+import Card from "@mui/material/Card"
 
 // services
 import * as indexService from "../../../services/indexService"
@@ -63,9 +65,20 @@ const Home = (props: HomeProps) => {
       >
         {movies && movies.length >= 5 ? 5 : movies.length} Most Recent Movie Submission(s)
       </Typography>
-      <MovieCarousel
-        movies={movies}
-      />
+      {movies.length ? (
+        <MovieCarousel
+          movies={movies}
+        />
+      ) : (
+        <Card
+          sx={{
+            width: 400,
+            m: 2,
+          }}
+        >
+          <NoImage />
+        </Card>
+      )}
       <Typography
         variant="h4"
         color='text.primary'
@@ -75,9 +88,20 @@ const Home = (props: HomeProps) => {
       >
         {books && books.length >= 5 ? 5 : books.length} Most Recent Book Submission(s)
       </Typography>
-      <BookCarousel
-        books={books}
-      />
+      {books.length ? (
+        <BookCarousel
+          books={books}
+        />
+      ) : (
+        <Card
+          sx={{
+            width: 400,
+            m: 2,
+          }}
+        >
+          <NoImage />
+        </Card>
+      )}
     </>
   )
 }
