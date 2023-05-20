@@ -31,8 +31,8 @@ const ColorPicker = (props: ColorPickerProps) => {
   }
 
   const handleReset = async () => {
-    setFavColor('#1a76d2')
-    setFavColorFormData({ favColor: '#1a76d2' })
+    setFavColor('secondary.main')
+    setFavColorFormData({ favColor: 'secondary.main' })
   }
 
   const handleCancel = () => {

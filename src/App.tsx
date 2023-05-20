@@ -68,6 +68,9 @@ function App(): JSX.Element {
       primary: {
         main: favColor || '#1a76d2',
       },
+      secondary: {
+        main: '#1a76d2'
+      },
       background: {
         default: grey[200],
         paper: grey[300],
@@ -82,7 +85,10 @@ function App(): JSX.Element {
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: favColor || '#1a76d2',
+        main: favColor || '#FF0770',
+      },
+      secondary: {
+        main: '#FF0770'
       },
       background: {
         default: grey[900],
@@ -97,7 +103,7 @@ function App(): JSX.Element {
 
   return (
     <>
-      <ThemeProvider theme={darkPref ? darkTheme : lightTheme}>
+      <ThemeProvider theme={!darkPref ? darkTheme : lightTheme}>
         <NavBar user={user} handleLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<Landing user={user} />} />
