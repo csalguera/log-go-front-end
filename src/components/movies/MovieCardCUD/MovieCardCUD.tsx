@@ -24,6 +24,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import { useTheme } from '@mui/material';
 
 // types
 import { MovieFormData, EditMovieFormData, PhotoFormData } from '../../../types/forms';
@@ -68,6 +69,8 @@ const MovieCardCUD = (props: MovieCardCUDProps): JSX.Element => {
     movies,
     setMovies,
   } = props
+
+  const theme = useTheme()
 
   const [formDisplay, setFormDisplay] = useState(false)
   const [editFormDisplay, setEditFormDisplay] = useState(false)
@@ -189,7 +192,7 @@ const MovieCardCUD = (props: MovieCardCUDProps): JSX.Element => {
           sx={{
             objectFit: 'contain',
             py: 5,
-            backgroundImage: 'linear-gradient(to bottom, rgba(26,118,210,1), rgba(0,0,0,1))',
+            backgroundImage: `linear-gradient(to bottom, ${theme.palette.primary.main}, rgba(0,0,0,1))`,
           }}
         />
       ) : (
