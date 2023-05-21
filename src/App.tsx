@@ -39,11 +39,15 @@ function App(): JSX.Element {
   const initialFavColor = useMemo(() => {
     return authService.getUser()?.favColor
   }, [])
+
+  const initialDarkPref = useMemo(() => {
+    return authService.getUser()?.darkPref
+  }, [])
   
   const [user, setUser] = useState<User | null>(authService.getUser())
   const [displayAlert, setDisplayAlert] = useState(false)
   const [favColor, setFavColor] = useState<string | undefined>(initialFavColor)
-  const [darkPref, setDarkPref] = useState(false)
+  const [darkPref, setDarkPref] = useState(initialDarkPref)
 
   const handleLogout = (): void => {
     authService.logout()

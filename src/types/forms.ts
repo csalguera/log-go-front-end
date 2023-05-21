@@ -59,5 +59,5 @@ export interface ChangeFavColoreFormData {
 }
 
 export interface ChangeDarkPrefFormData {
-  darkPref: boolean;
+  darkPref: boolean | undefined;
 }

@@ -29,8 +29,8 @@ interface NavBarProps {
   user: User | null;
   handleAuthEvt: () => void;
   handleLogout: () => void;
-  darkPref: boolean;
-  setDarkPref: Dispatch<SetStateAction<boolean>>;
+  darkPref: boolean | undefined;
+  setDarkPref: Dispatch<SetStateAction<boolean | undefined>>;
 }
 
 const pages = ['profiles']
@@ -43,7 +43,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-  const [darkPrefFormData, setDarkPrefFormData] = useState({ darkPref: false })
+  const [darkPrefFormData, setDarkPrefFormData] = useState({ darkPref: darkPref })
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
