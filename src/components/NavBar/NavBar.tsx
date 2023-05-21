@@ -19,6 +19,9 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import Link from '@mui/material/Link';
 import Switch from '@mui/material/Switch';
 
+// services
+import * as authService from '../../services/authService'
+
 // types
 import { User } from '../../types/models'
 
