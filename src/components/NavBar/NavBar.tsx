@@ -257,6 +257,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                     </Typography>
                     <Switch
                       onChange={handleSwitch}
+                      checked={darkPref}
                     />
                   </MenuItem>
                   <MenuItem
