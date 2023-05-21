@@ -63,6 +63,10 @@ function App(): JSX.Element {
     setFavColor(user!?.favColor)
   }, [user])
 
+  useEffect(() => {
+    setDarkPref(user!?.darkPref)
+  }, [user])
+
   const lightTheme = createTheme({
     palette: {
       primary: {
@@ -106,6 +110,7 @@ function App(): JSX.Element {
       <ThemeProvider theme={darkPref ? darkTheme : lightTheme}>
         <NavBar
           user={user}
+          handleAuthEvt={handleAuthEvt}
           handleLogout={handleLogout}
           darkPref={darkPref}
           setDarkPref={setDarkPref}

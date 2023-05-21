@@ -27,6 +27,7 @@ import { User } from '../../types/models'
 
 interface NavBarProps {
   user: User | null;
+  handleAuthEvt: () => void;
   handleLogout: () => void;
   darkPref: boolean;
   setDarkPref: Dispatch<SetStateAction<boolean>>;
@@ -36,12 +37,13 @@ const pages = ['profiles']
 const settings = ['profile', 'settings'];
 
 const NavBar = (props: NavBarProps): JSX.Element => {
-  const { user, handleLogout, darkPref, setDarkPref } = props
+  const { user, handleAuthEvt, handleLogout, darkPref, setDarkPref } = props
 
   const pathname = useLocation().pathname
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [darkPrefFormData, setDarkPrefFormData] = useState({ darkPref: false })
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -62,9 +64,15 @@ const NavBar = (props: NavBarProps): JSX.Element => {
     return str.charAt(0).toUpperCase() + str.slice(1)
   }
 
-  const handleSwitch = () => {
+  const handleSwitch = async () => {
     setDarkPref(!darkPref)
+    setDarkPrefFormData({ darkPref: !darkPref })
+    await authService.changeDarkPref(darkPrefFormData)
+    handleAuthEvt()
   }
+
+  console.log(user);
+  
 
   return (
     <>

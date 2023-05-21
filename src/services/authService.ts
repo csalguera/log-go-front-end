@@ -170,4 +170,5 @@ export {
   changePassword,
   changeUsername,
   changeFavColor,
+  changeDarkPref,
 }
