@@ -67,6 +67,7 @@ const Home = (props: HomeProps) => {
       </Typography>
       {movies.length ? (
         <MovieCarousel
+          user={user}
           movies={movies}
         />
       ) : (

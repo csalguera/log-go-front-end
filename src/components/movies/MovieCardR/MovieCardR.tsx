@@ -15,9 +15,7 @@ import { useTheme } from "@mui/material";
 import { MovieCardRProps } from "../../../types/props"
 
 const MovieCardR = (props: MovieCardRProps) => {
-  const {
-    movie,
-  } = props
+  const { user, movie } = props
 
   const theme = useTheme()
 
@@ -64,7 +62,7 @@ const MovieCardR = (props: MovieCardRProps) => {
         </Typography>
         <Typography variant="body2" color="text.primary">
           Added by: <Link
-            href={`/profiles/${movie?.profile.id}`}
+            href={user!?.id === movie?.profile.id ? `/profiles/my-profile` : `/profiles/${movie?.profile.id}`}
           >
             {movie?.profile.name}
           </Link>

@@ -48,10 +48,12 @@ export interface MovieDetailsProps {
 }
 
 export interface MovieCardRProps {
+  user: User | null;
   movie: Movie | null;
 }
 
 export interface MovieCarouselProps {
+  user: User | null;
   movies: Movie[];
 }
 

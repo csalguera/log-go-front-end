@@ -16,7 +16,7 @@ import { useTheme } from "@mui/material"
 import { MovieCarouselProps } from "../../../types/props"
 
 const MovieCarousel = (props: MovieCarouselProps) => {
-  const { movies } = props
+  const { user, movies } = props
 
   const theme = useTheme()
 
@@ -101,6 +101,7 @@ const MovieCarousel = (props: MovieCarouselProps) => {
             {movies!?.map(movie => (
               <MovieCardR
                 key={movie.id}
+                user={user}
                 movie={movie}
               />
             ))}
