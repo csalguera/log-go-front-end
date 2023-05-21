@@ -1,5 +1,5 @@
 // npm modules
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useLocation } from 'react-router';
 
 // mui components
@@ -17,27 +17,33 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import Link from '@mui/material/Link';
-import { useTheme } from '@mui/material';
+import Switch from '@mui/material/Switch';
+
+// services
+import * as authService from '../../services/authService'
 
 // types
 import { User } from '../../types/models'
 
 interface NavBarProps {
   user: User | null;
+  handleAuthEvt: () => void;
   handleLogout: () => void;
+  darkPref: boolean | undefined;
+  setDarkPref: Dispatch<SetStateAction<boolean | undefined>>;
 }
 
 const pages = ['profiles']
 const settings = ['profile', 'settings'];
 
 const NavBar = (props: NavBarProps): JSX.Element => {
-  const { user, handleLogout } = props
+  const { user, handleAuthEvt, handleLogout, darkPref, setDarkPref } = props
 
-  const theme = useTheme()
   const pathname = useLocation().pathname
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [darkPrefFormData, setDarkPrefFormData] = useState({ darkPref: darkPref })
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -58,17 +64,25 @@ const NavBar = (props: NavBarProps): JSX.Element => {
     return str.charAt(0).toUpperCase() + str.slice(1)
   }
 
+  const handleSwitch = async () => {
+    const newDarkPref = !darkPref
+    setDarkPref(newDarkPref)
+    setDarkPrefFormData({ darkPref: newDarkPref })
+    await authService.changeDarkPref({ darkPref: newDarkPref })
+    handleAuthEvt()
+  }
+
   return (
     <>
       {user ? (
-        <AppBar position="static">
+        <AppBar position="static" color='inherit'>
           <Container maxWidth="xl">
             <Toolbar disableGutters>
               <QuestionAnswerIcon
                 sx={{
                   display: { xs: 'none', md: 'flex' },
                   mr: 1,
-                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  color: pathname === '/' ? 'primary.main' : 'text.primary',
                 }}
               />
               <Typography
@@ -82,7 +96,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   fontFamily: 'monospace',
                   fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  color: pathname === '/' ? 'primary.main' : 'text.primary',
                   textDecoration: 'none',
                 }}
               >
@@ -126,7 +140,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                         href={`/${page}`}
                         underline='none'
                         sx={{
-                          color: theme.palette.primary.main,
+                          color: 'primary.main',
                         }}
                       >
                         <Typography
@@ -143,7 +157,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                 sx={{
                   display: { xs: 'flex', md: 'none' },
                   mr: 1,
-                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  color: pathname === '/' ? 'primary.main' : 'text.primary',
                 }}
               />
               <Typography
@@ -158,7 +172,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   fontFamily: 'monospace',
                   fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  color: pathname === '/' ? 'primary.main' : 'text.primary',
                   textDecoration: 'none',
                 }}
               >
@@ -169,12 +183,13 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                   <Link
                     key={page}
                     href={`/${page}`}
+                    underline='none'
                   >
                     <Button
                       onClick={handleCloseNavMenu}
                       sx={{
                         my: 2,
-                        color: pathname === `/${page}` ? theme.palette.text.secondary : theme.palette.text.primary,
+                        color: pathname === `/${page}` ? 'primary.main' : 'text.primary',
                         display: 'block',
                       }}
                     >
@@ -189,6 +204,10 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                     <Avatar
                       alt={user.name}
                       src={user.profile!?.photo ?? user.name}
+                      sx={{
+                        color: 'primary.main',
+                        backgroundColor: 'background.default'
+                      }}
                     />
                   </IconButton>
                 </Tooltip>
@@ -220,7 +239,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                         <Typography
                           textAlign="center"
                           sx={{
-                            color: theme.palette.primary.main
+                            color: 'primary.main'
                           }}
                         >
                           {pascalize(setting)}
@@ -228,6 +247,17 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                       </Link>
                     </MenuItem>
                   ))}
+                  <MenuItem>
+                    <Typography
+                      color='primary'
+                    >
+                      Dark Mode
+                    </Typography>
+                    <Switch
+                      onChange={handleSwitch}
+                      checked={darkPref}
+                    />
+                  </MenuItem>
                   <MenuItem
                     onClick={handleCloseNavMenu}
                   >
@@ -238,7 +268,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                     >
                       <Typography
                         sx={{
-                          color: theme.palette.primary.main
+                          color: 'primary.main'
                         }}
                       >
                         Logout
@@ -276,7 +306,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                 sx={{
                   display: { xs: 'none', md: 'flex' },
                   mr: 1,
-                  color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                  color: pathname === '/' ? 'text.secondary' : 'text.primary',
                 }}
               />
                 <Typography
@@ -290,7 +320,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
                     fontFamily: 'monospace',
                     fontWeight: 700,
                     letterSpacing: '.3rem',
-                    color: pathname === '/' ? theme.palette.text.secondary : theme.palette.text.primary,
+                    color: pathname === '/' ? 'text.secondary' : 'text.primary',
                     textDecoration: 'none',
                     flexGrow: 1,
                   }}
@@ -300,7 +330,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
               <Link href='login'>
                 <Button
                   sx={{
-                    color: pathname === '/login' ? theme.palette.text.secondary : theme.palette.text.primary,
+                    color: pathname === '/login' ? 'text.secondary' : 'text.primary',
                   }}
                 >
                   Login
@@ -309,7 +339,7 @@ const NavBar = (props: NavBarProps): JSX.Element => {
               <Link href='signup'>
                 <Button
                   sx={{
-                    color: pathname === '/signup' ? theme.palette.text.secondary : theme.palette.text.primary,
+                    color: pathname === '/signup' ? 'text.secondary' : 'text.primary',
                   }}
                 >
                   Sign up

@@ -19,6 +19,7 @@ const AccountSettings = (props: AccountSettingsProps) => {
         variant='h3'
         sx={{
           mb: 4,
+          color: 'text.primary'
         }}
       >
         Account Settings

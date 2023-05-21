@@ -5,6 +5,7 @@ import { ChromePicker, ColorResult } from "react-color"
 // mui components
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material";
 
 // services
 import * as authService from '../../services/authService'
@@ -17,6 +18,7 @@ import { ColorPickerProps } from "../../types/props";
 
 const ColorPicker = (props: ColorPickerProps) => {
   const { user, handleAuthEvt, favColor, setFavColor } = props
+  const theme = useTheme()
 
   const [favColorFormData, setFavColorFormData] = useState<ChangeFavColoreFormData>({ favColor: favColor })
 
@@ -31,8 +33,8 @@ const ColorPicker = (props: ColorPickerProps) => {
   }
 
   const handleReset = async () => {
-    setFavColor('#1a76d2')
-    setFavColorFormData({ favColor: '#1a76d2' })
+    setFavColor(theme.palette.secondary.main)
+    setFavColorFormData({ favColor: theme.palette.secondary.main })
   }
 
   const handleCancel = () => {

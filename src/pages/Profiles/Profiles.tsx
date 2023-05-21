@@ -43,6 +43,7 @@ const Profiles = (props: ProfilesProps): JSX.Element => {
     <main className='page-component-container' style={{ backgroundColor: theme.palette.background.default }}>
       <Typography
         variant='h3'
+        color='text.primary'
         sx={{
           mb: 4,
         }}

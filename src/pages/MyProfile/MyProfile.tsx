@@ -106,9 +106,12 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
           justifyContent: 'center',
           alignItems: 'center',
           mt: 2,
+          color: 'primary.main',
+          backgroundColor: 'background.paper',
         }}
       />
       <Typography
+        color='text.primary'
         sx={{
           fontSize: '24px',
           fontWeight: 'bold',
@@ -122,7 +125,6 @@ const MyProfile = (props: ProfileDetailsProps): JSX.Element => {
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          alignItems: 'center',
         }}
       >
         <MovieCardCUD

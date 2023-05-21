@@ -4,9 +4,11 @@ import { useState, useEffect } from "react"
 // components
 import MovieCarousel from "../MovieCarousel/MovieCarousel"
 import BookCarousel from "../BookCarousel/BookCarousel"
+import NoImage from "../../NoImage/NoImage"
 
 // mui components
 import Typography from "@mui/material/Typography"
+import Card from "@mui/material/Card"
 
 // services
 import * as indexService from "../../../services/indexService"
@@ -50,31 +52,56 @@ const Home = (props: HomeProps) => {
     <>
       <Typography
         variant="h3"
+        color='text.primary'
       >
         Welcome, {user?.name}
       </Typography>
       <Typography
         variant="h4"
+        color='text.primary'
         sx={{
           mt: 4,
         }}
       >
         {movies && movies.length >= 5 ? 5 : movies.length} Most Recent Movie Submission(s)
       </Typography>
-      <MovieCarousel
-        movies={movies}
-      />
+      {movies.length ? (
+        <MovieCarousel
+          movies={movies}
+        />
+      ) : (
+        <Card
+          sx={{
+            width: 400,
+            m: 2,
+          }}
+        >
+          <NoImage />
+        </Card>
+      )}
       <Typography
         variant="h4"
+        color='text.primary'
         sx={{
           mt: 4,
         }}
       >
         {books && books.length >= 5 ? 5 : books.length} Most Recent Book Submission(s)
       </Typography>
-      <BookCarousel
-        books={books}
-      />
+      {books.length ? (
+        <BookCarousel
+          books={books}
+        />
+      ) : (
+        <Card
+          sx={{
+            width: 400,
+            m: 2,
+          }}
+        >
+          <NoImage />
+        </Card>
+      )}
     </>
   )
 }

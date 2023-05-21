@@ -44,6 +44,7 @@ export interface User {
   profile: { id: number, photo: string };
   id: number;
   favColor: string;
+  darkPref: boolean;
   createdAt: string;
   updatedAt: string;
 }
