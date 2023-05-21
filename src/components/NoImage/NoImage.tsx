@@ -21,9 +21,9 @@ const NoImage = () => {
     >
       <Typography
         variant="h4"
-        color='white'
+        color='text.primary'
         sx={{
-          textShadow: `4px 4px 4px grey`,
+          textShadow: `4px 4px 4px ${theme.palette.background.paper}`,
           py: 2,
         }}
       >
@@ -31,9 +31,9 @@ const NoImage = () => {
       </Typography>
       <Typography
         variant="h4"
-        color='white'
+        color='text.primary'
         sx={{
-          textShadow: `4px 4px 4px grey`,
+          textShadow: `4px 4px 4px ${theme.palette.background.paper}`,
           py: 2,
         }}
       >
