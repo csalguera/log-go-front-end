@@ -72,7 +72,8 @@ const Home = (props: HomeProps) => {
       ) : (
         <Card
           sx={{
-            width: 400,
+            width: 350,
+            height: 600,
             m: 2,
           }}
         >
@@ -95,7 +96,8 @@ const Home = (props: HomeProps) => {
       ) : (
         <Card
           sx={{
-            width: 400,
+            width: 350,
+            height: 600,
             m: 2,
           }}
         >
