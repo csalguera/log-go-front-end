@@ -92,6 +92,7 @@ const Home = (props: HomeProps) => {
       </Typography>
       {books.length ? (
         <BookCarousel
+          user={user}
           books={books}
         />
       ) : (

@@ -15,9 +15,7 @@ import { useTheme } from "@mui/material";
 import { BookCardRProps } from "../../../types/props"
 
 const BookCardR = (props: BookCardRProps) => {
-  const {
-    book,
-  } = props
+  const { user, book } = props
 
   const theme = useTheme()
 
@@ -64,7 +62,7 @@ const BookCardR = (props: BookCardRProps) => {
         </Typography>
         <Typography variant="body2" color="text.primary">
           Added by: <Link
-            href={`/profiles/${book?.profile.id}`}
+            href={user?.id === book?.profile.id ? `/profiles/my-profile` : `/profiles/${book?.profile.id}`}
           >
             {book?.profile.name}
           </Link>

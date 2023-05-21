@@ -16,7 +16,7 @@ import { useTheme } from "@mui/material"
 import { BookCarouselProps } from "../../../types/props"
 
 const BookCarousel = (props: BookCarouselProps) => {
-  const { books } = props
+  const { user, books } = props
   
   const theme = useTheme()
 
@@ -101,6 +101,7 @@ const BookCarousel = (props: BookCarouselProps) => {
             {books!?.map(book => (
               <BookCardR
                 key={book.id}
+                user={user}
                 book={book}
               />
             ))}
