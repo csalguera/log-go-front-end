@@ -65,14 +65,12 @@ const NavBar = (props: NavBarProps): JSX.Element => {
   }
 
   const handleSwitch = async () => {
-    setDarkPref(!darkPref)
-    setDarkPrefFormData({ darkPref: !darkPref })
-    await authService.changeDarkPref(darkPrefFormData)
+    const newDarkPref = !darkPref
+    setDarkPref(newDarkPref)
+    setDarkPrefFormData({ darkPref: newDarkPref })
+    await authService.changeDarkPref({ darkPref: newDarkPref })
     handleAuthEvt()
   }
-
-  console.log(user);
-  
 
   return (
     <>
