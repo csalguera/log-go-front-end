@@ -255,7 +255,7 @@ const MovieCardCUD = (props: MovieCardCUDProps): JSX.Element => {
               ||
               editFormDisplay
               ||
-              user?.id !== profile?.id
+              user?.profile.id !== profile?.id
               ?
               true
               :
@@ -279,7 +279,8 @@ const MovieCardCUD = (props: MovieCardCUDProps): JSX.Element => {
               editFormDisplay
               ||
               !movies.length
-              || user?.id !== profile?.id
+              ||
+              user?.profile.id !== profile?.id
               ?
               true
               :
@@ -300,7 +301,8 @@ const MovieCardCUD = (props: MovieCardCUDProps): JSX.Element => {
               editFormDisplay
               ||
               !movies.length
-              || user?.id !== profile?.id
+              ||
+              user?.profile.id !== profile?.id
               ?
               true
               :

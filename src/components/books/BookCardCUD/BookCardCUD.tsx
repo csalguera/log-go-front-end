@@ -260,7 +260,7 @@ const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
               ||
               editFormDisplay
               ||
-              user?.id !== profile?.id
+              user?.profile.id !== profile?.id
               ?
               true
               :
@@ -284,7 +284,8 @@ const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
               editFormDisplay
               ||
               !books.length
-              || user?.id !== profile?.id
+              ||
+              user?.profile.id !== profile?.id
               ?
               true
               :
@@ -305,7 +306,8 @@ const BookCardCUD = (props: BookCardCUDProps): JSX.Element => {
               editFormDisplay
               ||
               !books.length
-              || user?.id !== profile?.id
+              ||
+              user?.profile.id !== profile?.id
               ?
               true
               :
